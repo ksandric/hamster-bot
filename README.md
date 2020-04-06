@@ -1,5 +1,6 @@
 # hamster-bot
 ![hamster-bot logo](/logo.png)
+
 hamster-bot releases
 links:
 - https://github.com/ksandric/hamster-bot/blob/master/hamster-bot.zip?raw=true
