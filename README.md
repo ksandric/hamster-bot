@@ -1,4 +1,4 @@
-# hamster-bot
+# Trading bot for BitMEX exchange hamster-bot
 ![hamster-bot logo](/logo.png)
 
 __hamster-bot releases download links:__
