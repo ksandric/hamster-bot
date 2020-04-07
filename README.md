@@ -2,10 +2,10 @@
 ![hamster-bot logo](/logo.png)
 
 __hamster-bot releases download links:__
-* https://github.com/ksandric/hamster-bot/blob/master/hamster-bot.zip?raw=true
-* https://github.com/ksandric/hamster-bot/blob/master/hamster-bot_release.zip?raw=true password 1111
+* __Latest version__ [hamster-bot.zip](https://github.com/ksandric/hamster-bot/blob/master/hamster-bot.zip?raw=true) *Сontains only the executable file for updating*
+* __Release version__ [hamster-bot_release.zip](https://github.com/ksandric/hamster-bot/blob/master/hamster-bot_release.zip?raw=true) password 1111 *Сontains all the necessary files to run*
 
 __Other links:__
-* information https://teletype.in/@hamsterbot
-* telegram chat https://t.me/bitmextrue
-* telegram channel https://t.me/bothamster
+* information [teletype.in/@hamsterbot](https://teletype.in/@hamsterbot)
+* telegram chat [t.me/bitmextrue](https://t.me/bitmextrue)
+* telegram channel [t.me/bothamster](https://t.me/bothamster)
