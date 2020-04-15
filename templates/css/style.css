@@ -1,0 +1,188 @@
+/* style */
+html{
+
+}
+body{
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Comfortaa', cursive;
+}
+.sector1{
+	width: 100%;
+	background-image: url('../../templates/images/images1.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center; 
+	
+	height:500px;
+}
+.title_sector1{
+	text-align: center;
+	font-size: 34px;
+	padding-top: 50px;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 1px 1px 5px #000;
+}
+.bluer_black{
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.8);
+}
+.title2_sector1{
+	text-align: center;
+    color: #e09306;
+    font-size: 40px;
+    padding-top: 40px;
+
+}
+.wraper{
+	width: 1000px;
+	margin: 0px auto;
+}
+.btn_link{
+	display: block;
+    height: 50px;
+    line-height: 50px;
+    text-decoration: none;
+    width: 180px;
+    text-align: center;
+    background: #ce7b00;
+    color: #fff;
+    border-radius: 5px;
+}
+.btn_link:hover{
+	background: #ff9800;
+}
+.line_btn{
+	padding-top: 130px;
+}
+.title_sector2{
+	text-align: center;
+	padding: 30px;
+	font-size: 33px;
+}
+.items_us{
+	    width: 300px;
+    float: left;
+    margin: 0 16px;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 30px; 
+}
+.icons_item i{
+	font-size: 60px;
+    color: #e09306;
+}
+.title_item_us{
+	font-weight: bold;
+    padding: 10px 0px;
+}
+.text_us_item{
+	color: #6f6f6f;
+}
+.clear{
+	clear: both;
+}
+.sector3{
+	padding: 60px;
+	background: #fff;
+}
+.image_bot{
+	width: 550px;
+	float: left;
+}
+.image_bot img{
+	width: 550px;
+}
+.google_doc{
+	text-align: center;
+	float: right;
+	width: 400px;
+	padding-top:20px;
+}
+.google_doc img{
+	width: 65px;
+}
+.link_google_docs{
+	margin-top: 50px;
+}
+.link_google_docs a{
+	text-decoration: none;
+	    font-weight: bold;
+        font-size: 23px;
+    color: #4385f4;
+}
+.sector4{
+	width: 100%;
+	background-image: url('../../templates/images/rabstol_net_quotes_05.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center; 
+	height: 500px;	
+}
+.title_traid_view{
+	text-align: center;
+    padding-top: 50px;
+}
+.icon_tradingview{
+	text-align: center;
+	padding-top: 100px;
+}
+.title_traid_view a{
+	color: #e09306;
+	font-size: 37px;
+    font-weight: bold;
+    text-shadow: 1px 1px 5px #000;
+    text-decoration: none;
+}
+.contacts_sector{
+	padding: 50px 0px;
+}
+.title_contacs{
+	text-align: center;
+	font-size: 33px; 
+	padding: 30px 0px;
+}
+.img_cont{
+	float: left;
+	width: 80px;
+}
+.img_cont img{
+	width: 80px;
+}
+.title_cont{
+	float: left;
+	line-height: 80px;
+	height: 80px;
+	margin-left: 20px;
+    font-size: 35px;
+    font-weight: bold;
+}
+.marg{
+	margin-left: 50px;
+}
+.item_comn{
+	margin-top: 60px;
+	float: left;
+	width: 300px;
+}
+.text_info{
+	margin-top: 56px;
+    text-align: left;
+    color: #939393;
+}
+.text_info a{
+	color: #939393;
+}
+.text_top{
+    float: right;
+    width: 500px;
+    color: #b1b1b1;
+    margin-top: 100px;
+}
+.info_link{
+	color: #b1b1b1;
+	margin-top: 20px;
+	text-align: center;
+}
