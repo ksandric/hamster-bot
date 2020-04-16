@@ -7,10 +7,12 @@ __hamster-bot releases download links:__
 
 __Links:__
 * information [teletype.in/@hamsterbot](https://teletype.in/@hamsterbot)
+* bot ZZ Strategy Description [RU teletype.in/@hamsterbot/strategyZZ](https://teletype.in/@hamsterbot/strategyZZ)
+* bot price [RU teletype.in/@hamsterbot/buy](https://teletype.in/@hamsterbot/buy)
 
 __Contacts:__
 * telegram channel [t.me/bothamster](https://t.me/bothamster)
 * telegram main chat [t.me/bitmextrue](https://t.me/bitmextrue)
 * telegram EN chat [t.me/bothamster](https://t.me/hamster_EN)
-* telegram :netherlands: channel [t.me/bothamster](https://t.me/Hamsterbot_NL)
+* telegram NL channel [t.me/bothamster](https://t.me/Hamsterbot_NL)
 * telegram developer [t.me/dreamcast2](https://t.me/dreamcast2)
