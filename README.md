@@ -13,6 +13,6 @@ __Links:__
 __Contacts:__
 * telegram channel [t.me/bothamster](https://t.me/bothamster)
 * telegram main chat [t.me/bitmextrue](https://t.me/bitmextrue)
-* telegram EN chat [t.me/bothamster](https://t.me/hamster_EN)
-* telegram NL channel [t.me/bothamster](https://t.me/Hamsterbot_NL)
+* telegram EN chat [https://t.me/hamster_EN](https://t.me/hamster_EN)
+* telegram NL channel [t.me/Hamsterbot_NL](https://t.me/Hamsterbot_NL)
 * telegram developer [t.me/dreamcast2](https://t.me/dreamcast2)
