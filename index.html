@@ -20,18 +20,28 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
       <a class="navbar-brand" href="#"><span><img src="site/images/h_ico.png" width="32" height="32"/></span>
             hamster-bot.com</a>
-<!--
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
--->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+<!--
           <li class="nav-item active">
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
+-->
+			<li class="nav-item">
+            <a class="nav-link" href="#features">Features</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="https://teletype.in/@hamsterbot/stats">Reviews</a>
+          </li>
+			<li class="nav-item">
+            <a class="nav-link" href="#price">Pricing</a>
+          </li>
+			</li>
+			<li class="nav-item">
+            <a class="nav-link" href="https://teletype.in/@hamsterbot">Blog</a>
           </li>
 <!--
           <li class="nav-item dropdown">
@@ -60,11 +70,12 @@
             <h1 class="text-center">Cryptocurrency Algorithmic trading bot</h1>
             <div class="row justify-content-center">              
 				<div class="col-auto">
-				  <p><a class="btn btn-success btn-lg" href="https://github.com/ksandric/hamster-bot/blob/master/hamster-bot_release.zip?raw=true" role="button">Download free version</a> zip password: 1111</p>
+				  <p><a class="btn btn-success btn-lg" href="https://github.com/ksandric/hamster-bot/blob/master/hamster-bot_release.zip?raw=true" role="button">Download free version</a></p>
               	</div>
 				<div class="col-auto">
 				  <p><a class="btn btn-warning btn-lg" href="https://github.com/ksandric/hamster-bot/blob/master/hamster-bot.zip?raw=true" role="button">Download latest update</a></p>
               	</div>
+				<a style="color:#e09306">zip password: 1111</a>
 <!--
               <div class="col-auto">
                 <p><a class="btn btn-warning btn-lg" href="#" role="button">BUY NOW</a> </p>
@@ -92,15 +103,20 @@
       </div>
     </div>
     <hr>
+	<h2 id="features" class="text-center">Features</h2>
     <div class="container">
       <div class="row">
+		  <div class="col-lg-3 col-md-6 col-12">
+          <h2>Multistrategy</h2>
+          <p>Many available Tested trading strategies.</p>
+        </div>
         <div class="col-lg-3 col-md-6 col-12">
           <h2>Fully Automated</h2>
           <p>Fully stable automated trading without looking back.</p>
         </div>
         <div class="col-lg-3 col-md-6 col-12">
           <h2>Free Trail</h2>
-          <p>Free trial usage for each user! (limited to balance)</p>
+          <p>Always Free trial usage for each user! (limited to balance)</p>
         </div>
         <div class="col-lg-3 col-md-6 col-12">
           <h2>Telegram bot</h2>
@@ -110,8 +126,38 @@
           <h2>Development</h2>
           <p>The project team is continuously working to improve the product.</p>
         </div>
+		<div class="col-lg-3 col-md-6 col-12">
+          <h2>Supported exchanges</h2>
+          <p>Full BitMEX intergration. In development: FTX and Binance.</p>
+      </div>
+		  <div class="col-lg-3 col-md-6 col-12">
+          <h2>Community</h2>
+          <p>We develop a community of professionals. There are many users and reviews and performance statistics.</p>
       </div>
     </div>
+	
+	<div class="container">
+      <div class="row">
+        <div class="container py-sm-4">
+          <div class="row">
+            <div class="col-md-10 my-4 mx-auto">
+              <div class="card">
+                <div><img class="d-block mx-auto" src="site/images/tgbot.png" style="width: auto; max-height: 600px; "  alt="telegram bot">
+					<div class="card-body">   
+						<h5 class="card-title">Built-in telegram bot</h5>
+              <p class="card-text">The bot program is integrated with the telegram bot <a href="https://t.me/BitMEX_algorithmic_trading_bot">@BitMEX_algorithmic_trading_bot</a>
+It is very convenient to monitor the situation. You don't need to go to the exchange or to the computer running the bot. The bot will notify you of the current situation.</p>
+              <a href="https://youtu.be/XuGnjpQXeng?list=PLGp_vR9Vvw4y1q68s6uYGIy8AATHKrIjH" class="btn btn-warning">Video guide</a>
+						<a href="https://hamster-bot.com/telegram" class="btn btn-warning">Read the instructions.</a>
+            </div>
+                </div>       
+          </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+	
     <hr>
     <section>
       <h2 class="text-center">Video Tutorial</h2>
@@ -130,9 +176,9 @@
       <div class="row">
         <div class="col-sm-6">
           <div class="card">
-            <img class="card-img-top" src="site/images/tv.png" alt="Card image cap">
+            <img class="card-img-top" src="site/images/tv.png" height="200" alt="TradingView">
             <div class="card-body">
-              <h5 class="card-title">Tradingview intergration</h5>
+              <h5 class="card-title">TradingView intergration</h5>
               <p class="card-text">Full TradingView script support and backtest results available through tradingview. 1 on 1 equal connection as the bot 100% pure bot development.</p>
               <a href="https://www.tradingview.com/u/ksandric/#published-scripts" class="btn btn-warning">Scripts</a>
             </div>
@@ -140,7 +186,7 @@
         </div>
         <div class="col-sm-6">
           <div class="card">
-            <img class="card-img-top" src="site/images/Bitmex_logo.png" alt="Card image cap">
+            <img class="card-img-top" src="site/images/bitmex-trading-view.png" height="200" alt="BitMEX">
             <div class="card-body">
               <h5 class="card-title">Full BitMEX intergration</h5>
               <p class="card-text">full integration of the bitmex exchange. from API to charts to custom made and perfect connection to the bitmex exchange. world most advanced bitmex trading bot.</p>
@@ -150,19 +196,18 @@
         </div>
       </div>
     </div>
-	 <hr>
     <div class="container">
       <div class="row">
         <div class="container py-sm-4">
           <div class="row">
             <div class="col-md-10 my-4 mx-auto">
-              <h2 class="text-center">Pricing Table</h2>
+              <h2 id="price" class="text-center">Pricing Table</h2>
               <hr>
               <div class="row no-gutters my-2">
                 <div class="col-md-4 pr-2 col-xl-3">
                   <div class="list-group text-center my-3">
                     <div class="list-group-item text-white bg-dark">
-                      <h4 class="text-center my-1">Free trial</h4>
+                      <h4 class="text-center my-1">Trial</h4>
                     </div>
                     <div class="list-group-item text-uppercase font-weight-bold">
                       Free
@@ -184,7 +229,7 @@
                 <div class="col-md-4 col-xl-3">
                   <div class="list-group text-center my-3">
                     <div class="list-group-item text-white bg-dark">
-                      <h4 class="text-center my-1">Free trial. Refferal<br></h4>
+                      <h4 class="text-center my-1">Trial+ (Refferal)<br></h4>
                     </div>
                     <div class="list-group-item text-uppercase font-weight-bold">
                       Free
@@ -197,9 +242,14 @@
 					</a>  
 					<a class="list-group-item">
                     Restriction on the used part of the deposit. 0.03 BTC
-                    </a> 
+                    </a>
+					<a class="list-group-item text-black bg-warning">
+                    Using the referral link you get bonuses for the free version and a discount for the full version of 0.005 btc. 
+                    </a>
                     <div class="list-group-item">
-                      <p><a class="btn btn-success btn-lg" href="https://github.com/ksandric/hamster-bot/blob/master/hamster-bot_release.zip?raw=true" role="button">Download</a></p>
+                      <p>
+						  <a class="btn btn-success" href="https://www.bitmex.com/register/J3NsL2" >Register</a>
+						  <a class="btn btn-success btn-lg" href="https://github.com/ksandric/hamster-bot/blob/master/hamster-bot_release.zip?raw=true" role="button">Download</a></p>
                     </div>
                   </div>
                 </div>
@@ -243,7 +293,7 @@
                 <div class="col-md-4 pl-2 col-xl-3">
                   <div class="list-group text-center my-3">
                     <div class="list-group-item text-white bg-dark">
-                      <h4 class="text-center my-1">Full version Subscription</h4>
+                      <h4 class="text-center my-1">Subscription</h4>
                     </div>
                     <div class="list-group-item text-uppercase font-weight-bold">
                       0.0175 BTC
