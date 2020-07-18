@@ -1,0 +1,19 @@
+@charset "utf-8";
+body {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #d5893d, #23a6d5, #23d5ab);
+/*	background: linear-gradient(-45deg, rgba(255,255,255,1) 0%, rgba(255,231,0,1) 25%, rgba(255,171,0,1) 41%, rgba(255,102,0,1) 50%, rgba(239,0,255,1) 100%);*/
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
