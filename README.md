@@ -1,5 +1,5 @@
 # Trading bot for BitMEX exchange hamster-bot
-![hamster-bot logo](/logo.png)
+![hamster-bot logo](/logo.png) 
 
 __hamster-bot releases download links:__
 * __Latest version__ [hamster-bot.zip](https://github.com/ksandric/hamster-bot/blob/master/hamster-bot.zip?raw=true) *Сontains only the executable file for updating*
