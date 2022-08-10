@@ -1,14 +1,14 @@
 # Trading bot hamster-bot
 # for exchanges: BitMEX, FTX, Bybit, Binance, Huobi, Kucoin
 
-Automated trading system
+Automated trading system | 
 Cryptocurrency Algorithmic trading bot
 
 ![hamster-bot logo](/logo.png) 
 
 __hamster-bot releases download links:__
-* __Latest Win version__ [hb.zip](https://github.com/ksandric/hamster-bot/blob/master/hb.zip?raw=true) **
-* __Release Linux version__ [hb_linux-x64.zip](https://github.com/ksandric/hamster-bot/blob/master/hb_linux-x64.zip?raw=true) *[Инструкция](https://t.me/bothamster/309)*
+* __Latest Win version__ [hb.zip](https://github.com/ksandric/hamster-bot/blob/master/hb.zip?raw=true)
+* __Release Linux version__ [hb_linux-x64.zip](https://github.com/ksandric/hamster-bot/blob/master/hb_linux-x64.zip?raw=true)  ? *[Инструкция](https://t.me/bothamster/309)*
 
 __Links:__
 * site [hamster-bot.com](https://hamster-bot.com)
