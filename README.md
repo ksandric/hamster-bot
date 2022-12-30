@@ -1,4 +1,4 @@
-# Trading bot hamster-bot
+# Trading bot hamster-bot 
 # for exchanges: BitMEX, FTX, Bybit, Binance, Huobi, Kucoin
 
 Automated trading system | 
