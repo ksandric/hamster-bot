@@ -2,7 +2,7 @@
 
 # chmod +x hb_install.sh
 # ./hb_install.sh
-# wget -qO- https://raw.githubusercontent.com/ksandric/hamster-bot/refs/heads/master/hb_install.sh | bash
+# wget -qO- https://raw.githubusercontent.com/ksandric/hamster-bot/refs/heads/master/mb_install.sh | bash
 
 SERVICE_NAME="muslim-bot_1"
 SERVICE_FOLDER="mb"

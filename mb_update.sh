@@ -2,6 +2,7 @@
 
 # chmod +x hb_install.sh
 # ./hb_install.sh
+# wget -qO- https://raw.githubusercontent.com/ksandric/hamster-bot/refs/heads/master/mb_update.sh | bash
 
 SERVICE_NAME="hamster-bot_1"
 SERVICE_FOLDER="hb"
