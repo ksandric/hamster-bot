@@ -2,6 +2,7 @@
 
 # chmod +x hb_install.sh
 # ./hb_install.sh
+# wget -qO- https://raw.githubusercontent.com/ksandric/hamster-bot/refs/heads/master/hb_install.sh | bash
 
 SERVICE_NAME="hamster-bot_1"
 SERVICE_FOLDER="hb"
@@ -9,8 +10,9 @@ SERVICE_PORT="80"
 
 echo "Начало установки бота /opt/$SERVICE_FOLDER"
 
-echo "Установка: libfreetype6, libfontconfig1, fontconfig, fail2ban"
+echo "Установка: unzip, libfreetype6, libfontconfig1, fontconfig, fail2ban"
 yes | apt-get update
+yes | sudo apt install unzip
 yes | apt-get install -y libfreetype6
 yes | apt-get install -y libfontconfig1
 yes | apt-get install -y fontconfig
@@ -21,8 +23,8 @@ mkdir -p /opt/$SERVICE_FOLDER
 cd /opt/$SERVICE_FOLDER
 
 echo "Скачать zip архив"
-yes | wget -O /opt/$SERVICE_FOLDER/new_ver.zip https://github.com/ksandric/hamster-bot/blob/master/hb_linux-x64.zip?raw=true
-yes | sudo apt install unzip
+yes | wget -O /opt/$SERVICE_FOLDER/new_ver.zip https://github.com/ksandric/hamster-bot/blob/master/hb_linux-x64.zip
+
 echo "Распаковка архива"
 yes A | unzip -u new_ver.zip
 echo "Удаление файла архива"
@@ -57,7 +59,7 @@ echo "Открытие порта $SERVICE_PORT"
 iptables -I INPUT -p tcp --dport $SERVICE_PORT -j ACCEPT
 ufw allow $SERVICE_PORT
 echo "Запуск сервиса"
-sudo systemctl start $SERVICE_NAME.service
+sudo systemctl restart $SERVICE_NAME.service
 echo "Готово!"
 echo "Log:"
 sudo journalctl --follow -u $SERVICE_NAME.service
