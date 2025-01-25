@@ -14,7 +14,7 @@ sudo systemctl stop $SERVICE_NAME.service
 
 cd /opt/$SERVICE_FOLDER
 echo "Скачивание новой версии бота"
-yes | wget -O /opt/$SERVICE_FOLDER/new_ver.zip https://github.com/ksandric/hamster-bot/blob/master/hb_linux-x64.zip?raw=true
+yes | wget -O /opt/$SERVICE_FOLDER/new_ver.zip https://github.com/ksandric/hamster-bot/blob/master/hb_linux-x64.zip
 echo "Распаковка архива с заменой файлов"
 yes A | unzip -u new_ver.zip -x settings_program.json
 echo "Удаление файла архива"
