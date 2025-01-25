@@ -23,7 +23,7 @@ mkdir -p /opt/$SERVICE_FOLDER
 cd /opt/$SERVICE_FOLDER
 
 echo "Скачать zip архив"
-yes | wget -O /opt/$SERVICE_FOLDER/new_ver.zip https://github.com/ksandric/hamster-bot/blob/master/mb_linux.zip
+yes | wget -O /opt/$SERVICE_FOLDER/new_ver.zip https://raw.githubusercontent.com/ksandric/hamster-bot/refs/heads/master/mb_linux.zip
 yes | sudo apt install unzip
 echo "Распаковка архива"
 yes A | unzip -u new_ver.zip
