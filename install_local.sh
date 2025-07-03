@@ -20,7 +20,7 @@ is_port_available() {
 
 # Ввод порта с валидацией
 while true; do
-    read -p "Введите номер порта (80-65535): " SERVICE_PORT
+    read -p "Введите порт (80-65535): " SERVICE_PORT < /dev/tty
     
     # Проверка на число
     if ! is_number "$SERVICE_PORT"; then
