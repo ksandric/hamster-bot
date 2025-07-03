@@ -7,41 +7,48 @@
 SERVICE_FOLDER=$(basename "$(dirname "$(readlink -f "$0")")")
 SERVICE_NAME=$(basename "$(dirname "$(readlink -f "$0")")")
 
-# Функция проверки, является ли ввод числом
+# Функция проверки, является ли ввод числом (надежная версия)
 is_number() {
-    local num=$1
-    [[ "$num" =~ ^[0-9]+$ ]]
+    local num="$1"
+    [[ "$num" =~ ^[0-9]+$ ]] && return 0 || return 1
 }
 
-# Функция проверки занятости порта
+# Функция проверки занятости порта (с таймаутом)
 is_port_used() {
-    local port=$1
-    (echo >/dev/tcp/localhost/$port) &>/dev/null
+    local port="$1"
+    timeout 1 bash -c "echo >/dev/tcp/127.0.0.1/$port" &>/dev/null
     return $?
 }
 
 # Запрашиваем порт с проверками
 while true; do
     read -p "Введите номер порта (80-65535): " SERVICE_PORT
-    
-    # Проверка на число
-    if ! is_number "$SERVICE_PORT"; then
-        echo "❌ Ошибка: Введите корректное число!"
+
+    # Проверка на пустой ввод (если просто нажали Enter)
+    if [[ -z "$SERVICE_PORT" ]]; then
+        echo "❌ Ошибка: Введите число!"
         continue
     fi
-    
+
+    # Проверка на число
+    if ! is_number "$SERVICE_PORT"; then
+        echo "❌ Ошибка: '$SERVICE_PORT' — не число!"
+        continue
+    fi
+
     # Проверка диапазона
-    if [ "$PORT" -lt 80 ] || [ "$SERVICE_PORT" -gt 65535 ]; then
+    if (( SERVICE_PORT < 80 || SERVICE_PORT > 65535 )); then
         echo "❌ Ошибка: Порт должен быть в диапазоне 80-65535"
         continue
     fi
-    
+
     # Проверка занятости порта
     if is_port_used "$SERVICE_PORT"; then
-        echo "❌ Ошибка: Порт $SERVICE_PORT уже занят другим приложением"
+        echo "❌ Ошибка: Порт $SERVICE_PORT уже занят!"
         continue
     fi
-    
+
+    # Если все проверки пройдены — выходим из цикла
     break
 done
 
