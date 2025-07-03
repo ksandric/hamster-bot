@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# chmod +x hb_install.sh
-# ./hb_install.sh
-# wget -qO- https://raw.githubusercontent.com/ksandric/hamster-bot/refs/heads/master/hb_install.sh | bash
+# chmod +x install_local.sh
+# ./install_local.sh
+# wget -qO- https://raw.githubusercontent.com/ksandric/hamster-bot/refs/heads/master/install_local.sh | bash
 
 SERVICE_FOLDER=$(basename "$(dirname "$(readlink -f "$0")")")
 SERVICE_NAME=$(basename "$(dirname "$(readlink -f "$0")")")
