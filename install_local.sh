@@ -6,10 +6,47 @@
 
 SERVICE_FOLDER=$(basename "$(dirname "$(readlink -f "$0")")")
 SERVICE_NAME=$(basename "$(dirname "$(readlink -f "$0")")")
-SERVICE_PORT="80"
 
-echo "Начало установки бота /opt/$SERVICE_FOLDER"
+# Функция проверки, является ли ввод числом
+is_number() {
+    local num=$1
+    [[ "$num" =~ ^[0-9]+$ ]]
+}
 
+# Функция проверки занятости порта
+is_port_used() {
+    local port=$1
+    (echo >/dev/tcp/localhost/$port) &>/dev/null
+    return $?
+}
+
+# Запрашиваем порт с проверками
+while true; do
+    read -p "Введите номер порта (80-65535): " SERVICE_PORT
+    
+    # Проверка на число
+    if ! is_number "$SERVICE_PORT"; then
+        echo "❌ Ошибка: Введите корректное число!"
+        continue
+    fi
+    
+    # Проверка диапазона
+    if [ "$PORT" -lt 80 ] || [ "$SERVICE_PORT" -gt 65535 ]; then
+        echo "❌ Ошибка: Порт должен быть в диапазоне 80-65535"
+        continue
+    fi
+    
+    # Проверка занятости порта
+    if is_port_used "$SERVICE_PORT"; then
+        echo "❌ Ошибка: Порт $SERVICE_PORT уже занят другим приложением"
+        continue
+    fi
+    
+    break
+done
+
+echo "✅ Выбран свободный порт: $SERVICE_PORT"
+echo "🔄 Установка сервиса: $SERVICE_NAME (папка: /opt/$SERVICE_FOLDER)"
 echo "Установка: unzip, libfreetype6, libfontconfig1, fontconfig, fail2ban"
 yes | apt-get update
 yes | sudo apt install unzip
