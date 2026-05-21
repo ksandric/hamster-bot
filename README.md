@@ -22,7 +22,7 @@ __Contacts:__
 * telegram EN chat [https://t.me/hamster_EN](https://t.me/hamster_EN)
 * telegram developer [t.me/dreamcast2](https://t.me/dreamcast2)
 
-![hamster-bot logo](/logo.png) 
+![hamster-bot logo](/screenshot.png) 
 
 Для всех стратегий доступны **бэктесты** для проверки и подбора настроек на исторических данных. Встроенный тиковый тестер стратегий с оптимизатором параметров (перебор), построением тепловых карт и 3D Surface для наглядного анализа результатов. [Перейти к тестеру →](https://hamster-bot.com/strategy-tester)
 
