@@ -70,8 +70,13 @@ rm -rf new_ver.zip
 JSON_FILE="settings_program.json"
 # Проверяем существование файла
 if [ ! -f "$JSON_FILE" ]; then
-    echo "❌ Ошибка: Файл $JSON_FILE не найден!"
-    exit 1
+    echo "⚠️ Файл $JSON_FILE не найден, скачиваю из репозитория"
+    wget -O "$JSON_FILE" https://raw.githubusercontent.com/ksandric/hamster-bot/refs/heads/master/settings_program.json
+    if [ ! -s "$JSON_FILE" ]; then
+        rm -f "$JSON_FILE"
+        echo "❌ Ошибка: Не удалось скачать $JSON_FILE!"
+        exit 1
+    fi
 fi
 
 # Временный файл для обработки
@@ -80,8 +85,8 @@ TMP_FILE=$(mktemp)
 # Используем jq для изменения значения порта
 if command -v jq &> /dev/null; then
     # Способ 1: с jq (рекомендуется)
-    jq --arg port "$SERVICE_PORT" '.port = ($port | tonumber)' "$JSON_FILE" > "$TMP_FILE" && mv "$TMP_FILE" "$JSON_FILE"
-    echo "✅ Порт успешно изменен на $SERVICE_PORT (использован jq)"
+    jq --arg port "$SERVICE_PORT" '.port = ($port | tonumber) | .console.dashboard_mode = false' "$JSON_FILE" > "$TMP_FILE" && mv "$TMP_FILE" "$JSON_FILE"
+    echo "✅ Порт успешно изменен на $SERVICE_PORT, console.dashboard_mode = false (использован jq)"
 else
     # Способ 2: без jq (sed/awk)
     if grep -q '"port":' "$JSON_FILE"; then
@@ -90,6 +95,12 @@ else
     else
         echo "❌ Ошибка: Параметр 'port' не найден в файле"
         exit 1
+    fi
+    if grep -q '"dashboard_mode":' "$JSON_FILE"; then
+        sed -i 's/"dashboard_mode":[[:space:]]*\(true\|false\)/"dashboard_mode": false/g' "$JSON_FILE"
+        echo "✅ console.dashboard_mode = false (использован sed)"
+    else
+        echo "⚠️ Параметр 'dashboard_mode' не найден в файле"
     fi
 fi
 

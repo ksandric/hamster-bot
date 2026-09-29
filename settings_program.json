@@ -1,0 +1,80 @@
+{
+  "license": "",
+  "name": "my_server_2",
+  "type": "bot",
+  "url_settings": "",
+  "settings_scan": true,
+  "settings_apply": false,
+  "telegram_id": 0,
+  "single_thread": false,
+  "single_thread_delay": 1000,
+  "mono": true,
+  "exact_timeframe": false,
+  "delay": true,
+  "auth_telegram": true,
+  "auth_log": false,
+  "users_entry": false,
+  "use_web": true,
+  "port": 80,
+  "self_check": false,
+  "set_leverage": true,
+  "telegram": {
+    "bot_token": "",
+    "id_chat": 0,
+    "use_commands": false,
+    "watchdog_timer_minutes": 60,
+    "report_only_close": false,
+    "notify_warning": false,
+    "notify_error": false
+  },
+  "log": {
+    "log_months": 2,
+    "debug_mode": false,
+    "log_size_mb": 50,
+    "log_files_count": 1,
+    "print_position": false,
+    "compact_mode": true
+  },
+  "chart": {
+    "count": 100,
+    "width": 1000,
+    "height": 1000,
+    "theme_dark": false,
+    "offset": true,
+    "caption": true,
+    "show_balance": false
+  },
+  "ping": 0,
+  "watchdog": true,
+  "web_interface": {
+    "language": "en",
+    "show_chart": true,
+    "show_state": false,
+    "show_log": true,
+    "show_balance": false,
+    "show_orders": false,
+    "show_positions": false,
+    "show_api": false,
+    "show_settings": true,
+    "show_add": true
+  },
+  "console": {
+    "dashboard_mode": false,
+    "dashboard_refresh_ms": 1500
+  },
+  "monitoring": {
+    "enabled": false,
+    "include_positions": false,
+    "flush_every": 100,
+    "flush_interval_sec": 300,
+    "min_interval_sec": 0,
+    "min_change_percent": 0.0,
+    "compact_interval_min": 60,
+    "compact_tolerance_percent": 0.02,
+    "compact_keep_hours": 24
+  },
+  "only_hideep": false,
+  "get_bars_threads": 5,
+  "bars_cache_ttl_sec": 15,
+  "risk_multiplier": 1.0
+}
