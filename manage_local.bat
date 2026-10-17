@@ -39,6 +39,8 @@ exit /b
 #   7. Remove             - remove the task, the firewall rule and run_service.cmd (bot files are kept
 #                           as a files-only install); optionally delete the folder
 #   8. Show log           - follow console.log (like journalctl --follow)
+#   9. Open port          - ask for a TCP port (Enter = port from settings_program.json) and open it
+#                           in Windows Firewall; replaces the hamster-bot-<folder name> rule
 #
 # NON-INTERACTIVE UPDATE
 #   With HB_ACTION=update the menu is skipped and option 4 (service) or 3 (files only) is run
@@ -194,7 +196,7 @@ exit /b
 
     function Start-Bot($task) {
         Remove-Item $LOG -Force -ErrorAction SilentlyContinue
-        Start-ScheduledTask -InputObject $task
+        Start-ScheduledTask -InputObject $task -ErrorAction Stop
         for ($i = 0; $i -lt 20 -and -not (Get-BotProcess); $i++) { Start-Sleep -Milliseconds 500 }
         if (Get-BotProcess) { Print-Ok 'Bot started' } else { Print-Warn 'Bot did not start, check the log (option 8)' }
     }
@@ -263,6 +265,13 @@ goto loop
             if ($busy) { Print-Error "Port $port is already in use"; continue }
             return $port
         }
+    }
+
+    # Creates (or replaces) the inbound firewall rule of the bot for the given TCP port
+    function Set-FirewallRule([int]$port) {
+        Get-NetFirewallRule -DisplayName $RULE_NAME -ErrorAction SilentlyContinue | Remove-NetFirewallRule -ErrorAction Stop
+        New-NetFirewallRule -DisplayName $RULE_NAME -Direction Inbound -Protocol TCP -LocalPort $port -Action Allow -Profile Any -ErrorAction Stop | Out-Null
+        Print-Ok "Port $port opened in Windows Firewall (rule $RULE_NAME)"
     }
 
     # Like journalctl --follow: shows console.log in real time
@@ -340,12 +349,10 @@ goto loop
         $settings = New-ScheduledTaskSettingsSet -ExecutionTimeLimit ([TimeSpan]::Zero) -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries `
             -StartWhenAvailable -MultipleInstances IgnoreNew -RestartCount 999 -RestartInterval (New-TimeSpan -Minutes 1)
         $task = Register-ScheduledTask -TaskPath $TASK_PATH -TaskName $NAME -Action $action -Trigger $trigger -Principal $principal `
-            -Settings $settings -Description "hamster-bot-$NAME" -Force
+            -Settings $settings -Description "hamster-bot-$NAME" -Force -ErrorAction Stop
         Print-Ok "Scheduled task $TASK_PATH$NAME created"
 
-        Get-NetFirewallRule -DisplayName $RULE_NAME -ErrorAction SilentlyContinue | Remove-NetFirewallRule
-        New-NetFirewallRule -DisplayName $RULE_NAME -Direction Inbound -Protocol TCP -LocalPort $port -Action Allow -Profile Any | Out-Null
-        Print-Ok "Port $port opened in Windows Firewall"
+        Set-FirewallRule $port
 
         Start-Bot $task
         Print-Ok 'Done!'
@@ -369,22 +376,38 @@ goto loop
 
     function Disable-Bot($st) {
         Stop-BotProcesses $st.Task
-        Disable-ScheduledTask -InputObject $st.Task | Out-Null
+        Disable-ScheduledTask -InputObject $st.Task -ErrorAction Stop | Out-Null
         Print-Ok 'Bot stopped and will not start with Windows'
     }
 
     function Enable-Bot($st) {
-        $task = Enable-ScheduledTask -InputObject $st.Task
+        $task = Enable-ScheduledTask -InputObject $st.Task -ErrorAction Stop
         Print-Ok 'Autostart enabled'
         Start-Bot $task
+    }
+
+    # 9. Asks for a port and opens it in Windows Firewall
+    function Open-Port($st) {
+        $prompt = 'Enter TCP port to open (1-65535)'
+        if ($st.Port) { $prompt += ", Enter = $($st.Port) from settings_program.json" } else { $prompt += ', Enter = cancel' }
+        while ($true) {
+            $port = "$(Read-Host $prompt)".Trim()
+            if (-not $port) {
+                if (-not $st.Port) { Print-Warn 'Cancelled'; return }
+                $port = "$($st.Port)"
+            }
+            if ($port -match '^[0-9]{1,5}$' -and [int]$port -ge 1 -and [int]$port -le 65535) { break }
+            Print-Error 'Port must be a number between 1 and 65535'
+        }
+        Set-FirewallRule ([int]$port)
     }
 
     # Returns $true if the whole bot folder was deleted
     function Remove-Bot($st) {
         if (-not (Confirm-Yes "Remove service $TASK_PATH$NAME?")) { return $false }
         Stop-BotProcesses $st.Task
-        Unregister-ScheduledTask -InputObject $st.Task -Confirm:$false
-        Get-NetFirewallRule -DisplayName $RULE_NAME -ErrorAction SilentlyContinue | Remove-NetFirewallRule
+        Unregister-ScheduledTask -InputObject $st.Task -Confirm:$false -ErrorAction Stop
+        Get-NetFirewallRule -DisplayName $RULE_NAME -ErrorAction SilentlyContinue | Remove-NetFirewallRule -ErrorAction Stop
         Remove-Item $RUN_SCRIPT, $LOG -Force -ErrorAction SilentlyContinue
         Print-Ok 'Service and firewall rule removed'
 
@@ -467,6 +490,7 @@ goto loop
             $menu['7'] = 'Remove service'
             $menu['8'] = 'Show log'
         }
+        $menu['9'] = 'Open port in Windows Firewall'
         $menu['0'] = 'Exit'
 
         Write-Host ''
@@ -491,6 +515,7 @@ goto loop
                 '6' { if ($st.Enabled) { Disable-Bot $st } else { Enable-Bot $st } }
                 '7' { if (Remove-Bot $st) { return } }
                 '8' { Show-Log }
+                '9' { Open-Port $st }
             }
         } catch {
             Print-Error "$($_.Exception.Message) (line $($_.InvocationInfo.ScriptLineNumber))"
