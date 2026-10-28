@@ -193,6 +193,41 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
+### GET /api/settings/schema
+Какие поля настроек на что-то влияют. `?strategy=` — код стратегии (`basic.strategy`); без него — карта по всем стратегиям.
+
+**Ответ 200** (`?strategy=zz`, сокращённо):
+```json
+{
+  "strategy": "zz", "type": "trend",
+  "sections": ["zz"],
+  "ignored_sections": ["hd", "zigzag", "mrs2", "..."],
+  "position_filter": true, "supported_in_tester": true,
+  "conditional_fields": [
+    { "fields": ["zz.depth", "zz.detection", "zz.open", "..."], "active_when": "zz.type = ZZ2" },
+    { "fields": ["zz.zz6_*"], "active_when": "zz.type = ZZ6" },
+    { "fields": ["zz.ma_filter"], "active_when": "zz.use_ma_filter = true" },
+    { "fields": ["basic.balance_percentage_long", "basic.risk_long"], "active_when": "basic.use_long = true and basic.lot_long = 0" }
+  ],
+  "notes": { "zz.zz6_risk_max": "ZZ6 only caps the lot multiplier ..." },
+  "tester_ignores": { "basic.leverage": "the tester does not model leverage ..." },
+  "shared_fields": ["zz.from_level_price"]
+}
+```
+
+- `sections` — секции, которые читает стратегия; секции из `ignored_sections` она не читает. Общие секции (`basic`, `options`, `filter`, `exchange`) в списках не указаны.
+- `position_filter` — стратегия учитывает `filter`; поля `filter.<имя>.*` действуют, только когда `filter.<имя>.use = true`.
+- `conditional_fields` — поля, которые действуют только при условии. `*` в конце — все поля с этим началом.
+- `notes` — поля, которые влияют на результат только в крайних случаях (перебор по ним часто даёт одинаковые строки).
+- `tester_ignores` — поля, которых тестер не моделирует.
+- `shared_fields` — поля секции, которые читают и другие стратегии.
+
+Поле без правила считается действующим. Те же правила дают предупреждения `warnings` при сохранении настроек и запуске тестера.
+
+**Ошибки:** `404` — неизвестная стратегия
+
+---
+
 ## Стратегии
 
 ### GET /api/settings/strategy
@@ -244,10 +279,10 @@ Cookie действует до 10 дней. Действует только по
 
 **Ответ 200:**
 ```json
-{ "success": true, "name": "T4 BTC v2", "created": false }
+{ "success": true, "name": "T4 BTC v2", "created": false, "warnings": null }
 ```
 
-`created: true` — стратегия новая.
+`created: true` — стратегия новая. `warnings` — изменённые поля, которые стратегия не читает (см. [`/api/settings/schema`](#get-apisettingsschema)); `null` — замечаний нет.
 
 **Ошибки:** `400` — не заполнены `name`, `exchange.name`, `exchange.account` или `basic.strategy` либо имя содержит недопустимые символы, `500` — не удалось сохранить
 
@@ -269,10 +304,41 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
+### POST /api/settings/strategy/from-tester
+Создаёт стратегию бота из проверенной настройки тестера. Настройка копируется как есть; `exchange.name` и `exchange.account` берутся от аккаунта. По умолчанию стратегия создаётся **на паузе** (`is_runing: false`): бот её загружает, но не торгует, пока её не запустят ([`play`](#post-apibotsaccountnamesettingsnameplay)).
+
+**Запрос:**
+```json
+{ "folder": "lut_now", "name": "T_BTC", "account": "demo_bybit", "new_name": "T_BTC live", "start": false }
+```
+
+- `folder` — папка настроек тестера, см. [Папка настроек в запросе](#папка-настроек-в-запросе);
+- `new_name` — имя стратегии; без него — как у настройки;
+- `start: true` — сразу запустить торговлю.
+
+**Ответ 200:**
+```json
+{ "success": true, "name": "T_BTC live", "account": "demo_bybit", "exchange": "bybit", "is_runing": false, "warnings": null }
+```
+
+`warnings` — как у [сохранения стратегии](#post-apisettingsstrategy), плюс предупреждение, если настройку проверяли на другой бирже, чем у аккаунта.
+
+**Ошибки:** `404` — настройка тестера или аккаунт не найдены, `409` — стратегия с таким именем уже есть, `500` — не удалось сохранить
+
+---
+
 ### POST /api/settings/strategy/{name}/delete
 Удаляет стратегию и останавливает её ботов. Ордера и позиция на бирже при этом не трогаются.
 
 `?full=1` — полное удаление: стратегия ставится на паузу, все её ордера отменяются, позиция закрывается, и только потом стратегия удаляется. Если отменить ордера или закрыть позицию не удалось, стратегия остаётся на паузе и **не** удаляется — позиция не останется без управления.
+
+**Как правильно отключить стратегию.** Позиция и ордера на паузе остаются на бирже без управления стратегией (её стопов, тейков и выходов), поэтому их нельзя бросать. Порядок:
+1. пауза;
+2. снять ордера;
+3. закрыть позицию;
+4. удалить настройку.
+
+`?full=1` делает именно это: после паузы ждёт завершения текущего цикла бота, чтобы он не успел выставить новый ордер. Вручную — тот же порядок, и паузу пропускать нельзя: работающий бот выставит ордера заново сразу после отмены.
 
 **Запрос:** `POST /api/settings/strategy/T4%20BTC/delete?full=1`
 
@@ -499,7 +565,7 @@ Cookie действует до 10 дней. Действует только по
 ---
 
 ### POST /api/bots/{accountName}/{settingsName}/pause
-Ставит стратегию на паузу (для стратегии на несколько пар — все её пары).
+Ставит стратегию на паузу (для стратегии на несколько пар — все её пары): она перестаёт выставлять ордера. Открытая позиция и ордера остаются на бирже без управления стратегией — после паузы либо снова запустите её, либо снимите ордера и закройте позицию (см. [удаление](#post-apisettingsstrategynamedelete)).
 
 **Запрос:** `POST /api/bots/main/T4%20BTC/pause`
 
@@ -539,6 +605,17 @@ Cookie действует до 10 дней. Действует только по
 **Ответ 200:** `{ "success": true }`
 
 **Ошибки:** `404` — бот не найден
+
+---
+
+### POST /api/delete/{accountName}/{settingsName}
+Удаляет стратегию бота и убирает бота из работы. Ордера и позиция на бирже **не** снимаются и остаются без управления. Для безопасного отключения используйте [`POST /api/settings/strategy/{name}/delete?full=1`](#post-apisettingsstrategynamedelete).
+
+**Запрос:** `POST /api/delete/main/T4%20BTC`
+
+**Ответ 200:** `{ "success": true }`
+
+**Ошибки:** `404` — бот не найден, `500` — не удалось удалить
 
 ---
 
@@ -782,7 +859,15 @@ Cookie действует до 10 дней. Действует только по
 ---
 
 ### GET /api/logs/files
-Файлы логов, свежие первыми.
+Файлы логов, свежие первыми; каждый день — новый файл. `?contains=` — только файлы, в имени которых есть текст (имя стратегии, аккаунта, пара).
+
+Виды логов:
+- лог стратегии — `log_<дата>_<Биржа> <аккаунт>  <пара> <таймфрейм> <стратегия> <имя>.log`, по одному на бота: сигналы, ордера, исполнения, позиция, ошибки стратегии;
+- лог аккаунта — `log_<аккаунт>_<дата>.log`: балансы и позиции с биржи, ответы и ошибки API биржи, лимитер позиций, `close_by_margin`;
+- общий лог программы — `log_<дата>.log` ([`/api/logs`](#get-apilogs));
+- логи тестера — `TESTER_*.log`.
+
+Формат даты в именах разный, поэтому файл удобнее искать через `contains`.
 
 **Ответ 200:**
 ```json
@@ -820,7 +905,9 @@ Cookie действует до 10 дней. Действует только по
     "runs_total": 120,
     "current_bar": 5000,
     "total_bars": 20000,
-    "parallel": false
+    "parallel": false,
+    "report_folders": ["T4"],
+    "result_files": ["T4/reports_history.csv", "T4/report_optimizer_T4_auto_x_auto_y_20261025_120000.html", "T4/run_snapshot_T4_20261025_115500.json"]
   },
   "wizard_runs": [
     {
@@ -831,7 +918,12 @@ Cookie действует до 10 дней. Действует только по
       "finished_utc": "2026-10-25T11:02:00Z",
       "current_bar": 20000,
       "total_bars": 20000,
-      "message": "Completed: 1 strategies."
+      "message": "Completed: 1 strategies.",
+      "report_path": "T4/T4_run_001_of_001_BTCUSDT_1h_ee8c3c2e.html",
+      "report_json_path": null,
+      "snapshot_path": "T4/run_snapshot_T4_20261025_110000.json",
+      "stats": null,
+      "warnings": []
     }
   ],
   "download": { "active": false, "status": "Idle", "started_utc": null, "finished_utc": null, "message": "" },
@@ -839,8 +931,10 @@ Cookie действует до 10 дней. Действует только по
 }
 ```
 
-- `run` — перебор параметров, стресс-тест или повтор по snapshot. `status`: `Idle`, `Running`, `Completed` или `Failed`; `runs_done` / `runs_total` — сколько комбинаций параметров посчитано.
-- `wizard_runs` — одиночные прогоны. Завершённые видны ещё 5 минут.
+- `run` — перебор параметров, стресс-тест или повтор по snapshot. `status`: `Idle`, `Running`, `Completed` или `Failed`; `runs_done` / `runs_total` — сколько комбинаций параметров посчитано. `report_folders` — папки результатов текущего или последнего прогона внутри `root=report`; `result_files` — итоговые файлы, уже записанные в них с начала прогона: `reports_history.csv`, сводный HTML (`report_optimizer_*`, `stress_test_*`, `walk_forward_*`) и snapshot.
+- `queue` — запуски полного режима, ждущие своей очереди (`?queue=1`): `queue_id`, `position`, `message`, `queued_utc`.
+- `wizard_runs` — одиночные прогоны. Завершённые видны ещё час. Метрики (`stats`) здесь не передаются — они в [`/api/tester/wizard-runs/{run_id}`](#get-apitesterwizard-runsrun_id). У прогонов пакета, ещё не начатых, `status: "Queued"`.
+- `batches` — пакеты одиночных прогонов: `batch_id`, `done` из `total`.
 - `download` — загрузка исторических данных.
 - `settings_folder` — текущая папка настроек тестера.
 
@@ -860,6 +954,27 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
+### GET /api/tester/data-coverage
+Какие исторические данные уже скачаны: `?exchange=` (обязательно), `?symbols=A,B` (без него — все скачанные пары биржи), `?start=&end=` — период для проверки.
+
+**Ответ 200:**
+```json
+[
+  {
+    "symbol": "ADAUSDT", "downloaded": true, "first_day": "2026-04-09", "last_day": "2026-09-15",
+    "days": 67, "gap_days": 93, "size_mb": 1.78,
+    "period": { "covered": false, "missing_days": 132, "missing_first": ["2026-03-01", "2026-03-02", "2026-03-03"], "missing_last": "2026-08-30" }
+  },
+  { "symbol": "NOPEUSDT", "downloaded": false }
+]
+```
+
+`gap_days` — дни без данных между первым и последним. `period` есть только при `start` и `end`. Учитываются только скачанные файлы: недостающее докачивает сам прогон (`UpdateData`) или [`download-data`](#post-apitesterdownload-data).
+
+**Ошибки:** `400` — биржа не поддерживается или задан только один из `start` / `end`
+
+---
+
 ### GET /api/tester/exchanges
 Биржи, для которых тестер умеет загружать исторические данные.
 
@@ -874,18 +989,32 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
+### Папка настроек в запросе
+
+Все запросы к настройкам тестера, запуски и загрузка данных принимают папку настроек: `?folder=` в адресе или поле `folder` в теле запуска. Это путь внутри `tester/settings_strategy`, `""` — основная папка. Без `folder` используется папка, выбранная в интерфейсе ([`POST /api/tester/settings-folder`](#post-apitestersettings-folder)). Это общее состояние: его может сменить пользователь или параллельная задача, поэтому скриптам и ассистентам лучше всегда передавать `folder`.
+
+Несуществующая папка — ошибка `404`. Создать папку — [`POST /api/tester/settings-folders`](#post-apitestersettings-folders).
+
+У настройки могут быть необязательные поля `tags` (список меток) и `owner` (автор, например `"MCP"`). По ним настройки отбираются в списке и удаляются разом.
+
+---
+
 ### GET /api/tester/settings
-Настройки стратегий тестера в текущей папке.
+Настройки стратегий тестера в папке. Параметры:
+- `?folder=` — папка;
+- `?mask=` — только имена по маске (`*` — любые символы, `?` — один символ);
+- `?tag=`, `?owner=` — только с этой меткой или этим автором;
+- `?full=1` — настройки целиком вместо краткой формы: выгрузка папки, которую восстанавливает [`/api/tester/settings/import`](#post-apitestersettingsimport).
 
 **Ответ 200:**
 ```json
-[ { "name": "T4 BTC", "exchange": "bybit", "symbol": "BTCUSDT", "symbols": null, "strategy": "zigzag", "time_frame": "1h" } ]
+[ { "name": "T4 BTC", "exchange": "bybit", "symbol": "BTCUSDT", "symbols": null, "strategy": "zigzag", "time_frame": "1h", "tags": ["tmp"], "owner": "MCP" } ]
 ```
 
 ---
 
 ### GET /api/tester/settings/{name}
-Настройка тестера целиком.
+Настройка тестера целиком. `?folder=` — папка.
 
 **Ошибки:** `404` — не найдена
 
@@ -908,16 +1037,20 @@ Cookie действует до 10 дней. Действует только по
 ---
 
 ### POST /api/tester/settings
-Сохраняет настройку тестера. Тело — объект настройки. `?old_name=` — переименовать настройку `old_name`. Существующая настройка с тем же именем не перезаписывается.
+Сохраняет настройку тестера. Тело — объект настройки. `?old_name=` — переименовать настройку `old_name`. Существующая настройка с тем же именем не перезаписывается. `?folder=` — папка. `?owner_default=` — значение `owner`, если в настройке его нет (MCP передаёт `MCP`).
 
-**Ответ 200:** `{ "success": true, "name": "T4 BTC" }`
+**Ответ 200:** `{ "success": true, "name": "T4 BTC", "folder": "", "warnings": null }`
+
+`warnings` — изменённые (не как по умолчанию) поля, которые ни на что не влияют: секция другой стратегии (одна строка на секцию), поле другого `zz.type`, выключенный включатель `use_*`, `basic.leverage` (тестер плечо не моделирует) — см. [`/api/settings/schema`](#get-apisettingsschema). `null` — замечаний нет. Сохранение предупреждения не отменяют.
+
+То же поле `warnings` есть в ответе копирования настройки, а у импорта — `warnings` по имени каждой настройки.
 
 **Ошибки:** `400` — не заполнены обязательные поля, `409` — настройка с таким именем уже есть, `500` — не удалось сохранить
 
 ---
 
 ### POST /api/tester/settings/{name}/copy
-Копирует настройку тестера, при желании — на другую биржу или пару.
+Копирует настройку тестера в той же папке (`?folder=`), при желании — на другую биржу или пару. `?owner_default=` — как у сохранения. Скопировать в другую папку — [`copy-to-folder`](#post-apitestersettingscopy-to-folder).
 
 **Запрос:**
 ```json
@@ -933,7 +1066,7 @@ Cookie действует до 10 дней. Действует только по
 ---
 
 ### POST /api/tester/settings/{name}/delete
-Удаляет настройку тестера.
+Удаляет настройку тестера. `?folder=` — папка. Удалить много настроек разом — [`delete-matching`](#post-apitestersettingsdelete-matching).
 
 **Ответ 200:** `{ "success": true }`
 
@@ -954,7 +1087,7 @@ Cookie действует до 10 дней. Действует только по
 ---
 
 ### POST /api/tester/settings-folder
-Выбирает папку настроек тестера. Влияет на список настроек и на все запуски.
+Выбирает папку настроек тестера для интерфейса и для запросов без `folder`.
 
 **Запрос:**
 ```json
@@ -967,54 +1100,306 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
+### POST /api/tester/settings-folders
+Создаёт папку настроек, вложенные тоже. Выбранную папку не меняет.
+
+**Запрос:**
+```json
+{ "path": "research/zz_hedge" }
+```
+
+**Ответ 200:** `{ "success": true, "path": "research/zz_hedge", "created": true }`
+
+`created: false` — папка уже была.
+
+**Ошибки:** `400` — пустой путь, `..` или недопустимые символы в имени
+
+---
+
+### POST /api/tester/settings-folders/delete
+Удаляет папку настроек со всем содержимым. Основную папку удалить нельзя. Если удалена выбранная папка, выбранной становится основная.
+
+**Запрос:** `{ "path": "research/zz_hedge" }`
+
+**Ответ 200:** `{ "success": true, "deleted_settings": 12 }`
+
+**Ошибки:** `404` — папка не найдена или это основная папка
+
+---
+
+### POST /api/tester/settings/copy-to-folder
+Копирует настройки из одной папки в другую.
+
+**Запрос:**
+```json
+{ "from": "mrs-bybit", "to": "lut_now", "names": ["C_MU", "T_*"], "on_conflict": "replace" }
+```
+
+Какие настройки копировать — `names` (имена или маски), `mask` (`"*"` — все), `tag`, `owner`; фильтры сочетаются, нужен хотя бы один. `on_conflict` — что делать, если имя в папке назначения уже есть: `skip` (по умолчанию), `replace` или `error` (ничего не копировать).
+
+**Ответ 200:** `{ "success": true, "copied": ["C_MU"], "replaced": ["T_BTC"], "skipped": [] }`
+
+**Ошибки:** `400` — нет фильтра, имя без маски не найдено, папки совпадают или конфликт при `on_conflict: "error"`, `404` — папка не найдена
+
+---
+
+### POST /api/tester/settings/delete-matching
+Удаляет настройки папки по фильтру.
+
+**Запрос:**
+```json
+{ "folder": "lut_now", "owner": "MCP", "tag": "tmp" }
+```
+
+Фильтры — как у [`copy-to-folder`](#post-apitestersettingscopy-to-folder), нужен хотя бы один.
+
+**Ответ 200:** `{ "success": true, "folder": "lut_now", "deleted": ["MCP_LZ1"], "not_found": [] }`
+
+**Ошибки:** `400` — нет фильтра, `404` — папка не найдена
+
+---
+
+### POST /api/tester/settings/import
+Сохраняет набор настроек в папку, например выгрузку `GET /api/tester/settings?full=1`.
+
+**Запрос:**
+```json
+{ "folder": "lut_now", "settings": [ { ... }, { ... } ], "on_conflict": "skip", "owner_default": "MCP" }
+```
+
+**Ответ 200:** `{ "success": true, "folder": "lut_now", "saved": ["T_BTC"], "skipped": [], "warnings": { "T_BTC": ["..."] } }`
+
+**Ошибки:** `400` — неверная настройка или конфликт при `on_conflict: "error"`, `404` — папка не найдена
+
+---
+
+### GET /api/tester/settings-check
+Проверка настроек папки без запуска — те же замечания, что `warnings` при [сохранении](#post-apitestersettings). `?folder=` — папка, `?mask=` — имя или маска (по умолчанию все).
+
+**Ответ 200:**
+```json
+{
+  "folder": "lut_now", "total": 125, "with_warnings": 2,
+  "settings": [
+    { "name": "T_BTW", "strategy": "zz", "warnings": [
+      "zz.zz6_len = 8 is ignored: only when zz.type = ZZ6 (now: zz.type = \"ZZ2\")"
+    ] }
+  ]
+}
+```
+
+В `settings` — только настройки с замечаниями.
+
+**Ошибки:** `404` — папка не найдена
+
+---
+
 ### POST /api/tester/run
 Перебор параметров стратегий (раздел `parameter_mining` конфига тестера).
 
 **Запрос:**
 ```json
-{ "settings": ["T4 BTC", "T4 ETH"], "config": { ... } }
+{
+  "settings": ["*"],
+  "folder": "lut_now",
+  "config": { ... },
+  "overrides": [
+    { "match": "T_*", "mul": { "basic.balance_percentage_long": 2 } },
+    { "match": "C_MU", "set": { "basic.use_short": false } },
+    { "match": "L_X", "exclude": true }
+  ]
+}
 ```
 
-`settings` — имена настроек из текущей папки. `config` необязателен: без него используется сохранённый конфиг тестера.
+- `settings` — имена настроек или маски (`"*"` — все настройки папки). Имя без маски, которого нет в папке, — ошибка.
+- `folder` — папка настроек, см. [Папка настроек в запросе](#папка-настроек-в-запросе).
+- `config` необязателен: без него используется сохранённый конфиг тестера.
+- `overrides` — правки настроек только на этот запуск; файлы настроек не меняются. Правила применяются по порядку. `match` — имя или маска (по умолчанию все), `tag` — только настройки с этим тегом. `set` заменяет значения, `mul` умножает числа (целое поле остаётся целым), `cap_pct` после них ограничивает `basic.balance_percentage_long` и `_short` этих настроек — множитель размера с потолком на пару: `{ "match": "T_*", "mul": { "basic.balance_percentage_long": 2, "basic.balance_percentage_short": 2 }, "cap_pct": 10 }`. `exclude: true` убирает настройки из запуска. Поля — пути через точку, как в объекте настройки. Если поля нет ни в одной подходящей настройке, это ошибка (обычно опечатка); если его нет только у части, эти настройки перечислены в `not_applied`. Правки записываются в `comment` прогона и попадают в отчёт и snapshot.
 
-Тестер прогоняет все комбинации значений из `parameter_mining`; если задан `monte_carlo`, то случайную выборку такого размера. Запущенный перебор нельзя остановить, поэтому заранее проверяйте число комбинаций. Ход — в `run` ответа `GET /api/tester/status` (`runs_done` из `runs_total`).
+**Ответ 200:**
+```json
+{
+  "success": true,
+  "folder": "lut_now",
+  "strategies": ["C_MU", "T_BTC"],
+  "applied": [ { "name": "T_BTC", "changes": ["basic.balance_percentage_long: 10.0 → 20.0"], "not_applied": [] } ],
+  "excluded": ["L_X"]
+}
+```
 
-Результаты попадают в папку `report` с именем, равным `name_comment` конфига тестера. Чтобы эксперименты не смешивались, давайте каждому свой `name_comment`. В папке:
-- `reports_history.csv` — по строке на комбинацию: метрики (`TotalPnLPercent`, `MaxDrawdownPercent`, `ProfitFactor`, `WinRate`, …), `RunTag` и столбец со значением каждого перебираемого параметра;
+Тестер прогоняет все комбинации значений из `parameter_mining`; если задан `monte_carlo`, то случайную выборку такого размера. Заранее проверяйте число комбинаций; остановить запущенный перебор — [`POST /api/tester/stop`](#post-apitesterstop) с `full: true`. Ход — в `run` ответа `GET /api/tester/status` (`runs_done` из `runs_total`).
+
+Результаты попадают в папку `report` с именем, равным `name_comment` конфига тестера (недопустимые в имени файла символы заменяются на `_`). Ответ на запуск возвращает её в `report_folders`; при включённом `walk_forward` там же вторая папка `<name_comment>_WF_OOS` с прогонами вне выборки. Чтобы эксперименты не смешивались, давайте каждому свой `name_comment`. В папке:
+- `reports_history.csv` — по строке на комбинацию: метрики (`TotalPnLPercent`, `MaxDrawdownPercent`, `ProfitFactor`, `WinRate`, …), `Strategies` (имена настроек прогона через `|`), `RunTag` и столбец со значением каждого перебираемого параметра. При `single_mode` в каждой строке одна настройка, блоки комбинаций идут по имени настройки;
 - HTML-отчёт каждой комбинации (если включён `report.enable_html_report`) и его [JSON-версия](#get-apitesterreportsjson) (если включён `report.enable_json_report`); `RunTag` комбинации есть в имени файла;
-- сводный отчёт оптимизатора `report_optimizer_*.html`.
+- сводный отчёт оптимизатора `report_optimizer_*.html`;
+- `run_snapshot_<name_comment>_<время>.json` — точные настройки и конфиг запуска, см. [`snapshot-run`](#post-apitestersnapshot-run).
 
-**Ответ 200:** `{ "success": true }`
+`periods` — перебор на нескольких периодах: `[["2026-02-01","2026-05-01"], ["2026-05-01","2026-08-01"]]`. Каждый период — отдельный полный прогон в папку `<name_comment>_<начало>_<конец>`; они идут друг за другом через очередь. Ответ — `{ "success": true, "periods": [ { "start", "end", "report_folders", "queued", "queue_id", "position" } ], ... }`. Сравнить периоды — [`/api/tester/mining-robustness`](#get-apitestermining-robustness).
 
-**Ошибки:** `400` — не найдено ни одной из настроек или неверный `config`, `409` — тестер уже работает или загружаются данные
+**Предупреждения запуска.** Ответ на запуск содержит `warnings` (`null` — замечаний нет):
+- параметр `parameter_mining`, которого нет ни в настройках, ни в конфигах (опечатка: он не применится);
+- перебираемое поле, которое подходящие настройки не читают (`ignored by all N matching settings`: все комбинации дадут одинаковый результат) или читают не все; условия по полям, которые сами перебираются, не проверяются;
+- заметка о поле, которое влияет только в крайних случаях (`zz.zz6_risk_max`);
+- поле из `overrides`, которое настройка не читает.
+
+Предупреждения запуск не отменяют.
+
+Одиночные прогоны и пакеты пишут эти предупреждения и в итоги прогона (`warnings` у [`wizard-runs/{run_id}`](#get-apitesterwizard-runsrun_id)), пакет — ещё и в общий `warnings` с префиксом `runs[i] <имя>`. Запуск по snapshot проверяется так же.
+
+**Портфельный перебор.** Без `single_mode` все настройки идут вместе в каждой комбинации. Параметр с именем `settings[ИМЯ].путь` меняет одну настройку, а `settings[T_*].путь` — все настройки по маске имени; остальной набор остаётся как есть. Сравнивайте строки по портфельным `MaxDrawdownPercent` и `UlcerIndex` (включите `reports_history.ulcer_index`).
+
+`sides` — стороны торговли на этот запуск: `long` (только лонг), `short` (только шорт), `split` (каждая настройка дважды — `<имя> [long]` и `<имя> [short]`; при `single_mode` стороны майнятся отдельно) или `both` (как в настройках).
+
+`?queue=1` — если тестер занят другим полным прогоном или загрузкой данных, запуск встаёт в очередь, а не получает `409`. Ответ тогда — `{ "success": true, "queued": true, "queue_id": "63a8e791", "position": 1, ... }`; запуск начнётся сам, очередь видна в `queue` ответа `GET /api/tester/status`, отменить ещё не начатый — [`POST /api/tester/queue/{queue_id}/cancel`](#post-apitesterqueuequeue_idcancel).
+
+**Ошибки:** `400` — настройка не найдена, неверный `config`, `overrides` или `sides`, `404` — папка не найдена, `409` — тестер уже работает или загружаются данные (без `?queue=1`)
 
 ---
 
 ### POST /api/tester/stress
-Стресс-тест: те же настройки в ухудшенных условиях исполнения. Тело и ответы — как у `/api/tester/run`.
+Стресс-тест: те же настройки в ухудшенных условиях исполнения. Тело, `?queue=1` и ответы — как у `/api/tester/run`, кроме `periods` (не поддерживается). Результаты — в папке `<name_comment>_STRESS` (`report_folders` ответа): строки сценариев в `reports_history.csv` и сравнение с базой в `stress_test_*.html`.
+
+---
+
+### POST /api/tester/queue/{queue_id}/cancel
+Убирает из очереди полный запуск, который ещё не начался.
+
+**Ответ 200:** `{ "success": true }`
+
+**Ошибки:** `404` — запуск уже начался, отменён или `queue_id` неверный
 
 ---
 
 ### POST /api/tester/wizard-run
-Одиночный прогон стратегий. Тело — как у `/api/tester/run`.
+Одиночный прогон стратегий. Тело — как у `/api/tester/run`, включая `folder` и `overrides`.
 
 **Ответ 200:**
 ```json
-{ "success": true, "run_id": "a1b2c3d4" }
+{ "success": true, "run_id": "a1b2c3d4", "folder": "lut_now", "strategies": ["T4 BTC"], "applied": [], "excluded": [] }
 ```
 
-Ход прогона — в `wizard_runs` ответа `GET /api/tester/status` по `run_id`, метрики и путь к отчёту — в `GET /api/tester/wizard-results`.
+Дождаться прогона и получить его метрики и пути к отчётам — [`GET /api/tester/wizard-runs/{run_id}?wait=`](#get-apitesterwizard-runsrun_id). Ход всех прогонов — в `wizard_runs` ответа `GET /api/tester/status`.
 
 **Ошибки:** `400` — не найдено ни одной из настроек, `409` — загружаются данные
 
 ---
 
-### POST /api/tester/snapshot-run
-Повторяет прогон по snapshot-файлу. Snapshot сохраняет точные настройки и конфиг прогона; его сохраняет тестер рядом с отчётом (`run_snapshot_*.json`). Файл выбирается параметрами `?root=&path=`, как в [файлах тестера](#get-apitesterfiles).
+### POST /api/tester/wizard-batch
+Пакет одиночных прогонов: несколько наборов, каждый на нескольких периодах, через одну очередь с ограничением параллельности. Так сравнивают варианты и проверяют вариант на нескольких периодах одним запросом.
 
-Тело необязательно: можно передать изменённый snapshot — изменения действуют только на этот запуск, файл не меняется.
+**Запрос:**
+```json
+{
+  "folder": "lut_now",
+  "config": { ... },
+  "periods": [["2026-02-01", "2026-05-01"], ["2026-05-01", "2026-08-01"]],
+  "parallel": 2,
+  "runs": [
+    { "name": "base", "settings": ["*"] },
+    { "name": "T x2", "settings": ["*"], "overrides": [ { "match": "T_*", "mul": { "basic.balance_percentage_long": 2 } } ] },
+    { "name": "long only", "settings": ["*"], "sides": "long" }
+  ]
+}
+```
+
+Поля набора — как в теле [`/api/tester/run`](#post-apitesterrun) (`settings`, `folder`, `config`, `overrides`, `sides`) плюс `name` и свои `periods`. Чего нет в наборе, берётся из пакета. Каждый набор идёт на каждом периоде отдельным прогоном; без `periods` — на периоде конфига. `parallel` — сколько прогонов одновременно (по умолчанию 2; каждый держит свои данные в памяти). Ошибка в любом наборе отклоняет весь пакет.
+
+**Ответ 200:** то же, что [`GET /api/tester/wizard-batches/{batch_id}`](#get-apitesterwizard-batchesbatch_id), сразу после постановки в очередь.
+
+**Ошибки:** `400` — пустой `runs`, неверные `periods` или ошибка набора (`runs[1]: ...`), `404` — папка не найдена, `409` — загружаются данные
+
+---
+
+### GET /api/tester/wizard-batches/{batch_id}
+Пакет и итоги каждого прогона. `?wait=` — сколько секунд (до 240) ждать завершения всего пакета.
+
+**Ответ 200:**
+```json
+{
+  "batch_id": "31dd7d67", "status": "Completed", "done": 2, "total": 2, "failed": 0, "parallel": 2,
+  "started_utc": "2026-10-27T21:31:27Z",
+  "runs": [
+    {
+      "name": "T x2", "start": "2026-02-01", "end": "2026-05-01", "run_id": "a99984a8", "status": "Completed",
+      "message": "Completed: 12 strategies.",
+      "summary": { "pnl_percent": 12.4, "max_drawdown_worst_percent": 8.1, "ulcer_index": 2.3, "profit_factor": 1.6, "trades": 140, "monthly": { "2026-02": 3.1 } },
+      "stats": null,
+      "report_path": "...html", "report_json_path": "...json", "snapshot_path": "...json",
+      "warnings": [],
+      "applied": [ { "name": "T_BTC", "changes": ["basic.balance_percentage_long: 10.0 → 20.0"], "not_applied": [] } ],
+      "excluded": null
+    }
+  ]
+}
+```
+
+`summary` — как раздел `summary` [JSON-отчёта](#get-apitesterreportsjson); он есть, если включён `report.enable_json_report`, иначе вместо него `stats`. Строки прогонов пакета попадают и в `reports_history.csv` папки `name_comment` (столбцы `StartDate`, `EndDate`, `Strategies`). Пакеты хранятся час.
+
+**Ошибки:** `404` — пакета нет: неверный `batch_id`, прошло больше часа или программа перезапускалась
+
+---
+
+### POST /api/tester/stop
+Останавливает прогоны тестера.
+
+**Запрос** (нужно хотя бы одно поле):
+```json
+{ "run_id": "a1b2c3d4", "batch_id": "5e6f7a8b", "full": true, "clear_queue": true }
+```
+
+- `run_id` — одиночный прогон ([`wizard-run`](#post-apitesterwizard-run));
+- `batch_id` — все прогоны [пакета](#post-apitesterwizard-batch): ещё не начатые не стартуют;
+- `full: true` — текущий полный прогон: перебор, стресс-тест, walk-forward, snapshot;
+- `clear_queue: true` — ещё и убрать из [очереди](#post-apitesterqueuequeue_idcancel) не начатые полные прогоны.
+
+Идущий прогон останавливается на следующей свече. Прерванный прогон не пишет ни отчёт, ни строку `reports_history`: результат за часть периода ввёл бы в заблуждение. У полного прогона строки уже посчитанных комбинаций остаются; в параллельном режиме дочерние процессы завершаются. Статусы: полный прогон — `Stopped` в `run` ответа [`/api/tester/status`](#get-apitesterstatus), одиночный — `Cancelled` в [`wizard-runs/{run_id}`](#get-apitesterwizard-runsrun_id). Загрузку исторических данных этот запрос не останавливает.
+
+**Ответ 200:**
+```json
+{ "success": true, "cancelled_runs": ["a1b2c3d4"], "full_run_stopping": true, "cleared_queue": ["63a8e791"], "note": "Stopping: ..." }
+```
+
+**Ошибки:** `400` — не передано ни одного поля, `404` — прогон или пакет не найден
+
+---
+
+### GET /api/tester/wizard-runs/{run_id}
+Одиночный прогон по `run_id`. `?wait=` — сколько секунд (до 240) ждать завершения; без него ответ сразу.
+
+**Ответ 200:**
+```json
+{
+  "run_id": "a82c93c5",
+  "strategies": ["T4 BTC", "T4 TSLA"],
+  "status": "Completed",
+  "started_utc": "2026-10-25T05:26:43Z",
+  "finished_utc": "2026-10-25T05:26:50Z",
+  "current_bar": 27360,
+  "total_bars": 27360,
+  "message": "Completed: 2 strategies. 1 warnings.",
+  "report_path": "T4/T4_run_001_of_001_system_2_ee8c3c2e.html",
+  "report_json_path": "T4/T4_run_001_of_001_system_2_ee8c3c2e.json",
+  "snapshot_path": "T4/run_snapshot_T4_20261025_082643.json",
+  "stats": { "InitialBalance": 10000.0, "FinalBalance": 9581.25, "TotalPnL": -418.75, "TotalPnLPercent": -4.19, "TotalTrades": 23, "WinRate": 13.04, "MaxDrawdown": 527.89, "MaxDrawdownPercent": 5.26, "TotalFees": 22.2 },
+  "warnings": ["T4 TSLA: symbol TSLAUSDT: no data before 2025-09-14 00:00"]
+}
+```
+
+`status` — `Running`, `Completed` или `Failed`; `Running` после `wait` значит, что время ожидания вышло, — запросите снова. `report_path` и `report_json_path` — пути внутри `root=report`, `null`, если отчёт не записан. `snapshot_path` — snapshot прогона: точные настройки и конфиг, с которыми он шёл. `warnings` — пропущенные настройки, нехватка данных и причина, по которой нет отчёта. Если не запустилась ни одна настройка, прогон завершается со `status: "Failed"` и причиной в `message`. Завершённые прогоны хранятся час (до перезапуска программы).
+
+**Ошибки:** `404` — прогона нет: неверный `run_id`, прошло больше часа или программа перезапускалась
+
+---
+
+### POST /api/tester/snapshot-run
+Повторяет прогон по snapshot-файлу. Каждый запуск сохраняет snapshot рядом с отчётом — `run_snapshot_<name_comment>_<время>.json` с разделами `settings` (настройки всех стратегий), `tester_config` и `program_config`. Токены (`api_token`, `telegram.bot_token`) в snapshot не записываются. Запуск по snapshot — полный режим: один за раз, как перебор. Файл выбирается параметрами `?root=&path=`, как в [файлах тестера](#get-apitesterfiles).
+
+Тело необязательно: можно передать изменённый snapshot — изменения действуют только на этот запуск, файл не меняется. То же в интерфейсе: Тестер, вкладка «Результаты (файлы)», кнопка «Запустить» рядом со snapshot открывает его в редакторе, и правки идут только в этот запуск.
 
 **Запрос:** `POST /api/tester/snapshot-run?root=report&path=T4/run_snapshot_20261025.json`
+
+`?queue=1` — встать в очередь, если тестер занят, как у [`/api/tester/run`](#post-apitesterrun).
 
 **Ответ 200:** `{ "success": true }`
 
@@ -1023,7 +1408,7 @@ Cookie действует до 10 дней. Действует только по
 ---
 
 ### POST /api/tester/download-data
-Загружает исторические данные для всех настроек тестера. Ход — в `download` ответа `GET /api/tester/status`.
+Загружает исторические данные для всех настроек папки (`?folder=`). Ход — в `download` ответа `GET /api/tester/status`.
 
 **Ответ 200:** `{ "success": true }`
 
@@ -1032,7 +1417,7 @@ Cookie действует до 10 дней. Действует только по
 ---
 
 ### GET /api/tester/wizard-results
-Результаты одиночных прогонов, свежие первыми. Новый прогон того же набора настроек заменяет его прежнюю запись.
+Результаты одиночных прогонов, свежие первыми. Новый прогон того же набора настроек заменяет его прежнюю запись; результат конкретного прогона — в [`/api/tester/wizard-runs/{run_id}`](#get-apitesterwizard-runsrun_id).
 
 **Ответ 200:**
 ```json
@@ -1059,13 +1444,15 @@ Cookie действует до 10 дней. Действует только по
 ---
 
 ### GET /api/tester/files
-Содержимое папки тестера. `?root=` — `report` (отчёты, по умолчанию), `data` (исторические данные) или `runs` (наборы для повторных прогонов); `?path=` — путь внутри неё.
+Содержимое папки тестера. `?root=` — `report` (отчёты, по умолчанию), `data` (исторические данные) или `runs` (наборы для повторных прогонов); `?path=` — путь внутри неё. `?contains=` — только имена с этим текстом, `?offset=` и `?limit=` — часть списка. Сначала идут папки по имени, затем файлы, свежие первыми; `total` — сколько всего элементов подходит.
 
 **Ответ 200:**
 ```json
 {
   "root": "report",
   "path": "T4",
+  "total": 2,
+  "offset": 0,
   "items": [
     { "name": "old", "is_dir": true, "size": 204800, "modified_utc": "2026-10-20T10:00:00Z", "snapshot": false, "editable": false },
     { "name": "run_snapshot_20261025.json", "is_dir": false, "size": 51200, "modified_utc": "2026-10-25T12:00:00Z", "snapshot": true, "editable": false }
@@ -1103,11 +1490,13 @@ Cookie действует до 10 дней. Действует только по
 ---
 
 ### POST /api/tester/files/save
-Сохраняет JSON-файл в `runs` (`?root=runs&path=`). Тело — новое содержимое файла. Если в нём нет раздела `settings`, он берётся из текущего файла.
+Сохраняет JSON-файл в `runs` (`?root=runs&path=`): изменяет существующий или создаёт новый. Тело — новое содержимое файла. Если у существующего файла в теле нет раздела `settings`, он берётся из текущего файла. Новый файл должен быть полным snapshot: непустой `settings` и `tester_config`.
 
-**Ответ 200:** `{ "success": true }`
+Так готовят прогон для пользователя: в интерфейсе (Тестер, вкладка «Результаты (файлы)», папка `runs`) у каждого такого файла есть кнопки «Запустить» и «Изменить». При `use_runs` в конфиге тестера полный прогон из командной строки (`--run-tester`) запускает все `.json` из `runs`.
 
-**Ошибки:** `400` — пустое тело или неверный JSON, `404` — файл не найден или его нельзя изменять
+**Ответ 200:** `{ "success": true, "created": false }`
+
+**Ошибки:** `400` — пустое тело, неверный JSON или новый файл без `settings` / `tester_config`, `404` — путь не в `runs` или не `.json`
 
 ---
 
@@ -1148,19 +1537,21 @@ Cookie действует до 10 дней. Действует только по
 
 Параметры:
 - `?path=` — путь отчёта в `report`: файл `.json` или его `.html` (например, `report_path` из [`wizard-results`](#get-apitesterwizard-results));
-- `?sections=` — только эти разделы через запятую, например `?sections=metrics,by_symbol`;
+- `?sections=` — только эти разделы через запятую, например `?sections=summary` или `?sections=metrics,by_symbol`;
 - `?trades_offset=` и `?trades_limit=` — часть сделок.
 
 **Разделы:**
 
 | Раздел | Содержимое |
 |---|---|
+| `summary` | сводка на 1–2 КБ: PnL, просадки (в том числе нереализованная и худшая из трёх, как `MaxDrawdownPercent` в `reports_history.csv`), Ulcer Index, profit factor, Sharpe, CAGR, сделки, win rate, комиссии, средняя и максимальная позиция, худший месяц, доходность по месяцам. Считается при чтении из `run`, `metrics` и `monthly`, поэтому есть и у старых отчётов |
 | `run` | `name_comment`, `comment`, `run_tag`, `run_params` (значения перебираемых параметров), период, биржи, стратегии и пары |
 | `metrics` | вся таблица статистики HTML-отчёта по блокам: PnL, баланс, доходность по месяцам, сделки, исполнения, Buy & Hold, риск и экспозиция, Sharpe, Sortino, CAGR, Calmar, Ulcer Index… |
 | `by_symbol` | итоги по каждой паре: сделки, win rate, profit factor, PnL, лучшая и худшая сделка, просадка, Buy & Hold, комиссии, объём, размер позиции |
 | `monthly` | доходность по месяцам, %: `{ "2025-09": -4.15 }` |
 | `trades` | сделки (от открытия позиции до полного закрытия или переворота), отсортированные по времени закрытия, — `columns` и `rows` |
 | `curves` | кривые баланса (`equity`) и открытых позиций (`open_positions_total`, `_long`, `_short`), до 500 точек; `t` — Unix-время в секундах, `v` — значения |
+| `daily` | значения на конец каждого календарного дня периода, без пропусков: `days`, `equity` (Margin-баланс), `position` (открытая позиция, USDT); `strategies` — стратегии (настройки) с парами, кодом, типом (`trend` / `counter-trend`) и тегами; `pnl` и `position_by_strategy` — по массиву на стратегию в том же порядке: накопленный с начала отчёта вклад в баланс и позиция. Пишется при `report.json_daily` (включено по умолчанию). Для больших наборов раздел большой — сводку по нему даёт [`/api/tester/reports/portfolio`](#get-apitesterreportsportfolio) |
 | `settings` | полные настройки стратегий прогона |
 
 Поля `v` (версия формата), `created_utc` и `html_report` (имя HTML-отчёта или `null`) возвращаются всегда.
@@ -1193,6 +1584,98 @@ Cookie действует до 10 дней. Действует только по
 В `trades`: `count` — число всех сделок, `net_pnl` — результат сделки за вычетом комиссий, `mae` и `mfe` — худший и лучший промежуточный результат сделки (USDT), время — UTC.
 
 **Ошибки:** `400` — файл не является JSON-отчётом, `404` — JSON-отчёт не найден
+
+---
+
+### GET /api/tester/reports/portfolio
+Портфельная аналитика прогона по разделу `daily` его JSON-отчёта. Стратегии собираются в группы, по группам считается всё, что ниже.
+
+Параметры:
+- `?path=` — JSON-отчёт (или его `.html`) в `report`;
+- `?group_by=` — `type` (по умолчанию: `T` — трендовые, `CT` — контртрендовые, по коду стратегии), `tag` (первый тег настройки) или `strategy` (каждая настройка — своя группа);
+- `?groups={"T":"T_*","CT":"CT_*"}` — группы по маскам имён вместо `group_by`; настройки без совпадения попадают в `other`;
+- `?worst_days=` — сколько худших дней каждой группы брать (по умолчанию 10);
+- `?curves=0`, `?leave_one_out=0` — не считать эти разделы.
+
+**Ответ 200** (сокращённо):
+```json
+{
+  "start": "2026-08-01", "end": "2026-09-30", "days": 61, "group_by": "type",
+  "groups": [ { "group": "T", "strategies": 1, "names": ["T_BTW"], "pnl": -7294.0, "pnl_percent": -72.94, "worst_day": -4838.3, "max_drawdown_usdt": 15259.83, "position_max": 12752.08 } ],
+  "correlation": { "CT": { "CT": 1.0, "T": -0.28 }, "T": { "CT": -0.28, "T": 1.0 } },
+  "worst_week": { "start": "2026-08-08", "end": "2026-08-14", "pnl": -7200.62, "pnl_percent": -40.19, "by_group": { "CT": 279.98, "T": -7480.6 } },
+  "worst_days": { "T": { "days": 5, "pnl": -12902.51, "portfolio_pnl": -12754.28, "others": { "CT": { "pnl": 148.22, "offset_percent": 1.1 } } } },
+  "leave_one_out": {
+    "max_drawdown_percent": 83.43, "ulcer": 59.776,
+    "groups": { "T": { "pnl": -7294.0, "max_drawdown_percent_without": 1.54, "drawdown_added": 81.89, "ulcer_without": 0.686, "ulcer_added": 59.09 } },
+    "strategies": [ { "name": "T_BTW", "group": "T", "pnl": -7294.0, "max_drawdown_percent_without": 1.54, "drawdown_added": 81.89, "ulcer_without": 0.686, "ulcer_added": 59.09 } ]
+  },
+  "curves": { "days": ["2026-08-01"], "equity": [10754.72], "position": [0], "pnl_by_group": { "T": [0] }, "position_by_group": { "T": [0] } }
+}
+```
+
+- `correlation` — корреляция дневного PnL групп;
+- `worst_week` — худшие 7 дней подряд для портфеля и PnL каждой группы в них;
+- `worst_days` — для каждой группы её худшие дни: её PnL, PnL портфеля и PnL остальных групп в эти же дни; `offset_percent` — какую долю убытка отыграла другая группа (меньше нуля — добавила убыток);
+- `leave_one_out` — максимальная просадка и Ulcer портфеля без каждой стратегии и без каждой группы: `drawdown_added` больше нуля — стратегия добавляет просадку, меньше нуля — снижает её (хеджирует). Заменяет отдельный прогон набора без каждой стратегии;
+- `curves` — дневные кривые без пропусков: баланс, позиция, накопленный PnL и позиция каждой группы.
+
+Все величины — по значениям на конец дня: просадки здесь меньше внутридневных из `metrics`, а `leave_one_out` приближённый — без влияния стратегий друг на друга через маржу и лимиты позиций.
+
+**Ошибки:** `400` — у отчёта нет раздела `daily` (нужны `report.enable_json_report` и `report.json_daily`; у старых отчётов его нет) или неверные `group_by` / `groups`, `404` — отчёт не найден
+
+---
+
+### GET /api/tester/mining-robustness
+Устойчивость перебора на нескольких периодах: одна и та же сетка `parameter_mining`, прогнанная на каждом периоде в свою папку (`periods` у [`/api/tester/run`](#post-apitesterrun)).
+
+Параметры:
+- `?folders=a,b` — папки в `report`, по периоду в каждой;
+- `?metric=` — столбец `reports_history.csv`, по умолчанию `TotalPnLPercent`; столбцы просадки, риска и `UlcerIndex` — чем меньше, тем лучше;
+- `?base={"settings[*].zz.depth": 12}` — исходная точка для сравнения;
+- `?top=` — сколько комбинаций показать на каждую настройку (по умолчанию 10).
+
+Комбинации сопоставляются по значениям параметров и столбцу `Strategies` (при `single_mode` у каждой настройки свой рейтинг). На каждом периоде считается плато — среднее метрики по комбинации и её соседям на сетке (как в разделе устойчивости отчёта оптимизатора). Рейтинг — по среднему плато периодов, затем по худшему периоду.
+
+**Ответ 200** (сокращённо):
+```json
+{
+  "metric": "TotalPnLPercent", "lower_is_better": false,
+  "periods": ["T4_2026-08-01_2026-08-31", "T4_2026-09-01_2026-09-30"],
+  "parameters": ["settings[*].basic.balance_percentage_long"],
+  "combinations_common": 5,
+  "by_strategies": [
+    {
+      "strategies": "CT_VELVET|T_BTW",
+      "top": [ { "rank": 1, "parameters": { "settings[*].basic.balance_percentage_long": "50" }, "mean_plateau": -42.16, "worst_period": -56.75, "mean": -41.74,
+                 "by_period": [ { "period": "T4_2026-08-01_2026-08-31", "metric": -26.72, "plateau": -28.02, "run_tag": "run_005_of_005" } ], "beats_base": true } ],
+      "best_by_period": [ { "period": "T4_2026-09-01_2026-09-30", "parameters": { "settings[*].basic.balance_percentage_long": "10" }, "metric": -52.97, "rank_across_periods": 5, "worst_period": -52.97 } ],
+      "base": { "rank": 1, "...": "..." },
+      "beats_base_count": 1
+    }
+  ]
+}
+```
+
+`best_by_period` — лучшая точка каждого периода и её место в общем рейтинге: низкое место значит, что точка подогнана под свой период. `beats_base` — комбинация не хуже базовой ни на одном периоде.
+
+**Ошибки:** `400` — меньше двух папок, нет столбца метрики или слишком мало комбинаций для соседей, `404` — папка не найдена
+
+---
+
+### POST /api/tester/reports/telegram
+Отправляет файл отчёта тестера в Telegram — в чат уведомлений тестера (`telegram.id_chat` конфига программы, туда же приходят итоги переборов). Отправить можно только файл из `report` (`.html`, `.json`, `.csv`, `.png`, `.txt`, до 50 МБ); к торговле и чатам стратегий доступа нет. Подпись — `Tester report: <путь>` и `caption`.
+
+**Запрос:**
+```json
+{ "path": "T4/T4_BTCUSDT_20261025.html", "caption": "Лучший вариант по просадке" }
+```
+
+**Ответ 200:** `{ "success": true, "path": "T4/T4_BTCUSDT_20261025.html" }`
+
+Не чаще одного файла в 10 секунд.
+
+**Ошибки:** `400` — файл не отчёт или больше 50 МБ, не задан `telegram.id_chat`, `404` — файл не найден, `429` — слишком часто, `502` — Telegram не принял файл (причина в логе программы)
 
 ---
 
@@ -1267,33 +1750,119 @@ claude mcp add --transport http hamster-bot http://127.0.0.1:5000/mcp --header "
 
 **Доступ** — как у API (см. [Доступ](#доступ)): заголовок `Authorization: Bearer <api_token>` с любого адреса; без него — cookie `hamster-bot-token` при включённом входе или только с этой же машины при выключенном. Иначе `/mcp` отвечает `401`. Для подключения с другой машины укажите вместо `127.0.0.1` адрес сервера; токен при этом передаётся открытым текстом, поэтому через интернет подключайтесь через HTTPS-прокси или SSH-туннель.
 
-**Безопасность.** Инструменты, которые торгуют на бирже, запускают торговлю или необратимо меняют данные, помечены как опасные (`destructiveHint`) — клиент запрашивает подтверждение перед их вызовом. Это рыночные ордера, закрытие позиций, отмена ордеров, запуск ботов, сохранение и удаление стратегий и ключей, изменение конфига, выключение и обновление программы. Чтение состояния помечено как безопасное (`readOnlyHint`).
+**Безопасность.** Инструменты, которые торгуют на бирже, запускают торговлю или необратимо меняют данные, помечены как опасные (`destructiveHint`) — клиент запрашивает подтверждение перед их вызовом. Это рыночные ордера, закрытие позиций, отмена ордеров, запуск ботов, сохранение и удаление стратегий и ключей, изменение конфига, выключение и обновление программы. Чтение состояния помечено как безопасное (`readOnlyHint`). Тестер работает на исторических данных и с биржей не торгует.
+
+Инструкции сервера и описания инструментов объясняют ассистенту главное правило живой торговли: позиция и ордера не должны оставаться без контроля. Стратегия на паузе их не ведёт, поэтому отключение — только в порядке пауза → снять ордера → закрыть позицию → удалить (`delete_strategy` с `full=true` делает это сам).
 
 **Инструменты:**
 
 | Группа | Инструменты |
 |---|---|
-| Настройки | `get_config`, `update_config`, `get_field_hints` |
-| Стратегии | `list_strategies`, `get_strategy`, `draft_strategy`, `save_strategy`, `copy_strategy`, `delete_strategy` |
+| Настройки | `get_config`, `update_config`, `get_field_hints`, `get_settings_schema` |
+| Стратегии | `list_strategies`, `get_strategy`, `draft_strategy`, `save_strategy`, `copy_strategy`, `create_strategy_from_tester`, `delete_strategy` |
 | Аккаунты | `list_accounts`, `get_account`, `get_account_symbols`, `save_account`, `delete_account`, `get_account_info`, `get_balance_history`, `compact_balance_history` |
 | Боты | `list_bots`, `get_balances`, `get_bot_bars`, `get_bot_state`, `pause_all_bots`, `play_all_bots`, `pause_bot`, `play_bot`, `send_chart_to_telegram`, `send_position_to_telegram` |
 | Позиции и ордера | `list_positions`, `list_orders`, `market_order`, `close_position`, `close_all_positions`, `reduce_positions`, `cancel_order`, `cancel_account_orders`, `cancel_all_orders` |
 | Система и логи | `get_system_status`, `shutdown_program`, `update_program`, `get_log`, `get_errors`, `list_log_files`, `read_log_file` |
-| Тестер | `tester_status`, `get_tester_config`, `save_tester_config`, `tester_exchanges`, `tester_exchange_symbols`, `list_tester_settings`, `get_tester_settings`, `draft_tester_settings`, `save_tester_settings`, `copy_tester_settings`, `delete_tester_settings`, `get_tester_settings_folder`, `set_tester_settings_folder`, `tester_run_mining`, `tester_run_stress`, `tester_run_single`, `tester_run_snapshot`, `tester_download_data`, `tester_wizard_results`, `list_tester_files`, `read_tester_file`, `save_tester_file`, `delete_tester_file`, `tester_report_summaries`, `read_tester_report`, `tester_publish_files`, `tester_publish` |
+| Тестер | `tester_status`, `get_tester_config`, `save_tester_config`, `tester_exchanges`, `tester_exchange_symbols`, `list_tester_settings`, `get_tester_settings`, `draft_tester_settings`, `save_tester_settings`, `copy_tester_settings`, `delete_tester_settings`, `copy_tester_settings_to_folder`, `delete_tester_settings_matching`, `import_tester_settings`, `check_tester_settings`, `get_tester_settings_folder`, `set_tester_settings_folder`, `create_tester_settings_folder`, `delete_tester_settings_folder`, `tester_run_mining`, `tester_run_stress`, `tester_stop`, `tester_cancel_queued`, `tester_run_single`, `tester_wait`, `tester_run_batch`, `tester_wait_batch`, `tester_run_snapshot`, `tester_download_data`, `tester_data_coverage`, `tester_mining_robustness`, `tester_portfolio_analysis`, `tester_wizard_results`, `list_tester_files`, `read_tester_file`, `save_tester_file`, `delete_tester_file`, `tester_report_summaries`, `read_tester_report`, `send_tester_report_to_telegram`, `tester_publish_files`, `tester_publish` |
 
-Ошибка API возвращается ассистенту как ошибка инструмента с кодом и текстом, например `HTTP 404: {"success":false,"error":"Strategy not found"}`. Очень длинные ответы обрезаются до 200 000 символов. У `read_tester_file` для длинных CSV есть параметры `tail_lines` (последние N строк) и `contains` (только строки с текстом); заголовок CSV при этом сохраняется. HTML-отчёты большие, поэтому для сравнения прогонов лучше `tester_report_summaries`, а для подробностей одного прогона — `read_tester_report`.
+Ошибка API возвращается ассистенту как ошибка инструмента с кодом и текстом, например `HTTP 404: {"success":false,"error":"Strategy not found"}`. Очень длинные ответы обрезаются до 200 000 символов. `read_tester_file` отдаёт текстовые файлы целыми строками: длинный ответ заканчивается подсказкой `... [lines A-B of N; continue with offset=B]`. Для длинных CSV есть параметры `offset` и `limit` (страница строк), `tail_lines` (последние N строк), `contains` (только строки с текстом) и `columns` (только нужные столбцы); заголовок CSV сохраняется всегда. `list_tester_files` принимает `contains`, `offset` и `limit`. HTML-отчёты большие, поэтому для сравнения прогонов лучше `tester_report_summaries`, а для подробностей одного прогона — `read_tester_report`.
 
 **Исследования в тестере.** Ассистент может сам вести исследование стратегии. Тестер работает на исторических данных и с биржей не торгует. Типичный порядок:
 
-1. `get_field_hints` — узнать смысл полей настроек стратегии и конфига тестера, в том числе синтаксис `parameter_mining`.
-2. `draft_tester_settings` и `save_tester_settings` — создать настройки для нужной биржи, пары и таймфрейма.
-3. `save_tester_config` — задать период, комиссии, `parameter_mining` и новый `name_comment` для эксперимента; включить `report.enable_json_report`.
-4. `tester_download_data` — загрузить свечи и дождаться окончания в `tester_status`.
-5. `tester_run_single` — проверить одну комбинацию: метрики в `tester_wizard_results`. Или `tester_run_mining` — перебрать все комбинации: результаты в `<name_comment>/reports_history.csv` (`read_tester_file`).
-6. `read_tester_report` — разобрать прогон: итоги по парам, месяцы, сделки.
-7. `tester_report_summaries`, `tester_run_stress` и `walk_forward` в конфиге — сравнить лучшие варианты и проверить их устойчивость.
+1. `get_field_hints` — узнать смысл полей настроек стратегии и конфига тестера, в том числе синтаксис `parameter_mining`; `get_settings_schema` — какие поля стратегия действительно читает: перебор недействующего поля даёт одинаковые строки.
+2. `create_tester_settings_folder` — завести свою папку для эксперимента; `copy_tester_settings_to_folder` — скопировать в неё нужные настройки. Дальше передавать `folder` во все инструменты тестера.
+3. `draft_tester_settings` и `save_tester_settings` — создать новые настройки для нужной биржи, пары и таймфрейма. Варианты существующих настроек сохранять не нужно: их задаёт `overrides` при запуске.
+4. `save_tester_config` — задать период, комиссии, `parameter_mining` и новый `name_comment` для эксперимента; включить `report.enable_json_report`.
+5. `tester_download_data` — загрузить свечи и дождаться окончания в `tester_status`.
+6. `tester_run_single` — проверить одну комбинацию; `tester_wait` (или `wait_seconds` при запуске) дожидается прогона и возвращает метрики, предупреждения и пути к отчётам. `tester_run_batch` — сравнить несколько вариантов и проверить их на нескольких периодах одним вызовом. Или `tester_run_mining` — перебрать все комбинации: результаты в `<name_comment>/reports_history.csv` (`read_tester_file`); `queue=true` ставит перебор в очередь за текущим.
+7. `read_tester_report` — разобрать прогон: раздел `summary` для сравнения, итоги по парам, месяцы, сделки. Для набора стратегий — `tester_portfolio_analysis`: группы T/CT, корреляция, худшие дни, вклад каждой стратегии в просадку.
+8. `tester_report_summaries`, `tester_run_stress` и `walk_forward` в конфиге — сравнить лучшие варианты и проверить их устойчивость.
+9. `send_tester_report_to_telegram` — прислать итоговый отчёт пользователю в Telegram, если он просит.
 
-Пример запроса к ассистенту: «Подбери длину зигзага для BTCUSDT 1h на бирже Bybit за последние три месяца. Сравни лучшие варианты по просадке и проверь их стресс-тестом».
+Ответы на сохранение и запуск содержат `warnings`: поля, которые настройки не читают. `check_tester_settings` проверяет так всю папку.
+
+**Перевод в торговлю и контроль.** Проверенную настройку переносит в бота `create_strategy_from_tester` — стратегия создаётся на паузе, запуск — `play_bot` после проверки. Работу живого бота ассистент оценивает так: после закрытия дня, когда свечи можно скачать, прогоняет тестер на тех же настройках и за тот же период (стратегию в папку тестера копирует `import_tester_settings`) и получает полную статистику — в нормальном случае она совпадает с живой торговлей. Фактический результат — история баланса `get_balance_history` (пишется при включённом `monitoring.enabled`). Отключать стратегию — `delete_strategy` с `full=true` или вручную в порядке пауза → снять ордера → закрыть позицию → удалить.
+
+**Логи.** У каждого бота (стратегии на паре) свой лог: `log_<дата>_<Биржа> <аккаунт>  <пара> <таймфрейм> <стратегия> <имя>.log` — уровни, сигналы, выставленные и снятые ордера, исполнения, изменения позиции и ошибки стратегии; по нему видно, почему бот торговал или не торговал. У каждого аккаунта — `log_<аккаунт>_<дата>.log`: балансы и позиции с биржи, ответы и ошибки API биржи, лимитер позиций, `close_by_margin`. Общий лог программы — `log_<дата>.log` (`get_log`), логи тестера — `TESTER_*.log`. Формат даты в именах разный, поэтому файл ищут по имени стратегии или аккаунта: `list_log_files` с `contains`, затем `read_log_file`.
+
+### Примеры использования
+
+Ниже — запросы к ассистенту и вызовы инструментов, которые он делает. Аргументы показаны в JSON, как их передаёт MCP-клиент. Папка `lut_now`, имена настроек и даты — для примера.
+
+**Проверить вариант набора без тестовых копий.** «Что будет, если удвоить трендовые стратегии, но не больше 10% на пару, и выключить шорт у C_MU? Проверь на двух периодах».
+
+```json
+tester_run_single {
+  "settings": ["*"], "folder": "lut_now", "wait_seconds": 240,
+  "overrides": [
+    { "match": "T_*", "mul": { "basic.balance_percentage_long": 2, "basic.balance_percentage_short": 2 }, "cap_pct": 10 },
+    { "match": "C_MU", "set": { "basic.use_short": false } }
+  ],
+  "periods": [["2026-05-01", "2026-08-01"], ["2026-08-01", "2026-10-26"]]
+}
+```
+
+Файлы настроек не меняются. В ответе по каждому периоду — `summary` (PnL, просадки, Ulcer, profit factor, сделки, месяцы), пути к отчётам, `applied` (что изменено) и `warnings`. Вместо маски можно выбрать настройки по тегу: `{ "tag": "hedge", "mul": { ... } }`.
+
+**Сравнить несколько вариантов одним вызовом.**
+
+```json
+tester_run_batch {
+  "folder": "lut_now", "parallel": 2, "wait_seconds": 240,
+  "periods": [["2026-05-01", "2026-08-01"], ["2026-08-01", "2026-10-26"]],
+  "runs": [
+    { "name": "base", "settings": ["*"] },
+    { "name": "T x2", "settings": ["*"], "overrides": [{ "match": "T_*", "mul": { "basic.balance_percentage_long": 2 } }] },
+    { "name": "без L_X", "settings": ["*"], "overrides": [{ "match": "L_X", "exclude": true }] },
+    { "name": "только лонг", "settings": ["*"], "sides": "long" }
+  ]
+}
+```
+
+Каждый вариант идёт на каждом периоде; ответ — таблица результатов. Без `wait_seconds` ассистент ждёт пакет через `tester_wait_batch`.
+
+**Подобрать параметр, устойчивый на нескольких периодах.** «Подбери depth для T_BTC, но не под один период».
+
+1. `get_settings_schema { "strategy": "zz" }` — `zz.depth` действует только при `zz.type = ZZ2`; перебор поля, которое настройка не читает, даёт одинаковые строки.
+2. Перебор на трёх периодах (каждый — отдельный полный прогон через очередь):
+   ```json
+   tester_run_mining {
+     "settings": ["T_BTC"], "folder": "lut_now",
+     "config": { "name_comment": "MCP_depth", "parameter_mining": [{ "name": "settings[*].zz.depth", "start": 4, "end": 20, "step": 2 }], "...": "остальное как в get_tester_config" },
+     "periods": [["2026-02-01", "2026-05-01"], ["2026-05-01", "2026-08-01"], ["2026-08-01", "2026-10-26"]]
+   }
+   ```
+   Ответ содержит `report_folders` каждого периода и `warnings` (несуществующие и недействующие параметры).
+3. Дождаться окончания в `tester_status`, затем `tester_mining_robustness { "folders": [...], "base": { "settings[*].zz.depth": 12 } }` — рейтинг по плато всех периодов, место лучшей точки каждого периода в общем рейтинге и точки, которые не хуже исходной ни на одном периоде.
+
+**Оценить хедж трендовых стратегий в портфеле.** «Помогают ли T-стратегии CT-стратегиям в просадке?»
+
+1. Прогон набора с `report.enable_json_report: true` (раздел `daily` включён по умолчанию).
+2. `tester_portfolio_analysis { "path": "<report_json_path>", "groups": { "T": "T_*", "CT": "C_*" } }` — корреляция групп, худшая неделя, PnL группы T в худшие дни CT (`offset_percent`) и `leave_one_out`: насколько выросла бы просадка портфеля без каждой стратегии. Это заменяет отдельный прогон без каждой стратегии.
+3. Подобрать размер T на фоне остального набора — портфельный перебор без `single_mode`: параметр `settings[T_*].basic.balance_percentage_long`, строки сравниваются по `MaxDrawdownPercent` и `UlcerIndex` портфеля.
+
+**Проверить папку настроек.** `check_tester_settings { "folder": "lut_now" }` — настройки с изменёнными полями, которые ни на что не влияют (секция другой стратегии, поле другого `zz.type`, выключенный `use_*`, `basic.leverage` в тестере). Те же предупреждения приходят при сохранении настроек.
+
+**Повторить прогон с правкой и отдать вариант пользователю.** Каждый прогон сохраняет `run_snapshot_*.json` с точными настройками и конфигом. Ассистент читает его (`read_tester_file`), правит и запускает `tester_run_snapshot` с изменённым snapshot — файл не меняется. Чтобы пользователь запустил вариант сам, ассистент сохраняет его в `runs` через `save_tester_file`: в веб-интерфейсе (Тестер, вкладка «Результаты (файлы)») у файла есть кнопки «Запустить» и «Изменить».
+
+**Перевести настройку в торговлю и вести бота.** «Запусти T_BTC на демо-счёте и следи за ним».
+
+1. `list_accounts` — найти аккаунт.
+2. `create_strategy_from_tester { "name": "T_BTC", "folder": "lut_now", "account": "demo_bybit" }` — стратегия создаётся на паузе; ассистент проверяет её (`get_strategy`, `warnings`) и запускает `play_bot`.
+3. Контроль в течение дня: `list_bots`, `list_positions`, `list_orders`; лог стратегии — `list_log_files { "contains": "T_BTC" }` и `read_log_file`; ошибки — `get_errors`.
+4. После закрытия дня: `import_tester_settings` (стратегия из `get_strategy` в папку тестера), `tester_download_data`, прогон тестера за прошедший период — полная статистика, которая в нормальном случае совпадает с живой торговлей. Фактический результат — `get_balance_history` (при `monitoring.enabled`). Расхождение — повод разобрать лог стратегии.
+5. Корректировка: проверить изменение в тестере, затем `save_strategy` — изменения сразу применяются к работающему боту.
+
+**Отключить стратегию.** `delete_strategy { "name": "T_BTC", "full": true }` — пауза, снятие ордеров, закрытие позиции, удаление. Если ордера или позиция не снялись, стратегия остаётся на паузе и не удаляется: ассистент проверяет `list_orders` и `list_positions` и доделывает вручную в том же порядке, не пропуская паузу.
+
+**Прислать отчёт.** «Пришли итоговый отчёт в Telegram» — `send_tester_report_to_telegram { "path": "<report_path>", "caption": "лучший вариант по просадке" }`. Отправляются только файлы отчётов тестера в чат уведомлений тестера.
+
+Примеры запросов к ассистенту:
+- «Подбери длину зигзага для BTCUSDT 1h на Bybit за последние три месяца, проверь лучшую точку на двух других периодах и стресс-тестом».
+- «Синхронизируй папку lut_now с mrs-bybit и сравни набор с удвоенными T-стратегиями и без них по просадке и Ulcer».
+- «Какие стратегии lut_now добавляют просадку портфелю, а какие её снижают?»
+- «Перенеси лучший вариант на демо-счёт, запусти и каждый день сверяй живую торговлю с тестером».
 
 ---
 
@@ -1307,6 +1876,7 @@ claude mcp add --transport http hamster-bot http://127.0.0.1:5000/mcp --header "
 | 403 | Запрос со страницы другого сайта (`Origin` не совпадает с адресом бота) |
 | 404 | Не найдено |
 | 409 | Конфликт: тестер или загрузка данных уже работают, имя занято, нет нужного запущенного бота |
+| 429 | Слишком часто (отправка отчёта тестера в Telegram) |
 | 500 | Внутренняя ошибка или ошибка биржи |
 | 502 | Внешний сервис не принял запрос |
 | 503 | Программа ещё запускается |
