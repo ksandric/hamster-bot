@@ -1,72 +1,337 @@
-# Trading bot hamster-bot 
-**Self-hosted** решение — бот запускается на вашем сервере или компьютере. Ваши API ключи и данные никогда не покидают вашу машину.
+<div align="center">
 
-**Кроссплатформенный** — нативные сборки для  Windows,  Linux и  macOS. Единственный исполняемый файл без зависимостей.
-# for exchanges: BitMEX, FTX, Bybit, Binance, Huobi, HTX, Kucoin, Gate.io, Bitget, OKX, MEXC, WEEX, BingX + Tiger (broker bybit, binance)
+<img src="logo.png" alt="hamster-bot" width="360">
 
-Automated trading system | 
-Cryptocurrency Algorithmic trading bot
+# hamster-bot
 
-![hamster-bot logo](/logo.png) 
+**Торговый бот для криптобирж · алготрейдинг · достоверный портфельный бэктест**
 
-__hamster-bot releases download links:__
-* __Latest Win version__ [hb.zip](https://github.com/ksandric/hamster-bot/blob/master/hb.zip?raw=true)
-* __Release Linux version__ [hb_linux-x64.zip](https://github.com/ksandric/hamster-bot/blob/master/hb_linux-x64.zip?raw=true)
+На рынке с 2018 года. Бесплатный. Работает на вашем компьютере или сервере.
 
-__Links:__
-* site [hamster-bot.com](https://hamster-bot.com)
-* telegram channel [t.me/bothamster](https://t.me/bothamster)
+[![Сайт](https://img.shields.io/badge/сайт-hamster--bot.com-f5a000?style=for-the-badge)](https://hamster-bot.com/ru/bot)
+[![Telegram](https://img.shields.io/badge/Telegram-канал-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/bothamster)
+[![YouTube](https://img.shields.io/badge/YouTube-@hamster--bot-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@hamster-bot)
 
-__Contacts:__
-* telegram main chat [t.me/bitmextrue](https://t.me/bitmextrue)
-* telegram EN chat [https://t.me/hamster_EN](https://t.me/hamster_EN)
-* telegram developer [t.me/dreamcast2](https://t.me/dreamcast2)
+![Windows](https://img.shields.io/badge/Windows-x64-0078D6?logo=windows&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-x64%20%7C%20arm64-FCC624?logo=linux&logoColor=black)
+![macOS](https://img.shields.io/badge/macOS-x64%20%7C%20arm64-000000?logo=apple&logoColor=white)
+![Self-hosted](https://img.shields.io/badge/self--hosted-✔-success)
+![API + MCP](https://img.shields.io/badge/HTTP%20API%20%2B%20MCP-✔-blueviolet)
 
-![hamster-bot logo](/screenshot.png) 
+[О боте](#о-боте) · [Биржи](#поддерживаемые-биржи) · [Скачать](#скачать-и-установить) · [Скриншоты](#скриншоты) · [Контакты](#контакты) · [Возможности](#возможности) · [Бэктестер](#бэктестер-hamster-bottester) · [Видео](#видео) · [API и MCP](#api-и-mcp)
 
-Для всех стратегий доступны **бэктесты** для проверки и подбора настроек на исторических данных. Встроенный тиковый тестер стратегий с оптимизатором параметров (перебор), построением тепловых карт и 3D Surface для наглядного анализа результатов. [Перейти к тестеру →](https://hamster-bot.com/strategy-tester)
+</div>
 
-**Уведомления в Telegram**: открытие и закрытие сделок картинкой графика. Алертами при критических уведомлений. Гибкая настройка - отдельный чат для каждой стратегии.
+---
 
-**Торговля по алертам TradingView** через Webhook URL — автоматическое открытие и закрытие позиций по сигналам из TradingView.
+## О боте
 
-**WEB интерфейс** для мониторинга и управления из любого браузера по IP-адресу вашего сервера. Интерактивные обновления в реальном времени без перезагрузки страницы: позиции, баланс, настройки стратегий.
+**hamster-bot** автоматизирует торговлю по стратегиям на криптобиржах и позволяет построить собственную торговую систему из множества алгоритмов.
 
-**Self-hosted & кроссплатформенный**. Бот работает на вашем сервере или ПК — API ключи и данные остаются только у вас. Нативные самодостаточные сборки для  Windows,  Linux и  macOS без установки зависимостей.
+- **Self-hosted** — бот запускается на вашем сервере или ПК. API-ключи и данные не покидают вашу машину.
+- **Кроссплатформенный** — нативные сборки для Windows, Linux и macOS, один исполняемый файл без зависимостей.
+- **20+ стратегий** — трендовые, контртрендовые, пробойные, возврат к среднему, сигналы TradingView.
+- **Встроенный тиковый портфельный бэктестер** с оптимизатором параметров, тепловыми картами и 3D Surface.
+- **WEB-интерфейс, HTTP API и MCP-сервер** — управляйте ботом из браузера, скриптов или ИИ-ассистента (Claude и другие MCP-клиенты).
+- **Бесплатный.** Либо удобный готовый сервис на ваш выбор.
 
-**HTTP API и MCP для ИИ-ассистентов**. Полное управление ботом и тестером по API с токеном доступа. Встроенный MCP-сервер позволяет подключить Claude или другой MCP-клиент: ассистент сам смотрит состояние ботов, управляет стратегиями и проводит исследования в тестере. [Подробнее ↓](#mcp-для-ии-ассистентов)
+---
 
-**Консольный интерфейс** с режимом dashboard — компактная таблица состояния всех активных ботов в реальном времени.
+## Поддерживаемые биржи
 
-Оптимизация одновременной работы множества аккаунтов и вариантов настроек в одном боте. Протестирована на стабильность работа более 2000 ботов в одном процессе. При этом потребление ресурсов системы крайне незначительны. Для примера бот работающий на пяти стратегиях по трем аккаунтам потребляет всего 70 МБ памяти.
+<table>
+  <tr>
+    <td align="center" width="25%"><img src="docs/img/exchanges/bybit.png" height="32" alt="Bybit"><br><a href="https://hamster-bot.com/ru/exchange/bybit"><b>Bybit</b></a></td>
+    <td align="center" width="25%"><img src="docs/img/exchanges/binance.png" height="32" alt="Binance"><br><a href="https://hamster-bot.com/ru/exchange/binance"><b>Binance</b></a><br><sub><a href="https://t.me/bothamster/287">API broker</a></sub></td>
+    <td align="center" width="25%"><img src="docs/img/exchanges/okex.png" height="32" alt="OKX"><br><a href="https://hamster-bot.com/ru/exchange/okx"><b>OKX</b></a></td>
+    <td align="center" width="25%"><img src="docs/img/exchanges/mexc.png" height="32" alt="MEXC"><br><b>MEXC</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/img/exchanges/bingx.png" height="32" alt="BingX"><br><a href="https://hamster-bot.com/ru/exchange/bingx"><b>BingX</b></a></td>
+    <td align="center"><img src="docs/img/exchanges/bitmex.png" height="32" alt="BitMEX"><br><b>BitMEX</b></td>
+    <td align="center"><img src="docs/img/exchanges/huobi.png" height="32" alt="HTX"><br><b>HTX</b></td>
+    <td align="center"><img src="docs/img/exchanges/kucoin.png" height="32" alt="KuCoin"><br><b>KuCoin</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/img/exchanges/gate.png" height="32" alt="Gate.io"><br><b>Gate.io</b></td>
+    <td align="center"><img src="docs/img/exchanges/bitget.png" height="32" alt="Bitget"><br><a href="https://hamster-bot.com/ru/exchange/bitget"><b>Bitget</b></a></td>
+    <td align="center"><img src="docs/img/exchanges/phemex.png" height="32" alt="Phemex"><br><b>Phemex</b></td>
+    <td align="center"><img src="docs/img/exchanges/weex.png" height="32" alt="WEEX"><br><b>WEEX</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/img/exchanges/backpack.png" height="32" alt="Backpack"><br><b>Backpack</b></td>
+    <td align="center"><img src="docs/img/exchanges/btse.png" height="32" alt="BTSE"><br><a href="https://hamster-bot.com/ru/exchange/btse"><b>BTSE</b></a></td>
+    <td align="center"><img src="docs/img/exchanges/hyperliquid.png" height="32" alt="Hyperliquid"><br><a href="https://hamster-bot.com/ru/exchange/hyperliquid"><b>Hyperliquid</b></a></td>
+    <td align="center"><img src="docs/img/exchanges/tiger.png" height="32" alt="Tiger"><br><b>Tiger</b><br><sub>broker Bybit, Binance</sub></td>
+  </tr>
+</table>
 
-**Управление капиталом и риск-менеджмент**. Гибкая настройка размера лота: фиксированный (в монетах или USDT), процент от баланса. Широкий набор закрывающих опций: Take Profit, Stop Loss, Trailing Stop, закрытие по сигналам индикаторов ТА. Take Profit по балансу маржи (по эквити). Автоматический перевод прибыли с торгового счёта на счёт финансирования.
+Подробности по каждой бирже, партнёрские программы и листинги — на странице [hamster-bot.com/ru/exchange](https://hamster-bot.com/ru/exchange). Пожалуйста, используйте реферальные ссылки с сайта при регистрации на бирже — так вы поддерживаете проект.
 
-Множество доступных торговых стратегий: Трендовые, Контртрендовые, Пробойные, Возврат к среднему
-Что позволяет составить комбинацию стратегий для своего уникального портфеля. Есть возможность авторебалансировки портфеля — стратегии делятся профитом/убытком между собой.
-Вы можете торговать любую стратегию в hamster-bot — просто оставляйте заявку через форму forms.gle/RLVqNCjg4dtosqmF6
-[Описание стратегий → ](https://hamster-bot.com/bot/algo)
+---
 
-**Не хотите настраивать всё самостоятельно?** Есть готовое решение — нажать одну кнопку и всё готово к работе. Команда hamster-bot предоставляет проверенные пресеты стратегий: подключаете пресет — бот сразу начинает торговать по готовой конфигурации без необходимости подбирать параметры самостоятельно. [Готовое решение для инвесторов →](https://hamster-bot.com/phoenix)
+## Скачать и установить
 
-Обновление без остановки торговли — установка новой версии бота через кнопку в интерфейсе. Открытые позиции и ордера не закрываются.
+Актуальная версия:
 
-**Бесплатный бот.**
+| Платформа | Архив |
+|---|---|
+| 🪟 **Windows** x64 | [hb.zip](https://github.com/ksandric/hamster-bot/blob/master/hb.zip?raw=true) |
+| 🐧 **Linux** x64 | [hb_linux-x64.zip](https://github.com/ksandric/hamster-bot/blob/master/hb_linux-x64.zip?raw=true) |
+| 🐧 **Linux** arm64 | [hb_linux-arm64.zip](https://github.com/ksandric/hamster-bot/blob/master/hb_linux-arm64.zip?raw=true) |
+| 🍎 **macOS** x64 (Intel) | [hb_osx-x64.zip](https://github.com/ksandric/hamster-bot/blob/master/hb_osx-x64.zip?raw=true) |
+| 🍎 **macOS** arm64 (Apple Silicon) | [hb_osx-arm64.zip](https://github.com/ksandric/hamster-bot/blob/master/hb_osx-arm64.zip?raw=true) |
 
-# Установка бота на Linux
-1. Cоздать новую папку для бота (в примере папка hb1) Таким образом можно установить множество ботов в разные папки hb1, hb2 ... : `mkdir -p /opt/hb1`
-2. Перейти в созданную папку: `cd /opt/hb1`
-3. Скачать и запустить скрипт install_local.sh: `wget -qO- https://raw.githubusercontent.com/ksandric/hamster-bot/refs/heads/master/install_local.sh | bash`
+После запуска WEB-интерфейс доступен в браузере по адресу `http://127.0.0.1:<порт>` (локально по умолчанию порт `80`). Дальше добавьте API-ключи биржи и настройте стратегии.
 
-Для обновления всех активных ботов просто выполните этот скрипт: `wget -qO- https://raw.githubusercontent.com/ksandric/hamster-bot/refs/heads/master/update_all.sh | bash`
+<details>
+<summary><b>🐧 Linux (VPS) — установка одной командой</b></summary>
 
-# API | Endpoints
+> Рекомендуемые ОС: Ubuntu 20.04 / 22.04 / 24.04. Выбирайте локацию сервера **не в США** — биржи блокируют такие запросы (Europe и Asia — ОК). Для первого VPS подойдёт самый дешёвый тариф.
 
-__Вы можете управлять ботом через:__
-* WEB интерфейс
-* HTTP API
-* MCP — из ИИ-ассистента (Claude и другие MCP-клиенты)
-* и просто редактируя текстовые конфиг файлы .json
+1. Создайте папку для бота (так можно установить много ботов в разные папки `hb1`, `hb2` …):
+   ```bash
+   mkdir -p /opt/hb1
+   ```
+2. Перейдите в неё:
+   ```bash
+   cd /opt/hb1
+   ```
+3. Скачайте и запустите скрипт установки (он скачает и распакует архив и создаст `.service` в systemd):
+   ```bash
+   wget -qO- https://raw.githubusercontent.com/ksandric/hamster-bot/refs/heads/master/install_local.sh | bash
+   ```
+4. Скрипт запросит порт и проверит, что он свободен. Рекомендуется выбирать порты по порядку, начиная с `81`.
+
+Бот работает как сервис: запускается вместе с сервером и перезапускается при падении.
+
+```bash
+journalctl --follow -u hamster-bot_1.service   # лог в реальном времени
+systemctl status hamster-bot_1.service         # состояние
+systemctl restart hamster-bot_1.service        # перезапуск
+systemctl stop hamster-bot_1.service           # остановка
+```
+
+**Обновление** бота в текущей папке (позиции и ордера не закрываются):
+
+```bash
+cd /opt/hb2
+wget -qO- https://raw.githubusercontent.com/ksandric/hamster-bot/refs/heads/master/update_local.sh | bash
+```
+
+**Обновить / перезапустить все активные боты на сервере:**
+
+```bash
+wget -qO- https://raw.githubusercontent.com/ksandric/hamster-bot/refs/heads/master/update_all.sh | bash
+wget -qO- https://raw.githubusercontent.com/ksandric/hamster-bot/refs/heads/master/restart_all.sh | bash
+```
+
+Видеоинструкции: [установка на Linux](https://youtu.be/jxb6aZQwtN4), [обновление](https://youtu.be/FJgu7OfgUWU), [аренда VPS](https://www.youtube.com/watch?v=zmiTOxyXWeQ). Полные инструкции — на странице [hamster-bot.com/ru/bot](https://hamster-bot.com/ru/bot).
+
+</details>
+
+<details>
+<summary><b>🪟 Windows</b></summary>
+
+Для каждого бота создайте отдельную папку (например `C:\bots\bot_1`). Установить можно двумя способами:
+
+- **Вручную:** скачайте [hb.zip](https://github.com/ksandric/hamster-bot/blob/master/hb.zip?raw=true), распакуйте в папку бота и запустите `hb_c.exe`.
+- **Скриптом [manage_local.bat](https://raw.githubusercontent.com/ksandric/hamster-bot/refs/heads/master/manage_local.bat):** положите его в пустую папку бота и запустите двойным кликом. Скрипт запросит права администратора и покажет меню: установка, установка как сервис (автозапуск через планировщик задач, открытие порта в брандмауэре, автоперезапуск), обновление, остановка/запуск, просмотр лога.
+
+Обновить бота можно и кнопкой «Обновить бота» в веб-интерфейсе.
+
+</details>
+
+<details>
+<summary><b>🍎 macOS</b></summary>
+
+Скачайте архив [hb_osx-x64.zip](https://github.com/ksandric/hamster-bot/blob/master/hb_osx-x64.zip?raw=true) (или [hb_osx-arm64.zip](https://github.com/ksandric/hamster-bot/blob/master/hb_osx-arm64.zip?raw=true) для Apple Silicon), распакуйте в папку `hb` на рабочем столе и в терминале выполните:
+
+```bash
+cd Desktop/hb
+chmod a+x hb_c
+xattr -dr com.apple.quarantine .   # снять карантин
+codesign --force --sign - ./hb_c   # локальная подпись
+./hb_c
+```
+
+</details>
+
+<details>
+<summary><b>🔔 WatchDog — уведомление, если бот офлайн</b></summary>
+
+Независимый внешний сервис следит, что бот жив. Если бот перестал выходить на связь, вы получите в Telegram сообщение `WARNING! Bot is offline.` Настраивается в `settings_program.json`: `"watchdog": true/false` и `"watchdog_timer_minutes"` (рекомендуется 60).
+
+</details>
+
+---
+
+## Скриншоты
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/img/screenshot_1.png" alt="Вкладка с ботами"><br><sub><b>Вкладка с ботами</b></sub></td>
+    <td width="50%"><img src="docs/img/screenshot_2.png" alt="Настройка стратегии"><br><sub><b>Настройка стратегии</b></sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="docs/img/screenshot_3.png" alt="Просмотр графика"><br><sub><b>Просмотр графика</b></sub></td>
+    <td width="50%"><img src="docs/img/screenshot_4.png" alt="Лог"><br><sub><b>Лог</b></sub></td>
+  </tr>
+</table>
+
+---
+
+## Контакты
+
+| | |
+|---|---|
+| 👤 **Разработчик** — вопросы, разработка, общение | [@dreamcast2](https://t.me/dreamcast2) |
+| 📢 **Telegram-канал** — новости и обновления | [@bothamster](https://t.me/bothamster) |
+| 💬 **Telegram-чат** — общение с пользователями | [@bitmextrue](https://t.me/bitmextrue) |
+| 💬 **Telegram EN chat** | [@hamster_EN](https://t.me/hamster_EN) |
+| ▶️ **YouTube** — видео о боте и стратегиях | [@hamster-bot](https://www.youtube.com/@hamster-bot) |
+| 🌐 **Сайт** | [hamster-bot.com](https://hamster-bot.com/ru/bot) |
+
+Проект можно поддержать донатом — реквизиты на странице [hamster-bot.com/ru/contact](https://hamster-bot.com/ru/contact).
+
+---
+
+## Возможности
+
+### Управление ботом
+
+Управлять ботом можно через **WEB-интерфейс**, **HTTP API**, **MCP** (из ИИ-ассистента) и просто редактируя текстовые конфиги `.json`.
+
+- **WEB-интерфейс** — мониторинг и управление из любого браузера по IP-адресу вашего сервера. Позиции, баланс и настройки обновляются в реальном времени без перезагрузки страницы.
+- **Консольный интерфейс** с режимом dashboard — компактная таблица состояния всех активных ботов (есть и ARM64-сборка).
+- **Уведомления в Telegram** — открытие и закрытие сделок картинкой графика, алерты при критических событиях. Отдельный чат для каждой стратегии.
+- **Торговля по алертам TradingView** через Webhook URL — автоматическое открытие и закрытие позиций по сигналам.
+- **Обновление без остановки торговли** — кнопкой в интерфейсе; открытые позиции и ордера не закрываются.
+
+### Производительность
+
+Оптимизировано для одновременной работы множества аккаунтов и вариантов настроек в одном боте. Стабильность проверена на **2000+ ботов в одном процессе**. Бот с пятью стратегиями на трёх аккаунтах потребляет всего **~70 МБ памяти**.
+
+### Управление капиталом и риск-менеджмент
+
+- Размер лота: фиксированный (в монетах или USDT) или процент от баланса.
+- Закрывающие опции: Take Profit, Stop Loss, Trailing Stop, закрытие по сигналам индикаторов ТА, по времени, по марже аккаунта, безубыток, пауза после убытка или прибыли.
+- Take Profit по балансу маржи (по эквити).
+- Автоматический перевод прибыли с торгового счёта на счёт финансирования.
+
+### Торговые стратегии
+
+Множество стратегий, из которых можно составить уникальный портфель; возможна авторебалансировка — стратегии делятся профитом и убытком между собой.
+
+| Тип | Стратегии |
+|---|---|
+| **Трендовые / пробойные** | [ZigZag (ZZ, ZZ-2, ZZ-6)](https://hamster-bot.com/ru/algo/zigzag), [ZigZag Double](https://hamster-bot.com/ru/algo/zigzag-double), [Donchian Channel](https://hamster-bot.com/ru/algo/donchianchannel), [Channel Close Strategy](https://hamster-bot.com/ru/algo/tv-ccs), [RiskTurtle](https://hamster-bot.com/ru/algo/riskturtle), [Moving Average Crossover](https://hamster-bot.com/ru/algo/movingaveragecrossover), [Squeeze](https://hamster-bot.com/ru/algo/squeeze), [RSI Pullback](https://hamster-bot.com/ru/algo/rsipullback), [DoubleDragon](https://hamster-bot.com/ru/algo/doubledragon) |
+| **Контртрендовые / возврат к среднему** | [MRS](https://hamster-bot.com/ru/algo/mrs), [MRS2](https://hamster-bot.com/ru/algo/mrs2), [MRS3](https://hamster-bot.com/ru/algo/mrs3), [HiDeep](https://hamster-bot.com/ru/algo/hideep), [RedFlag](https://hamster-bot.com/ru/algo/redflag), [SmartProfit](https://hamster-bot.com/ru/algo/smartprofit), [ShadowOverlap](https://hamster-bot.com/ru/algo/shadowoverlap), [TV MAPM](https://hamster-bot.com/ru/algo/tv-mapm), [MZ](https://hamster-bot.com/ru/algo/mz) |
+| **Сигналы TradingView** | [TradingView Alerts / Webhook](https://hamster-bot.com/ru/algo) |
+| **Прочее** | [Volume Market](https://hamster-bot.com/ru/algo/volumemarket) (набор торгового объёма), [Close Position Delete Orders](https://hamster-bot.com/ru/algo/closepositiondeleteorders) |
+
+📖 [Описание всех стратегий →](https://hamster-bot.com/ru/algo)
+
+**Нужна своя стратегия?** Любую идею или Pine Script стратегию можно добавить в hamster-bot — оставьте заявку через [форму](https://forms.gle/RLVqNCjg4dtosqmF6) или напишите [разработчику](https://t.me/dreamcast2). Это полноценная реализация с управлением ордерами и позицией в реальном времени, а не торговля по алертам.
+
+### Готовое решение
+
+**Не хотите настраивать всё самостоятельно?** Команда hamster-bot предоставляет проверенные пресеты стратегий: подключаете пресет — бот сразу торгует по готовой конфигурации. [Готовое решение для инвесторов →](https://hamster-bot.com/ru/phoenix)
+
+---
+
+## Бэктестер hamster-bot/tester
+
+> **Достоверный портфельный бэктест. Уровень quant-исследований.**
+> Тестер встроен в бота — отдельно ставить ничего не нужно.
+
+**Особенности:**
+
+- **Портфельный тест.** Несколько стратегий разных типов на разных парах и таймфреймах — на одном общем балансе: суммарная загрузка депозита, общая просадка, перекрытие позиций.
+- **Тот же продакшн-код.** Бэктест прогоняет тот же код, на котором бот торгует в реальном времени: стратегии, сервис позиций, лимитер позиций, опции аккаунта. Никакого переписывания логики под тестер.
+- **Честная симуляция внутри свечи.** Стратегия вызывается по каждому изменению формирующейся свечи — трейлинги, перестановки ордеров и выходы внутри свечи работают как на реальных торгах.
+- **Реалистичные издержки.** Комиссии мейкера/тейкера, проскальзывание и задержка маркет- и стоп-ордеров, фандинг, ограничение исполнения лимиток объёмом свечи.
+- **Данные скачиваются автоматически.** Bybit, Binance, MEXC, BitMEX — за любой исторический период; можно подключить свои данные в CSV.
+- **Подробный интерактивный HTML-отчёт.** Кривая эквити, тепловая карта доходности по месяцам, графики сделок по каждой паре и 50+ метрик: Sharpe, Sortino, Calmar, CAGR, Recovery Factor, серии побед/поражений, загрузка депозита и др.
+- **Проверка на подгонку.** Монте-Карло по сделкам, PnL без лучших сделок и без лучшей пары, топ-5 просадок, MAE/MFE каждой сделки, результат по часам, дням недели и режимам рынка, расстояние до ликвидации.
+- **Оптимизатор параметров.** Перебор любых настроек бота, стратегий, аккаунта и самого тестера. Параллельные прогоны на всех ядрах, Monte Carlo выборка для огромных пространств параметров, подбор портфеля пар без повторов. Результаты — в сводной таблице, на тепловых картах и 3D Surface.
+- **Проверка устойчивости.** Walk-forward, карта плато параметров, стресс-тест в один клик, сравнение прогонов, результат по режимам рынка (рост, падение, флэт, волатильность).
+- **Любая сложная логика.** Тестер реализован как коннектор к «виртуальной бирже» (mock-объект): бот думает, что торгует на реальной бирже, а виртуальная биржа всё считает и строит отчёт. Тестер не отправляет ордера и не требует API-ключей.
+
+**Быстрый старт:**
+
+1. Положите `.json`-настройки стратегий в `tester/settings_strategy` (или создайте их во вкладке **Тестер → Параметры**).
+2. Задайте период, баланс и комиссии в `config_tester.json`:
+   ```json
+   {
+     "name_comment": "first_test",
+     "InitialBalance": 1000.0,
+     "StartDate": "2026-01-01T00:00:00",
+     "EndDate": "2026-03-01T00:00:00",
+     "WarmupDays": 30,
+     "MakerFee": 0.00036,
+     "TakerFee": 0.001,
+     "UpdateData": true,
+     "parameter_mining": []
+   }
+   ```
+3. Запустите тест во вкладке **Тестер** веб-интерфейса («Мастер тестера») или из консоли:
+   ```bash
+   ./hb_c --run-tester                                        # Linux / macOS
+   hb_c.exe --run-tester                                      # Windows (или manage_tester.bat)
+   ./hb_c --run-report-optimizer tester/report/first_test     # пересобрать отчёт оптимизатора
+   ```
+4. Откройте HTML-отчёт из `tester/report/first_test`.
+
+📖 [Полное описание тестера →](https://hamster-bot.com/ru/tester) · 🎬 [Видеоуроки по тестеру](#видео) · Программный доступ к тестеру — см. [API](#api-и-mcp).
+
+---
+
+## Видео
+
+<table>
+  <tr>
+    <td align="center" width="33%"><a href="https://youtu.be/C5v2Zm_2jPg"><img src="https://img.youtube.com/vi/C5v2Zm_2jPg/mqdefault.jpg" alt="Claude с MCP в hamster-bot"></a><br><sub>Claude с MCP в hamster-bot: подключение и примеры</sub></td>
+    <td align="center" width="33%"><a href="https://youtu.be/hHa0eE0yTw4"><img src="https://img.youtube.com/vi/hHa0eE0yTw4/mqdefault.jpg" alt="Первый запуск"></a><br><sub>Первый запуск торгового бота</sub></td>
+    <td align="center" width="33%"><a href="https://youtu.be/DlngicoNcbw"><img src="https://img.youtube.com/vi/DlngicoNcbw/mqdefault.jpg" alt="Тестер 1/4"></a><br><sub>[1/4] Тестер торговых стратегий</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://youtu.be/_bCpws3F-SE"><img src="https://img.youtube.com/vi/_bCpws3F-SE/mqdefault.jpg" alt="Тестер 2/4"></a><br><sub>[2/4] Портфельный бэктест. Оптимизатор</sub></td>
+    <td align="center"><a href="https://youtu.be/52gtXYhO6ho"><img src="https://img.youtube.com/vi/52gtXYhO6ho/mqdefault.jpg" alt="Тестер 3/4"></a><br><sub>[3/4] Перебор и анализ. Тепловые карты</sub></td>
+    <td align="center"><a href="https://youtu.be/fMWA-8PiP8U"><img src="https://img.youtube.com/vi/fMWA-8PiP8U/mqdefault.jpg" alt="Тестер 4/4"></a><br><sub>[4/4] Инструкция по тестам. Перебор пар</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://youtu.be/3DPradsg_Bw"><img src="https://img.youtube.com/vi/3DPradsg_Bw/mqdefault.jpg" alt="Три сценария"></a><br><sub>Тестер. Три сценария тестирования</sub></td>
+    <td align="center"><a href="https://youtu.be/rMcIBo88r1s"><img src="https://img.youtube.com/vi/rMcIBo88r1s/mqdefault.jpg" alt="Веб-интерфейс тестера"></a><br><sub>Тестер. Новый веб-интерфейс</sub></td>
+    <td align="center"><a href="https://youtu.be/JhdUpbJne0I"><img src="https://img.youtube.com/vi/JhdUpbJne0I/mqdefault.jpg" alt="Перебор параметров"></a><br><sub>Перебор параметров в бэктесте</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://youtu.be/UAu5TM0dFtI"><img src="https://img.youtube.com/vi/UAu5TM0dFtI/mqdefault.jpg" alt="MRS 1,2,3"></a><br><sub>Отличие между стратегиями MRS 1, 2, 3</sub></td>
+    <td align="center"><a href="https://youtu.be/ChXYYcDp2Nk"><img src="https://img.youtube.com/vi/ChXYYcDp2Nk/mqdefault.jpg" alt="dreamcast2"></a><br><sub>Кто такой dreamcast2</sub></td>
+    <td align="center"><a href="https://youtu.be/cCvdnAOJl7k"><img src="https://img.youtube.com/vi/cCvdnAOJl7k/mqdefault.jpg" alt="TradingView Webhook"></a><br><sub>Торговля по алертам TradingView (Webhook URL)</sub></td>
+  </tr>
+</table>
+
+**Ещё видео:**
+
+- [Обзор бота. Скачивание и первый запуск на Windows](https://youtu.be/ADfdh_iZUzE)
+- [Установка и запуск бота на Linux-сервере](https://youtu.be/jxb6aZQwtN4) · [Обновление бота на Linux](https://youtu.be/FJgu7OfgUWU) · [Запуск на Linux-сервере](https://youtu.be/YVgCUQ3GBEk)
+- [Dashboard-режим консольного интерфейса](https://youtu.be/QUrjHn81xj8) · [Web-интерфейс (инструкция)](https://youtu.be/PZZsaVI8psc) · [Упрощённый режим настроек](https://youtu.be/tQ7TIpom3HM)
+- [Настройка закрывающих опций: Take-Profit, Stop-Loss, Trailing Stop](https://youtu.be/6-oZ-Ub5uto)
+- [Поддержка OKX и переработанный watchdog](https://youtu.be/DrXzbYX25g8)
+
+Все видео — на [YouTube-канале @hamster-bot](https://www.youtube.com/@hamster-bot) и на странице [hamster-bot.com/ru/video](https://hamster-bot.com/ru/video).
+
+---
+
+## API и MCP
+
+Бот управляется по **HTTP API** (настройки, стратегии, ключи бирж, позиции и ордера, логи, тестер) и через встроенный **MCP-сервер**: подключите Claude или другой MCP-клиент, и ассистент сам посмотрит состояние ботов, изменит стратегии и проведёт исследование в тестере. Видео: [Claude с MCP в hamster-bot](https://youtu.be/C5v2Zm_2jPg).
+
+> Документация ниже встроена из [API.md](API.md) автоматически — GitHub Action [build-pages](.github/workflows/build-pages.yml) обновляет её при изменении `API.md`. Локально: `python scripts/sync_readme_api.py`.
+
+<!-- API:START -->
+<!-- Содержимое между маркерами генерируется из API.md (scripts/sync_readme_api.py). Правьте API.md, а не этот блок. -->
 
 HTTP API для управления ботом и тестером: настройки, стратегии, API-ключи бирж, позиции и ордера, логи, запуск тестера и работа с его отчётами.
 
@@ -74,13 +339,13 @@ HTTP API для управления ботом и тестером: настр�
 
 ---
 
-## Содержание
+### Содержание
 
 [Доступ](#доступ) · [Запросы и ответы](#запросы-и-ответы) · [Настройки](#настройки) · [Стратегии](#стратегии) · [Аккаунты](#аккаунты) · [Боты](#боты) · [Позиции и ордера](#позиции-и-ордера) · [Система и логи](#система-и-логи) · [Тестер](#тестер) · [MCP для ИИ-ассистентов](#mcp-для-ии-ассистентов) · [Коды ответов](#коды-ответов)
 
 ---
 
-## Доступ
+### Доступ
 
 **Токен API (рекомендуется).** Передавайте в каждом запросе заголовок `Authorization: Bearer <api_token>`:
 
@@ -114,7 +379,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-## Запросы и ответы
+### Запросы и ответы
 
 - Тело POST-запросов — JSON в кодировке UTF-8 (`Content-Type: application/json`).
 - Имена в пути URL-кодируются: стратегия `T4 BTC` → `/api/settings/strategy/T4%20BTC`.
@@ -125,9 +390,9 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-## Настройки
+### Настройки
 
-### GET /api/settings/config
+#### GET /api/settings/config
 Глобальный конфиг программы (`settings_program.json`). Токен Telegram-бота замаскирован: видны первые 4 символа. `api_token` замаскирован: видны последние 4 символа.
 
 **Ответ 200:**
@@ -148,8 +413,8 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/settings/config
-Изменяет глобальный конфиг и сразу применяет его. Передавайте только поля, которые меняются, — остальные останутся как были. Токен Telegram-бота и `api_token` здесь не меняются: эти поля в теле игнорируются.
+#### POST /api/settings/config
+Изменяет глобальный конфиг и сразу применяет его. Передавайте только поля, которые меняются, — остальные останутся как были. Токен Telegram-бота, `api_token` и `tester_data_dir` здесь не меняются: эти поля в теле игнорируются.
 
 **Запрос:**
 ```json
@@ -162,7 +427,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/settings/api-token/regenerate
+#### POST /api/settings/api-token/regenerate
 Выпускает новый `api_token`; прежний сразу перестаёт действовать. Это единственный ответ API, в котором токен виден целиком. Тело не нужно.
 
 **Ответ 200:** `{ "success": true, "api_token": "<новый токен>" }`
@@ -171,7 +436,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/settings/hints/{kind}
+#### GET /api/settings/hints/{kind}
 Описания полей настроек — те же подсказки, что показывает редактор настроек. `{kind}`:
 - `settings` — настройки стратегий (бота и тестера), для всех стратегий сразу;
 - `config_tester` — конфиг тестера, включая `parameter_mining`, `walk_forward` и столбцы `reports_history.csv`;
@@ -193,7 +458,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/settings/schema
+#### GET /api/settings/schema
 Какие поля настроек на что-то влияют. `?strategy=` — код стратегии (`basic.strategy`); без него — карта по всем стратегиям.
 
 **Ответ 200** (`?strategy=zz`, сокращённо):
@@ -228,9 +493,9 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-## Стратегии
+### Стратегии
 
-### GET /api/settings/strategy
+#### GET /api/settings/strategy
 Все стратегии бота.
 
 **Ответ 200:**
@@ -247,14 +512,14 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/settings/strategy/{name}
+#### GET /api/settings/strategy/{name}
 Одна стратегия по имени (без учёта регистра).
 
 **Ошибки:** `404` — не найдена
 
 ---
 
-### POST /api/settings/strategy/draft
+#### POST /api/settings/strategy/draft
 Черновик стратегии со значениями по умолчанию для выбранного аккаунта. Ничего не сохраняет: поправьте результат и отправьте в `POST /api/settings/strategy`.
 
 **Запрос:**
@@ -270,7 +535,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/settings/strategy
+#### POST /api/settings/strategy
 Создаёт или изменяет стратегию. Тело — объект стратегии, как в `GET /api/settings/strategy/{name}`. Изменения сразу применяются к работающим ботам, новая стратегия сразу запускается.
 
 `?old_name=` — переименовать стратегию `old_name` в имя из тела.
@@ -288,7 +553,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/settings/strategy/{name}/copy
+#### POST /api/settings/strategy/{name}/copy
 Копирует стратегию под новым именем, сохраняет и запускает копию.
 
 **Запрос:**
@@ -304,7 +569,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/settings/strategy/from-tester
+#### POST /api/settings/strategy/from-tester
 Создаёт стратегию бота из проверенной настройки тестера. Настройка копируется как есть; `exchange.name` и `exchange.account` берутся от аккаунта. По умолчанию стратегия создаётся **на паузе** (`is_runing: false`): бот её загружает, но не торгует, пока её не запустят ([`play`](#post-apibotsaccountnamesettingsnameplay)).
 
 **Запрос:**
@@ -327,7 +592,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/settings/strategy/{name}/delete
+#### POST /api/settings/strategy/{name}/delete
 Удаляет стратегию и останавливает её ботов. Ордера и позиция на бирже при этом не трогаются.
 
 `?full=1` — полное удаление: стратегия ставится на паузу, все её ордера отменяются, позиция закрывается, и только потом стратегия удаляется. Если отменить ордера или закрыть позицию не удалось, стратегия остаётся на паузе и **не** удаляется — позиция не останется без управления.
@@ -348,11 +613,11 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-## Аккаунты
+### Аккаунты
 
 Аккаунт — это API-ключ биржи, от имени которого торгуют стратегии.
 
-### GET /api/settings/accounts
+#### GET /api/settings/accounts
 Все аккаунты.
 
 **Ответ 200:**
@@ -370,14 +635,14 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/settings/accounts/{name}
+#### GET /api/settings/accounts/{name}
 Один аккаунт по имени (без учёта регистра).
 
 **Ошибки:** `404` — не найден
 
 ---
 
-### GET /api/settings/accounts/{name}/symbols
+#### GET /api/settings/accounts/{name}/symbols
 Пары, доступные на бирже для этого аккаунта.
 
 **Ответ 200:**
@@ -389,12 +654,12 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/settings/accounts
+#### POST /api/settings/accounts
 Создаёт или изменяет аккаунт. Изменения сразу применяются к работающим ботам.
 
 `?old_name=` — переименовать аккаунт `old_name` в имя из тела.
 
-Ключи передаются открытым текстом. При `"is_encrypted": true` бот хранит их зашифрованными. Пустые `api_key`, `api_secret`, `api_passphrase` при изменении оставляют текущие значения; при смене `is_encrypted` ключ и секрет нужно передать заново.
+Ключи передаются открытым текстом. При `"is_encrypted": true` бот хранит их зашифрованными. Пустые `api_key`, `api_secret`, `api_passphrase` при изменении оставляют текущие значения, в том числе при смене `is_encrypted` (ключи перешифровываются в файле). Аккаунт заменяется целиком: поля, которых нет в теле, сбрасываются (`open_positions_limiter` → 0, `url_settings`, `telegram_id`); не переданный `close_by_margin` остаётся прежним.
 
 **Запрос:**
 ```json
@@ -408,11 +673,11 @@ Cookie действует до 10 дней. Действует только по
 
 `applied` — сколько работающих ботов получили новый ключ.
 
-**Ошибки:** `400` — не указаны `name` или `exchange`, недопустимое имя или не хватает ключей при смене `is_encrypted`, `500` — не удалось сохранить
+**Ошибки:** `400` — не указаны `name` или `exchange`, недопустимое имя, `500` — не удалось сохранить
 
 ---
 
-### POST /api/settings/accounts/{name}/delete
+#### POST /api/settings/accounts/{name}/delete
 Удаляет аккаунт.
 
 **Ответ 200:** `{ "success": true }`
@@ -421,7 +686,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/current/accounts/{name}/info
+#### GET /api/current/accounts/{name}/info
 Данные аккаунта и ключа с биржи (обновляются раз в час). Нужен хотя бы один запущенный бот на этом аккаунте.
 
 **Ответ 200:**
@@ -444,7 +709,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/current/accounts/{name}/balance-history
+#### GET /api/current/accounts/{name}/balance-history
 История баланса аккаунта. `?max=` — не больше стольких точек (по умолчанию 5000).
 
 **Ответ 200:**
@@ -460,7 +725,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/current/accounts/{name}/balance-history/compact
+#### POST /api/current/accounts/{name}/balance-history/compact
 Сжимает историю баланса сейчас по настройкам `monitoring` (обычно это происходит автоматически).
 
 **Ответ 200:**
@@ -470,11 +735,11 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-## Боты
+### Боты
 
 Бот — это запущенная стратегия на конкретной паре.
 
-### GET /api/current/bots
+#### GET /api/current/bots
 Сводка по всем ботам.
 
 **Ответ 200:**
@@ -504,7 +769,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/current/balances
+#### GET /api/current/balances
 Баланс кошелька и маржи по каждому API-ключу, отдельно для спота и фьючерсов. `?account=` — только этот аккаунт.
 
 **Запрос:** `GET /api/current/balances?account=main`
@@ -521,7 +786,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/current/bots/{accountName}/{settingsName}/bars
+#### GET /api/current/bots/{accountName}/{settingsName}/bars
 Свечи бота. `?limit=` — последние N свечей (по умолчанию 500).
 
 **Запрос:** `GET /api/current/bots/main/T4%20BTC/bars?limit=100`
@@ -532,19 +797,19 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/current/ubots
+#### GET /api/current/ubots
 Полный снимок состояния всех ботов. Набор полей подробный и может меняться между версиями — для постоянной интеграции используйте `GET /api/current/bots`, `/api/current/positions` и `/api/current/orders`.
 
 ---
 
-### GET /api/current/ubots/{accountName}/{settingsName}
+#### GET /api/current/ubots/{accountName}/{settingsName}
 Полный снимок состояния одного бота (см. оговорку выше).
 
 **Ошибки:** `404` — бот не найден
 
 ---
 
-### POST /api/bots/pause-all
+#### POST /api/bots/pause-all
 Ставит на паузу всех ботов.
 
 **Ответ 200:**
@@ -554,7 +819,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/bots/play-all
+#### POST /api/bots/play-all
 Запускает всех ботов.
 
 **Ответ 200:**
@@ -564,7 +829,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/bots/{accountName}/{settingsName}/pause
+#### POST /api/bots/{accountName}/{settingsName}/pause
 Ставит стратегию на паузу (для стратегии на несколько пар — все её пары): она перестаёт выставлять ордера. Открытая позиция и ордера остаются на бирже без управления стратегией — после паузы либо снова запустите её, либо снимите ордера и закройте позицию (см. [удаление](#post-apisettingsstrategynamedelete)).
 
 **Запрос:** `POST /api/bots/main/T4%20BTC/pause`
@@ -578,7 +843,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/bots/{accountName}/{settingsName}/play
+#### POST /api/bots/{accountName}/{settingsName}/play
 Запускает стратегию, поставленную на паузу.
 
 **Ответ 200:**
@@ -590,7 +855,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/bots/{accountName}/{settingsName}/send-chart
+#### POST /api/bots/{accountName}/{settingsName}/send-chart
 Отправляет график бота в Telegram.
 
 **Ответ 200:** `{ "success": true }`
@@ -599,7 +864,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/bots/{accountName}/{settingsName}/send-position
+#### POST /api/bots/{accountName}/{settingsName}/send-position
 Отправляет в Telegram сводку по боту: баланс, позиция, PnL, ордера.
 
 **Ответ 200:** `{ "success": true }`
@@ -608,7 +873,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/delete/{accountName}/{settingsName}
+#### POST /api/delete/{accountName}/{settingsName}
 Удаляет стратегию бота и убирает бота из работы. Ордера и позиция на бирже **не** снимаются и остаются без управления. Для безопасного отключения используйте [`POST /api/settings/strategy/{name}/delete?full=1`](#post-apisettingsstrategynamedelete).
 
 **Запрос:** `POST /api/delete/main/T4%20BTC`
@@ -619,9 +884,9 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-## Позиции и ордера
+### Позиции и ордера
 
-### GET /api/current/positions
+#### GET /api/current/positions
 Позиции всех ботов.
 
 **Ответ 200:**
@@ -655,7 +920,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/current/orders
+#### GET /api/current/orders
 Открытые ордера всех ботов.
 
 **Ответ 200:**
@@ -686,7 +951,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/trading/market
+#### POST /api/trading/market
 Рыночный ордер на аккаунте. Пара должна торговаться одним из ботов этого аккаунта.
 
 **Запрос:**
@@ -705,7 +970,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/positions/{accountName}/{settingsName}/close
+#### POST /api/positions/{accountName}/{settingsName}/close
 Закрывает позицию бота.
 
 **Запрос:** `POST /api/positions/main/T4%20BTC/close`
@@ -716,7 +981,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/positions/{accountName}/close-all
+#### POST /api/positions/{accountName}/close-all
 Закрывает все открытые позиции аккаунта.
 
 **Ответ 200:**
@@ -728,7 +993,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/positions/{accountName}/reduce
+#### POST /api/positions/{accountName}/reduce
 Сокращает все открытые позиции аккаунта на заданный процент.
 
 **Запрос:**
@@ -745,7 +1010,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/orders/{accountName}/{settingsName}/{orderId}/cancel
+#### POST /api/orders/{accountName}/{settingsName}/{orderId}/cancel
 Отменяет один ордер бота (обычный или стоп-ордер).
 
 **Запрос:** `POST /api/orders/main/T4%20BTC/order-123/cancel`
@@ -756,7 +1021,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/orders/{accountName}/cancel-all
+#### POST /api/orders/{accountName}/cancel-all
 Отменяет все ордера аккаунта.
 
 **Ответ 200:**
@@ -768,7 +1033,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/orders/cancel-all
+#### POST /api/orders/cancel-all
 Отменяет все ордера на всех аккаунтах.
 
 **Ответ 200:**
@@ -778,10 +1043,10 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-## Система и логи
+### Система и логи
 
-### GET /api/system/status
-Версия программы, ресурсы сервера и счётчики.
+#### GET /api/system/status
+Версия программы, ресурсы сервера и счётчики. Поля `pid`, `exe_path`, `working_directory`, `port` (порт, на который пришёл запрос) и `started_utc` однозначно определяют экземпляр процесса: по ним внешний скрипт отличает несколько запущенных ботов и замечает перезапуск (меняются `pid` и `started_utc`).
 
 **Ответ 200:**
 ```json
@@ -793,8 +1058,13 @@ Cookie действует до 10 дней. Действует только по
   "os": "Linux 6.1",
   "architecture": "X64",
   "machine": "srv1",
-  "runtime": ".NET 8.0",
+  "runtime": ".NET 10.0",
   "processors": 4,
+  "pid": 12345,
+  "exe_path": "/opt/hamster-bot/hb_c",
+  "working_directory": "/opt/hamster-bot",
+  "port": 80,
+  "started_utc": "2026-10-24T08:00:00Z",
   "uptime_sec": 86400,
   "cpu_percent": 12.5,
   "memory_total_bytes": 8589934592,
@@ -813,8 +1083,8 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/system/shutdown
-Завершает программу. Доступно только при входе через Telegram.
+#### POST /api/system/shutdown
+Завершает программу. Доступно только при входе через Telegram. Сама программа не запустится: перезапуск процесса делает внешний супервизор (служба, systemd, скрипт). Проверить, что супервизор поднимает бота через 61 секунду после остановки (`RestartSec=61`, `run_service.cmd`), можно скриптом `tools/check-shutdown-restart.ps1` (останавливает работающий бот). Инструмента `restart_program` нет. Он обычно и не нужен: изменения стратегий, аккаунтов и настроек через API применяются к работающим ботам сразу. Обновление с перезапуском — `POST /api/system/update`. После перезапуска убедитесь по `pid` и `started_utc` из `/api/system/status`, что поднялся новый процесс. Перед остановкой проверьте, что нет прогона тестера: он прервётся, а очередь не сохраняется.
 
 **Ответ 200:** `{ "success": true }` — программа завершится через полсекунды
 
@@ -822,7 +1092,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/system/update
+#### POST /api/system/update
 Запускает обновление программы.
 
 **Ответ 200:** `{ "success": true }`
@@ -831,15 +1101,17 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/logs
+#### GET /api/logs
 Последние строки общего лога. `?tail=` — сколько последних строк (по умолчанию все доступные).
 
 **Ответ 200:** массив строк
 
 ---
 
-### GET /api/logs/errors
-Ошибки за последние `?hours=` часов (по умолчанию 24, не больше 48). `?warnings=1` — вместе с предупреждениями. Одинаковые сообщения объединены, `count` — сколько раз повторилось.
+#### GET /api/logs/errors
+Ошибки за последние `?hours=` часов (по умолчанию 24, не больше 48). `?warnings=1` — вместе с предупреждениями. Если Telegram не настроен (`telegram.id_chat` = 0), сообщения не отправляются и ошибок «chat not found» нет: в лог один раз за запуск пишется предупреждение `Telegram chat is not set`. Ошибка «chat not found» при заданном чате означает неверный id чата или токен. Повторы уже сгруппированы: одинаковые сообщения одного источника объединены в одну запись, `count` — сколько раз повторилось за всё хранимое окно (до 48 часов, с запуска программы), `first_utc` и `last_utc` — первое и последнее появление. Записи идут от свежих к старым.
+
+`?since=` — время UTC (например `2026-11-02T06:00:00Z`; без часового пояса считается UTC): вернутся только записи, повторявшиеся после него. Для проверки «что нового с прошлого раза» передайте самый поздний `last_utc` из предыдущего ответа. Если `first_utc` записи раньше `since`, это старая ошибка, которая случилась снова, а `count` остаётся общим. Неверная дата — `400`.
 
 **Ответ 200:**
 ```json
@@ -858,7 +1130,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/logs/files
+#### GET /api/logs/files
 Файлы логов, свежие первыми; каждый день — новый файл. `?contains=` — только файлы, в имени которых есть текст (имя стратегии, аккаунта, пара).
 
 Виды логов:
@@ -876,20 +1148,20 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/logs/files/{filename}
+#### GET /api/logs/files/{filename}
 Содержимое файла лога как текст. `?download=1` — скачать файлом.
 
 **Ошибки:** `400` — недопустимое имя файла, `404` — файл не найден
 
 ---
 
-## Тестер
+### Тестер
 
 Тестер прогоняет стратегии на исторических данных. Перебор параметров, стресс-тест и повтор по snapshot выполняются по одному. Одиночные прогоны можно запускать параллельно. Пока загружаются исторические данные, тестер не запускается, и наоборот — в этих случаях ответ `409`.
 
 Все запуски работают в фоне: ответ приходит сразу, ход и результат — в `GET /api/tester/status`.
 
-### GET /api/tester/status
+#### GET /api/tester/status
 Состояние тестера.
 
 **Ответ 200:**
@@ -926,7 +1198,7 @@ Cookie действует до 10 дней. Действует только по
       "warnings": []
     }
   ],
-  "download": { "active": false, "status": "Idle", "started_utc": null, "finished_utc": null, "message": "" },
+  "download": { "active": false, "status": "Idle", "started_utc": null, "finished_utc": null, "message": "", "result": null },
   "settings_folder": ""
 }
 ```
@@ -940,12 +1212,12 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/tester/config
+#### GET /api/tester/config
 Конфиг тестера (`config_tester.json`): период, комиссии, параметры перебора и т. д.
 
 ---
 
-### POST /api/tester/config
+#### POST /api/tester/config
 Сохраняет конфиг тестера. Тело — конфиг целиком, как в `GET /api/tester/config`.
 
 **Ответ 200:** `{ "success": true }`
@@ -954,7 +1226,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/tester/data-coverage
+#### GET /api/tester/data-coverage
 Какие исторические данные уже скачаны: `?exchange=` (обязательно), `?symbols=A,B` (без него — все скачанные пары биржи), `?start=&end=` — период для проверки.
 
 **Ответ 200:**
@@ -975,21 +1247,32 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/tester/exchanges
+#### GET /api/tester/exchanges
 Биржи, для которых тестер умеет загружать исторические данные.
 
 **Ответ 200:** `["bybit", "binance", ...]`
 
+Откуда берутся минутные свечи:
+
+| Биржа | Источник |
+|-------|----------|
+| `bybit` | архивы сделок public.bybit.com, свечи собираются из сделок |
+| `binance`, `binance-spot` | архивы минутных свечей data.binance.vision: закрытый месяц — одним архивом, текущий — по дням |
+| `okx`, `bitget-futures`, `bitget-spot`, `kucoin-futures`, `kucoin`, `bingx` (USDT-M), `phemex` (спот), `btse`, `weex-futures`, `backpack` | REST API биржи, вся история |
+| `gate.io-spot` | REST API, минутные свечи только за последние ~7 дней |
+
+Свечи из REST API проверяются по часовым свечам той же биржи: сумма объёма минуток каждого часа должна совпасть с объёмом часа, иначе час запрашивается заново. Сегодняшний день не скачивается — только закрытые дни. Дни, за которые у источника данных нет (пара ещё не торговалась, биржа не хранит так далеко), записываются в `_no_data_days.json` папки пары и повторно не запрашиваются; чтобы перепроверить их, файл можно удалить.
+
 ---
 
-### GET /api/tester/exchanges/{exchange}/symbols
+#### GET /api/tester/exchanges/{exchange}/symbols
 Пары биржи. Пустой список — биржа сейчас недоступна; пару можно указать вручную.
 
 **Ошибки:** `404` — тестер не поддерживает эту биржу
 
 ---
 
-### Папка настроек в запросе
+#### Папка настроек в запросе
 
 Все запросы к настройкам тестера, запуски и загрузка данных принимают папку настроек: `?folder=` в адресе или поле `folder` в теле запуска. Это путь внутри `tester/settings_strategy`, `""` — основная папка. Без `folder` используется папка, выбранная в интерфейсе ([`POST /api/tester/settings-folder`](#post-apitestersettings-folder)). Это общее состояние: его может сменить пользователь или параллельная задача, поэтому скриптам и ассистентам лучше всегда передавать `folder`.
 
@@ -999,7 +1282,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/tester/settings
+#### GET /api/tester/settings
 Настройки стратегий тестера в папке. Параметры:
 - `?folder=` — папка;
 - `?mask=` — только имена по маске (`*` — любые символы, `?` — один символ);
@@ -1013,14 +1296,14 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/tester/settings/{name}
+#### GET /api/tester/settings/{name}
 Настройка тестера целиком. `?folder=` — папка.
 
 **Ошибки:** `404` — не найдена
 
 ---
 
-### POST /api/tester/settings/draft
+#### POST /api/tester/settings/draft
 Черновик настройки тестера со значениями по умолчанию. Ничего не сохраняет.
 
 **Запрос:**
@@ -1036,7 +1319,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/tester/settings
+#### POST /api/tester/settings
 Сохраняет настройку тестера. Тело — объект настройки. `?old_name=` — переименовать настройку `old_name`. Существующая настройка с тем же именем не перезаписывается. `?folder=` — папка. `?owner_default=` — значение `owner`, если в настройке его нет (MCP передаёт `MCP`).
 
 **Ответ 200:** `{ "success": true, "name": "T4 BTC", "folder": "", "warnings": null }`
@@ -1049,7 +1332,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/tester/settings/{name}/copy
+#### POST /api/tester/settings/{name}/copy
 Копирует настройку тестера в той же папке (`?folder=`), при желании — на другую биржу или пару. `?owner_default=` — как у сохранения. Скопировать в другую папку — [`copy-to-folder`](#post-apitestersettingscopy-to-folder).
 
 **Запрос:**
@@ -1065,7 +1348,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/tester/settings/{name}/delete
+#### POST /api/tester/settings/{name}/delete
 Удаляет настройку тестера. `?folder=` — папка. Удалить много настроек разом — [`delete-matching`](#post-apitestersettingsdelete-matching).
 
 **Ответ 200:** `{ "success": true }`
@@ -1074,7 +1357,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/tester/settings-folder
+#### GET /api/tester/settings-folder
 Текущая папка настроек тестера и её вложенные папки. Папки позволяют держать несколько наборов настроек; `""` — основная папка.
 
 **Ответ 200:**
@@ -1086,7 +1369,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/tester/settings-folder
+#### POST /api/tester/settings-folder
 Выбирает папку настроек тестера для интерфейса и для запросов без `folder`.
 
 **Запрос:**
@@ -1100,7 +1383,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/tester/settings-folders
+#### POST /api/tester/settings-folders
 Создаёт папку настроек, вложенные тоже. Выбранную папку не меняет.
 
 **Запрос:**
@@ -1116,7 +1399,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/tester/settings-folders/delete
+#### POST /api/tester/settings-folders/delete
 Удаляет папку настроек со всем содержимым. Основную папку удалить нельзя. Если удалена выбранная папка, выбранной становится основная.
 
 **Запрос:** `{ "path": "research/zz_hedge" }`
@@ -1127,7 +1410,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/tester/settings/copy-to-folder
+#### POST /api/tester/settings/copy-to-folder
 Копирует настройки из одной папки в другую.
 
 **Запрос:**
@@ -1143,7 +1426,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/tester/settings/delete-matching
+#### POST /api/tester/settings/delete-matching
 Удаляет настройки папки по фильтру.
 
 **Запрос:**
@@ -1159,7 +1442,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/tester/settings/import
+#### POST /api/tester/settings/import
 Сохраняет набор настроек в папку, например выгрузку `GET /api/tester/settings?full=1`.
 
 **Запрос:**
@@ -1173,7 +1456,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/tester/settings-check
+#### GET /api/tester/settings-check
 Проверка настроек папки без запуска — те же замечания, что `warnings` при [сохранении](#post-apitestersettings). `?folder=` — папка, `?mask=` — имя или маска (по умолчанию все).
 
 **Ответ 200:**
@@ -1194,7 +1477,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/tester/run
+#### POST /api/tester/run
 Перебор параметров стратегий (раздел `parameter_mining` конфига тестера).
 
 **Запрос:**
@@ -1227,10 +1510,26 @@ Cookie действует до 10 дней. Действует только по
 }
 ```
 
+**Что можно перебирать.** Любую настройку бота (`settings[*].zz.depth`, `settings[T_*].basic.use_short`, `settings[NAME].…`), любое поле конфига тестера (`config_tester.…`), `settings_program.…` и аккаунта. Для чисел достаточно `start`/`end`/`step`, для остальных (текст, логические) задаётся `values`.
+
+**Скрининг пар.** Файл настроек на каждую пару не нужен: берётся одна настройка-шаблон, а символ перебирается как обычный параметр. Список пар — из `tester_exchange_symbols`:
+
+```json
+"parameter_mining": [
+  {
+    "name": "settings[*].basic.symbol",
+    "start": 1.0, "end": 1.0, "step": 1.0,
+    "values": ["1000BONKUSDT", "1000PEPEUSDT", "AAVEUSDT", "ADAUSDT"]
+  }
+]
+```
+
+Вместе с другими параметрами (например, `settings[*].zz.depth`) получается сетка на каждую пару. Символ попадает в столбец `reports_history.csv`, так что сводку «пара → медиана по сетке» считают по этому файлу (`read_tester_file` с `columns`). Данные для всех перебираемых пар скачивает `tester_download_data`. Число комбинаций равно произведению длин списков значений: ограничивайте его `monte_carlo`.
+
 Тестер прогоняет все комбинации значений из `parameter_mining`; если задан `monte_carlo`, то случайную выборку такого размера. Заранее проверяйте число комбинаций; остановить запущенный перебор — [`POST /api/tester/stop`](#post-apitesterstop) с `full: true`. Ход — в `run` ответа `GET /api/tester/status` (`runs_done` из `runs_total`).
 
 Результаты попадают в папку `report` с именем, равным `name_comment` конфига тестера (недопустимые в имени файла символы заменяются на `_`). Ответ на запуск возвращает её в `report_folders`; при включённом `walk_forward` там же вторая папка `<name_comment>_WF_OOS` с прогонами вне выборки. Чтобы эксперименты не смешивались, давайте каждому свой `name_comment`. В папке:
-- `reports_history.csv` — по строке на комбинацию: метрики (`TotalPnLPercent`, `MaxDrawdownPercent`, `ProfitFactor`, `WinRate`, …), `Strategies` (имена настроек прогона через `|`), `RunTag` и столбец со значением каждого перебираемого параметра. При `single_mode` в каждой строке одна настройка, блоки комбинаций идут по имени настройки;
+- `reports_history.csv` — по строке на комбинацию: метрики (`TotalPnLPercent`, `MaxDrawdownPercent`, `ProfitFactor`, `WinRate`, `TradingVolume`, …), `Strategies` (имена настроек прогона через `|`), `RunTag` и столбец со значением каждого перебираемого параметра. При `single_mode` в каждой строке одна настройка, блоки комбинаций идут по имени настройки;
 - HTML-отчёт каждой комбинации (если включён `report.enable_html_report`) и его [JSON-версия](#get-apitesterreportsjson) (если включён `report.enable_json_report`); `RunTag` комбинации есть в имени файла;
 - сводный отчёт оптимизатора `report_optimizer_*.html`;
 - `run_snapshot_<name_comment>_<время>.json` — точные настройки и конфиг запуска, см. [`snapshot-run`](#post-apitestersnapshot-run).
@@ -1257,12 +1556,12 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/tester/stress
+#### POST /api/tester/stress
 Стресс-тест: те же настройки в ухудшенных условиях исполнения. Тело, `?queue=1` и ответы — как у `/api/tester/run`, кроме `periods` (не поддерживается). Результаты — в папке `<name_comment>_STRESS` (`report_folders` ответа): строки сценариев в `reports_history.csv` и сравнение с базой в `stress_test_*.html`.
 
 ---
 
-### POST /api/tester/queue/{queue_id}/cancel
+#### POST /api/tester/queue/{queue_id}/cancel
 Убирает из очереди полный запуск, который ещё не начался.
 
 **Ответ 200:** `{ "success": true }`
@@ -1271,7 +1570,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/tester/wizard-run
+#### POST /api/tester/wizard-run
 Одиночный прогон стратегий. Тело — как у `/api/tester/run`, включая `folder` и `overrides`.
 
 **Ответ 200:**
@@ -1285,7 +1584,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/tester/wizard-batch
+#### POST /api/tester/wizard-batch
 Пакет одиночных прогонов: несколько наборов, каждый на нескольких периодах, через одну очередь с ограничением параллельности. Так сравнивают варианты и проверяют вариант на нескольких периодах одним запросом.
 
 **Запрос:**
@@ -1311,18 +1610,31 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/tester/wizard-batches/{batch_id}
+#### GET /api/tester/wizard-batches/{batch_id}
 Пакет и итоги каждого прогона. `?wait=` — сколько секунд (до 240) ждать завершения всего пакета.
+
+Длинный пакет (десятки прогонов) в полном виде не помещается в ответ (MCP режет его на 200 000 символов, и JSON становится невалидным), поэтому есть сокращение и страницы. Те же параметры у [`POST /api/tester/wizard-batch`](#post-apitesterwizard-batch):
+
+| Параметр | Описание |
+|---|---|
+| `compact=1` | у каждого прогона только `name`, `start`, `end`, `run_id`, `status`, `run_params`, `key` и пути отчёта (`message` только у упавших). Без `summary`, `stats`, `warnings`, `applied` |
+| `offset`, `limit` | страница списка `runs`; `limit=0` — только счётчики. В ответе `offset`, `returned` и `has_more` (есть следующая страница: `offset + returned`). `done`, `total`, `failed` всегда по всему пакету |
+
+Если полный ответ длиннее 150 000 символов, он заменяется компактным автоматически (`compact: true` в ответе); страницы `offset`/`limit` при этом сохраняются.
+
+`key` есть в каждом прогоне, в том числе в полном ответе: главные метрики в одном виде, из `summary` JSON-отчёта, а если отчёта нет, из итоговых `stats`: `pnl`, `pnl_percent`, `max_drawdown_percent`, `max_drawdown_worst_percent` (только при JSON-отчёте), `trades`, `volume`, `fees`, `profit_factor` (только при JSON-отчёте). Вызывать [`reports/json`](#get-apitesterreportsjson) на каждый прогон ради них не нужно.
 
 **Ответ 200:**
 ```json
 {
   "batch_id": "31dd7d67", "status": "Completed", "done": 2, "total": 2, "failed": 0, "parallel": 2,
   "started_utc": "2026-10-27T21:31:27Z",
+  "compact": false, "offset": 0, "returned": 2, "has_more": false,
   "runs": [
     {
       "name": "T x2", "start": "2026-02-01", "end": "2026-05-01", "run_id": "a99984a8", "status": "Completed",
       "message": "Completed: 12 strategies.",
+      "key": { "pnl": 1240.5, "pnl_percent": 12.4, "max_drawdown_percent": 5.2, "max_drawdown_worst_percent": 8.1, "trades": 140, "volume": 520000.0, "fees": 310.2, "profit_factor": 1.6 },
       "summary": { "pnl_percent": 12.4, "max_drawdown_worst_percent": 8.1, "ulcer_index": 2.3, "profit_factor": 1.6, "trades": 140, "monthly": { "2026-02": 3.1 } },
       "stats": null,
       "report_path": "...html", "report_json_path": "...json", "snapshot_path": "...json",
@@ -1340,7 +1652,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/tester/stop
+#### POST /api/tester/stop
 Останавливает прогоны тестера.
 
 **Запрос** (нужно хотя бы одно поле):
@@ -1364,7 +1676,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/tester/wizard-runs/{run_id}
+#### GET /api/tester/wizard-runs/{run_id}
 Одиночный прогон по `run_id`. `?wait=` — сколько секунд (до 240) ждать завершения; без него ответ сразу.
 
 **Ответ 200:**
@@ -1392,7 +1704,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/tester/snapshot-run
+#### POST /api/tester/snapshot-run
 Повторяет прогон по snapshot-файлу. Каждый запуск сохраняет snapshot рядом с отчётом — `run_snapshot_<name_comment>_<время>.json` с разделами `settings` (настройки всех стратегий), `tester_config` и `program_config`. Токены (`api_token`, `telegram.bot_token`) в snapshot не записываются. Запуск по snapshot — полный режим: один за раз, как перебор. Файл выбирается параметрами `?root=&path=`, как в [файлах тестера](#get-apitesterfiles).
 
 Тело необязательно: можно передать изменённый snapshot — изменения действуют только на этот запуск, файл не меняется. То же в интерфейсе: Тестер, вкладка «Результаты (файлы)», кнопка «Запустить» рядом со snapshot открывает его в редакторе, и правки идут только в этот запуск.
@@ -1407,16 +1719,33 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/tester/download-data
-Загружает исторические данные для всех настроек папки (`?folder=`). Ход — в `download` ответа `GET /api/tester/status`.
+#### POST /api/tester/download-data
+Загружает исторические данные для всех настроек папки (`?folder=`). Ход и итог — в `download` ответа `GET /api/tester/status`.
+
+| Параметр | Описание |
+|---|---|
+| `start` | Начало периода, например `2026-05-01`. По умолчанию `StartDate` конфига тестера минус `WarmupDays` |
+| `end` | Конец периода. По умолчанию текущий момент (UTC). `EndDate` сохранённого конфига не используется, поэтому для докачки свежих дней конфиг менять не нужно |
 
 **Ответ 200:** `{ "success": true }`
 
-**Ошибки:** `409` — загрузка уже идёт или работает тестер
+После окончания `download.message` кратко пишет, по какой день данные есть на диске, а `download.result` содержит по каждой паре `first_day`, `last_day` (последний день со свечами) и `days`:
+
+```json
+"download": {
+  "active": false, "status": "Completed", "message": "Data on disk ends at 2026-10-31..2026-10-31 (last day with candles)",
+  "result": { "requested_start": null, "requested_end": null,
+    "pairs": [ { "symbol": "BTCUSDT", "exchange": "bybit", "first_day": "2025-10-01", "last_day": "2026-10-31", "days": 396 } ] }
+}
+```
+
+Свечи закрытого дня источник публикует с задержкой (обычно после 06:00 UTC): до этого `last_day` остаётся на день раньше, загрузку нужно повторить позже. Пара без данных получает `first_day`/`last_day` = `null`.
+
+**Ошибки:** `400` — `start` или `end` не дата, либо `start` не раньше `end`; `409` — загрузка уже идёт или работает тестер
 
 ---
 
-### GET /api/tester/wizard-results
+#### GET /api/tester/wizard-results
 Результаты одиночных прогонов, свежие первыми. Новый прогон того же набора настроек заменяет его прежнюю запись; результат конкретного прогона — в [`/api/tester/wizard-runs/{run_id}`](#get-apitesterwizard-runsrun_id).
 
 **Ответ 200:**
@@ -1443,8 +1772,8 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/tester/files
-Содержимое папки тестера. `?root=` — `report` (отчёты, по умолчанию), `data` (исторические данные) или `runs` (наборы для повторных прогонов); `?path=` — путь внутри неё. `?contains=` — только имена с этим текстом, `?offset=` и `?limit=` — часть списка. Сначала идут папки по имени, затем файлы, свежие первыми; `total` — сколько всего элементов подходит.
+#### GET /api/tester/files
+Содержимое папки тестера. `?root=` — `report` (отчёты, по умолчанию), `data` (исторические данные: `tester/data` или папка из `tester_data_dir` в `settings_program.json`) или `runs` (наборы для повторных прогонов); `?path=` — путь внутри неё. `?contains=` — только имена с этим текстом, `?offset=` и `?limit=` — часть списка. Сначала идут папки по имени, затем файлы, свежие первыми; `total` — сколько всего элементов подходит.
 
 **Ответ 200:**
 ```json
@@ -1466,14 +1795,14 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/tester/files/download
+#### GET /api/tester/files/download
 Скачивает файл (`?root=&path=`). HTML-отчёты открываются в браузере.
 
 **Ошибки:** `404` — файл не найден
 
 ---
 
-### POST /api/tester/files/delete
+#### POST /api/tester/files/delete
 Удаляет файл или папку (`?root=&path=`).
 
 **Ответ 200:** `{ "success": true }`
@@ -1482,14 +1811,14 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/tester/files/content
+#### GET /api/tester/files/content
 Содержимое snapshot-файла или JSON-файла из `runs` (`?root=&path=`).
 
 **Ошибки:** `404` — файл не найден или не является snapshot
 
 ---
 
-### POST /api/tester/files/save
+#### POST /api/tester/files/save
 Сохраняет JSON-файл в `runs` (`?root=runs&path=`): изменяет существующий или создаёт новый. Тело — новое содержимое файла. Если у существующего файла в теле нет раздела `settings`, он берётся из текущего файла. Новый файл должен быть полным snapshot: непустой `settings` и `tester_config`.
 
 Так готовят прогон для пользователя: в интерфейсе (Тестер, вкладка «Результаты (файлы)», папка `runs`) у каждого такого файла есть кнопки «Запустить» и «Изменить». При `use_runs` в конфиге тестера полный прогон из командной строки (`--run-tester`) запускает все `.json` из `runs`.
@@ -1500,7 +1829,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/tester/reports/summary
+#### GET /api/tester/reports/summary
 Сводки HTML-отчётов для сравнения прогонов: метрики и кривая доходности. `?r=` — путь отчёта в `report`, параметр можно повторять.
 
 **Запрос:** `GET /api/tester/reports/summary?r=T4/report.html&r=T4_STRESS/report.html`
@@ -1530,7 +1859,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/tester/reports/json
+#### GET /api/tester/reports/json
 Подробные результаты одного прогона в компактном JSON. Те же числа, что в HTML-отчёте, но файл в десятки раз меньше: несколько десятков килобайт вместо мегабайтов.
 
 Тестер пишет `<отчёт>.json` рядом с HTML-отчётом, если в конфиге тестера включено `report.enable_json_report` (по умолчанию выключено). JSON пишется и при выключенном `report.enable_html_report`: так большой перебор идёт быстрее и всё равно сохраняет детали каждой комбинации.
@@ -1545,7 +1874,7 @@ Cookie действует до 10 дней. Действует только по
 | Раздел | Содержимое |
 |---|---|
 | `summary` | сводка на 1–2 КБ: PnL, просадки (в том числе нереализованная и худшая из трёх, как `MaxDrawdownPercent` в `reports_history.csv`), Ulcer Index, profit factor, Sharpe, CAGR, сделки, win rate, комиссии, средняя и максимальная позиция, худший месяц, доходность по месяцам. Считается при чтении из `run`, `metrics` и `monthly`, поэтому есть и у старых отчётов |
-| `run` | `name_comment`, `comment`, `run_tag`, `run_params` (значения перебираемых параметров), период, биржи, стратегии и пары |
+| `run` | `name_comment`, `comment`, `run_tag`, `run_params` (значения перебираемых параметров), период, биржи, стратегии и пары. Что запуск дописал в `comment` текстом (`[overrides: …]`, `[sides: …]`), лежит отдельными полями, разбирать `comment` регуляркой не нужно: `overrides` (массив правил как в запросе, без обрезки, в `comment` он обрезается до 300 символов), `sides`, а также откуда прогон: `batch_id` и `name` (имя набора) для `tester_run_batch` и `tester_run_single` с `periods`, `run_id` для прогонов мастера. Если значения нет, поле `null`. Запуски из интерфейса эти поля не заполняют, повтор по snapshot берёт их из snapshot |
 | `metrics` | вся таблица статистики HTML-отчёта по блокам: PnL, баланс, доходность по месяцам, сделки, исполнения, Buy & Hold, риск и экспозиция, Sharpe, Sortino, CAGR, Calmar, Ulcer Index… |
 | `by_symbol` | итоги по каждой паре: сделки, win rate, profit factor, PnL, лучшая и худшая сделка, просадка, Buy & Hold, комиссии, объём, размер позиции |
 | `monthly` | доходность по месяцам, %: `{ "2025-09": -4.15 }` |
@@ -1587,7 +1916,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/tester/reports/portfolio
+#### GET /api/tester/reports/portfolio
 Портфельная аналитика прогона по разделу `daily` его JSON-отчёта. Стратегии собираются в группы, по группам считается всё, что ниже.
 
 Параметры:
@@ -1626,7 +1955,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/tester/mining-robustness
+#### GET /api/tester/mining-robustness
 Устойчивость перебора на нескольких периодах: одна и та же сетка `parameter_mining`, прогнанная на каждом периоде в свою папку (`periods` у [`/api/tester/run`](#post-apitesterrun)).
 
 Параметры:
@@ -1663,7 +1992,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/tester/reports/telegram
+#### POST /api/tester/reports/telegram
 Отправляет файл отчёта тестера в Telegram — в чат уведомлений тестера (`telegram.id_chat` конфига программы, туда же приходят итоги переборов). Отправить можно только файл из `report` (`.html`, `.json`, `.csv`, `.png`, `.txt`, до 50 МБ); к торговле и чатам стратегий доступа нет. Подпись — `Tester report: <путь>` и `caption`.
 
 **Запрос:**
@@ -1679,7 +2008,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### GET /api/tester/publish/files
+#### GET /api/tester/publish/files
 Файлы папки отчёта, которые можно опубликовать на сайт. `?path=` — папка в `report`.
 
 **Ответ 200:**
@@ -1693,7 +2022,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-### POST /api/tester/publish
+#### POST /api/tester/publish
 Отправляет выбранные файлы папки отчёта на сайт. Публикация появляется после модерации.
 
 **Запрос:**
@@ -1712,7 +2041,7 @@ Cookie действует до 10 дней. Действует только по
 
 ---
 
-## MCP для ИИ-ассистентов
+### MCP для ИИ-ассистентов
 
 Бот работает и как MCP-сервер ([Model Context Protocol](https://modelcontextprotocol.io)): ИИ-ассистент (Claude и другие клиенты MCP) может сам смотреть состояние бота, запускать тестер и управлять стратегиями. Инструменты MCP повторяют этот API и подчиняются тем же правилам доступа.
 
@@ -1766,6 +2095,8 @@ claude mcp add --transport http hamster-bot http://127.0.0.1:5000/mcp --header "
 | Система и логи | `get_system_status`, `shutdown_program`, `update_program`, `get_log`, `get_errors`, `list_log_files`, `read_log_file` |
 | Тестер | `tester_status`, `get_tester_config`, `save_tester_config`, `tester_exchanges`, `tester_exchange_symbols`, `list_tester_settings`, `get_tester_settings`, `draft_tester_settings`, `save_tester_settings`, `copy_tester_settings`, `delete_tester_settings`, `copy_tester_settings_to_folder`, `delete_tester_settings_matching`, `import_tester_settings`, `check_tester_settings`, `get_tester_settings_folder`, `set_tester_settings_folder`, `create_tester_settings_folder`, `delete_tester_settings_folder`, `tester_run_mining`, `tester_run_stress`, `tester_stop`, `tester_cancel_queued`, `tester_run_single`, `tester_wait`, `tester_run_batch`, `tester_wait_batch`, `tester_run_snapshot`, `tester_download_data`, `tester_data_coverage`, `tester_mining_robustness`, `tester_portfolio_analysis`, `tester_wizard_results`, `list_tester_files`, `read_tester_file`, `save_tester_file`, `delete_tester_file`, `tester_report_summaries`, `read_tester_report`, `send_tester_report_to_telegram`, `tester_publish_files`, `tester_publish` |
 
+**Имена аргументов.** Во всех инструментах одни и те же имена: `strategy` — имя стратегии бота, `account` — имя аккаунта, `folder` — папка настроек тестера. Прежние имена принимаются как синонимы: `name` вместо `strategy` в `get_strategy`, `copy_strategy`, `delete_strategy`, `name` вместо `account` в `get_account`, `get_account_symbols`, `delete_account`, `get_account_info`, `get_balance_history`, `compact_balance_history`, `path` вместо `folder` в `set_tester_settings_folder`, `create_tester_settings_folder`, `delete_tester_settings_folder`. Если нет ни основного имени, ни синонима, ошибка называет ожидаемое поле. `strategy` в `draft_strategy`, `draft_tester_settings` и `get_settings_schema` — код стратегии (`zigzag`, `mrs2`), а не имя. Для настроек тестера `name` — имя набора настроек.
+
 Ошибка API возвращается ассистенту как ошибка инструмента с кодом и текстом, например `HTTP 404: {"success":false,"error":"Strategy not found"}`. Очень длинные ответы обрезаются до 200 000 символов. `read_tester_file` отдаёт текстовые файлы целыми строками: длинный ответ заканчивается подсказкой `... [lines A-B of N; continue with offset=B]`. Для длинных CSV есть параметры `offset` и `limit` (страница строк), `tail_lines` (последние N строк), `contains` (только строки с текстом) и `columns` (только нужные столбцы); заголовок CSV сохраняется всегда. `list_tester_files` принимает `contains`, `offset` и `limit`. HTML-отчёты большие, поэтому для сравнения прогонов лучше `tester_report_summaries`, а для подробностей одного прогона — `read_tester_report`.
 
 **Исследования в тестере.** Ассистент может сам вести исследование стратегии. Тестер работает на исторических данных и с биржей не торгует. Типичный порядок:
@@ -1773,12 +2104,21 @@ claude mcp add --transport http hamster-bot http://127.0.0.1:5000/mcp --header "
 1. `get_field_hints` — узнать смысл полей настроек стратегии и конфига тестера, в том числе синтаксис `parameter_mining`; `get_settings_schema` — какие поля стратегия действительно читает: перебор недействующего поля даёт одинаковые строки.
 2. `create_tester_settings_folder` — завести свою папку для эксперимента; `copy_tester_settings_to_folder` — скопировать в неё нужные настройки. Дальше передавать `folder` во все инструменты тестера.
 3. `draft_tester_settings` и `save_tester_settings` — создать новые настройки для нужной биржи, пары и таймфрейма. Варианты существующих настроек сохранять не нужно: их задаёт `overrides` при запуске.
-4. `save_tester_config` — задать период, комиссии, `parameter_mining` и новый `name_comment` для эксперимента; включить `report.enable_json_report`.
-5. `tester_download_data` — загрузить свечи и дождаться окончания в `tester_status`.
+4. `save_tester_config` — задать период, комиссии, `parameter_mining` и новый `name_comment` для эксперимента; включить `report.enable_json_report`. Начало периода (`StartDate`) для сверки с живым ботом ставить на границу `time_frame` стратегии и не раньше запуска бота: стратегия работает с первой свечи своего таймфрейма, открытие которой не раньше `StartDate`, поэтому старт в середине 4h-свечи сдвигает первые ордера на следующую свечу. `WarmupDays` (по умолчанию 30) только прогревает индикаторы историей до `StartDate`: на этих днях стратегия не торгует и состояние не накапливает, позиция и ордера живого бота из истории не восстанавливаются. Если данных у пары меньше `WarmupDays`, торговля начнётся позже (предупреждение в ответе).
+5. `tester_download_data` — загрузить свечи и дождаться окончания в `tester_status`. Период можно задать параметрами `start` и `end`, по умолчанию: старт конфига с прогревом .. сейчас (конфиг менять не нужно). В `download.result` видно, по какой день данные реально есть у каждой пары.
 6. `tester_run_single` — проверить одну комбинацию; `tester_wait` (или `wait_seconds` при запуске) дожидается прогона и возвращает метрики, предупреждения и пути к отчётам. `tester_run_batch` — сравнить несколько вариантов и проверить их на нескольких периодах одним вызовом. Или `tester_run_mining` — перебрать все комбинации: результаты в `<name_comment>/reports_history.csv` (`read_tester_file`); `queue=true` ставит перебор в очередь за текущим.
 7. `read_tester_report` — разобрать прогон: раздел `summary` для сравнения, итоги по парам, месяцы, сделки. Для набора стратегий — `tester_portfolio_analysis`: группы T/CT, корреляция, худшие дни, вклад каждой стратегии в просадку.
 8. `tester_report_summaries`, `tester_run_stress` и `walk_forward` в конфиге — сравнить лучшие варианты и проверить их устойчивость.
 9. `send_tester_report_to_telegram` — прислать итоговый отчёт пользователю в Telegram, если он просит.
+
+**Одна стратегия на пару.** На одном счёте на одной паре (`basic.symbol`) может быть только одна стратегия, и в живой торговле, и в тестере. Пар на счёте может быть сколько угодно (хоть 200), стратегии на них могут быть разными или одинаковыми, но символ среди стратегий счёта должен быть уникальным. Стратегия на занятой паре сохраняется, но не запускается (в логе `DUBLICATE SUMBOL ON API`); проверьте `list_strategies` по счёту и паре до `save_strategy`, `copy_strategy` (копируйте на другую пару) и `create_strategy_from_tester`. Настройки тестера, которые идут в одном прогоне, тоже должны быть на разных парах; чтобы сравнить несколько настроек на одной паре, запускайте каждую отдельно (элементы `tester_run_batch` или перебор с `single_mode`).
+
+**Реинвестирование и сравнение вариантов.** Размер позиции по `basic.balance_percentage_long/_short` считается от текущего баланса, поэтому прибыль реинвестируется и годовой PnL % завышается. Чтобы варианты и периоды сравнивались честно, отключите рост размера одним из способов:
+1. `basic.use_fix = true` и `basic.my_fix_balance = 50`: каждый ордер считается от 50 единиц котируемой валюты (обычно USDT), независимо от баланса.
+2. `basic.max_balance = 2000`: пока баланс меньше, бот работает с реальным балансом; при балансе 2350 размер считается от 2000, выше порога реинвестирование прекращается.
+3. `basic.lot_long` / `basic.lot_short`: постоянный размер ордера, который уходит на биржу.
+
+Некоторые стратегии могут изменить этот базовый размер по своей логике. Параметры можно задать через `overrides` запуска (`set`) или перебирать в `parameter_mining`.
 
 Ответы на сохранение и запуск содержат `warnings`: поля, которые настройки не читают. `check_tester_settings` проверяет так всю папку.
 
@@ -1786,7 +2126,7 @@ claude mcp add --transport http hamster-bot http://127.0.0.1:5000/mcp --header "
 
 **Логи.** У каждого бота (стратегии на паре) свой лог: `log_<дата>_<Биржа> <аккаунт>  <пара> <таймфрейм> <стратегия> <имя>.log` — уровни, сигналы, выставленные и снятые ордера, исполнения, изменения позиции и ошибки стратегии; по нему видно, почему бот торговал или не торговал. У каждого аккаунта — `log_<аккаунт>_<дата>.log`: балансы и позиции с биржи, ответы и ошибки API биржи, лимитер позиций, `close_by_margin`. Общий лог программы — `log_<дата>.log` (`get_log`), логи тестера — `TESTER_*.log`. Формат даты в именах разный, поэтому файл ищут по имени стратегии или аккаунта: `list_log_files` с `contains`, затем `read_log_file`.
 
-### Примеры использования
+#### Примеры использования
 
 Ниже — запросы к ассистенту и вызовы инструментов, которые он делает. Аргументы показаны в JSON, как их передаёт MCP-клиент. Папка `lut_now`, имена настроек и даты — для примера.
 
@@ -1866,7 +2206,7 @@ tester_run_batch {
 
 ---
 
-## Коды ответов
+### Коды ответов
 
 | Код | Значение |
 |-----|----------|
@@ -1880,3 +2220,5 @@ tester_run_batch {
 | 500 | Внутренняя ошибка или ошибка биржи |
 | 502 | Внешний сервис не принял запрос |
 | 503 | Программа ещё запускается |
+
+<!-- API:END -->

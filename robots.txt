@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ksandric.github.io/hamster-bot/sitemap.xml

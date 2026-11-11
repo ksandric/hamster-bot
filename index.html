@@ -1,54 +1,1888 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>hamster-bot Old Page</title>
-     <meta charset="UTF-8" />
-     <meta http-equiv="refresh" content="15; URL=https://hamster-bot.com/" />
-   </head>
-   <style>
-   @charset "utf-8";
-body {
-	background: linear-gradient(-45deg, #ee7752, #e73c7e, #d5893d, #23a6d5, #23d5ab);
-/*	background: linear-gradient(-45deg, rgba(238,174,202,1) 0%, rgba(255,213,170,1) 48%, rgba(148,187,233,1) 100%);*/
-	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
-}
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>hamster-bot — бесплатный торговый бот для криптобирж</title>
+  <meta name="description" content="hamster-bot — бесплатный self-hosted торговый бот для криптобирж: 20+ стратегий, портфельный бэктестер, WEB-интерфейс, HTTP API и MCP. Windows, Linux, macOS.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#f5a000">
+  <link rel="canonical" href="https://ksandric.github.io/hamster-bot/">
+  <link rel="icon" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
 
-@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="hamster-bot">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="hamster-bot — бесплатный торговый бот для криптобирж">
+  <meta property="og:description" content="20+ стратегий, портфельный бэктестер, WEB-интерфейс, HTTP API и MCP. Windows, Linux, macOS. Работает на вашем компьютере или сервере.">
+  <meta property="og:url" content="https://ksandric.github.io/hamster-bot/">
+  <meta property="og:image" content="https://ksandric.github.io/hamster-bot/logo.png">
+  <meta property="og:image:alt" content="hamster-bot — логотип">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="hamster-bot — бесплатный торговый бот для криптобирж">
+  <meta name="twitter:description" content="20+ стратегий, портфельный бэктестер, HTTP API и MCP. Self-hosted, бесплатно.">
+  <meta name="twitter:image" content="https://ksandric.github.io/hamster-bot/logo.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://ksandric.github.io/hamster-bot/#app",
+        "name": "hamster-bot",
+        "description": "Бесплатный self-hosted торговый бот для криптобирж: 20+ алгоритмических стратегий, портфельный бэктестер, WEB-интерфейс, HTTP API и MCP-сервер.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Windows, Linux, macOS",
+        "inLanguage": "ru",
+        "url": "https://ksandric.github.io/hamster-bot/",
+        "image": "https://ksandric.github.io/hamster-bot/logo.png",
+        "downloadUrl": "https://github.com/ksandric/hamster-bot",
+        "codeRepository": "https://github.com/ksandric/hamster-bot",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "sameAs": [
+          "https://hamster-bot.com/ru/bot",
+          "https://github.com/ksandric/hamster-bot",
+          "https://t.me/bothamster",
+          "https://www.youtube.com/@hamster-bot"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://ksandric.github.io/hamster-bot/#website",
+        "name": "hamster-bot",
+        "url": "https://ksandric.github.io/hamster-bot/",
+        "inLanguage": "ru"
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.6.1/github-markdown.min.css">
+  <style>
+    :root { color-scheme: light dark; }
+    body { margin: 0; background: #fff; }
+    @media (prefers-color-scheme: dark) { body { background: #0d1117; } }
+    .markdown-body { box-sizing: border-box; max-width: 980px; margin: 0 auto; padding: 45px; }
+    @media (max-width: 767px) { .markdown-body { padding: 15px; } }
+    .markdown-body img { max-width: 100%; }
+    .markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6 { scroll-margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <main>
+    <article class="markdown-body">
+<div align="center">
+<img src="logo.png" alt="hamster-bot" width="360">
+<h1 id="hamster-bot">hamster-bot</h1>
+<p><strong>Торговый бот для криптобирж · алготрейдинг · достоверный портфельный бэктест</strong></p>
+<p>На рынке с 2018 года. Бесплатный. Работает на вашем компьютере или сервере.</p>
+<p><a href="https://hamster-bot.com/ru/bot" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/%D1%81%D0%B0%D0%B9%D1%82-hamster--bot.com-f5a000?style=for-the-badge" alt="Сайт" loading="lazy" decoding="async"></a>
+<a href="https://t.me/bothamster" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Telegram-%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB-26A5E4?style=for-the-badge&amp;logo=telegram&amp;logoColor=white" alt="Telegram" loading="lazy" decoding="async"></a>
+<a href="https://www.youtube.com/@hamster-bot" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/YouTube-@hamster--bot-FF0000?style=for-the-badge&amp;logo=youtube&amp;logoColor=white" alt="YouTube" loading="lazy" decoding="async"></a></p>
+<p><img src="https://img.shields.io/badge/Windows-x64-0078D6?logo=windows&amp;logoColor=white" alt="Windows" loading="lazy" decoding="async">
+<img src="https://img.shields.io/badge/Linux-x64%20%7C%20arm64-FCC624?logo=linux&amp;logoColor=black" alt="Linux" loading="lazy" decoding="async">
+<img src="https://img.shields.io/badge/macOS-x64%20%7C%20arm64-000000?logo=apple&amp;logoColor=white" alt="macOS" loading="lazy" decoding="async">
+<img src="https://img.shields.io/badge/self--hosted-%E2%9C%94-success" alt="Self-hosted" loading="lazy" decoding="async">
+<img src="https://img.shields.io/badge/HTTP%20API%20%2B%20MCP-%E2%9C%94-blueviolet" alt="API + MCP" loading="lazy" decoding="async"></p>
+<p><a href="#%D0%BE-%D0%B1%D0%BE%D1%82%D0%B5">О боте</a> · <a href="#%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%B8%D0%B2%D0%B0%D0%B5%D0%BC%D1%8B%D0%B5-%D0%B1%D0%B8%D1%80%D0%B6%D0%B8">Биржи</a> · <a href="#%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C-%D0%B8-%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C">Скачать</a> · <a href="#%D1%81%D0%BA%D1%80%D0%B8%D0%BD%D1%88%D0%BE%D1%82%D1%8B">Скриншоты</a> · <a href="#%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%D1%8B">Контакты</a> · <a href="#%D0%B2%D0%BE%D0%B7%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D0%B8">Возможности</a> · <a href="#%D0%B1%D1%8D%D0%BA%D1%82%D0%B5%D1%81%D1%82%D0%B5%D1%80-hamster-bottester">Бэктестер</a> · <a href="#%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE">Видео</a> · <a href="#api-%D0%B8-mcp">API и MCP</a></p>
+</div>
+<hr />
+<h2 id="о-боте">О боте</h2>
+<p><strong>hamster-bot</strong> автоматизирует торговлю по стратегиям на криптобиржах и позволяет построить собственную торговую систему из множества алгоритмов.</p>
+<ul>
+<li><strong>Self-hosted</strong> — бот запускается на вашем сервере или ПК. API-ключи и данные не покидают вашу машину.</li>
+<li><strong>Кроссплатформенный</strong> — нативные сборки для Windows, Linux и macOS, один исполняемый файл без зависимостей.</li>
+<li><strong>20+ стратегий</strong> — трендовые, контртрендовые, пробойные, возврат к среднему, сигналы TradingView.</li>
+<li><strong>Встроенный тиковый портфельный бэктестер</strong> с оптимизатором параметров, тепловыми картами и 3D Surface.</li>
+<li><strong>WEB-интерфейс, HTTP API и MCP-сервер</strong> — управляйте ботом из браузера, скриптов или ИИ-ассистента (Claude и другие MCP-клиенты).</li>
+<li><strong>Бесплатный.</strong> Либо удобный готовый сервис на ваш выбор.</li>
+</ul>
+<hr />
+<h2 id="поддерживаемые-биржи">Поддерживаемые биржи</h2>
+<table>
+  <tr>
+    <td align="center" width="25%"><img src="docs/img/exchanges/bybit.png" height="32" alt="Bybit" loading="lazy" decoding="async"><br><a href="https://hamster-bot.com/ru/exchange/bybit" target="_blank" rel="noopener"><b>Bybit</b></a></td>
+    <td align="center" width="25%"><img src="docs/img/exchanges/binance.png" height="32" alt="Binance" loading="lazy" decoding="async"><br><a href="https://hamster-bot.com/ru/exchange/binance" target="_blank" rel="noopener"><b>Binance</b></a><br><sub><a href="https://t.me/bothamster/287" target="_blank" rel="noopener">API broker</a></sub></td>
+    <td align="center" width="25%"><img src="docs/img/exchanges/okex.png" height="32" alt="OKX" loading="lazy" decoding="async"><br><a href="https://hamster-bot.com/ru/exchange/okx" target="_blank" rel="noopener"><b>OKX</b></a></td>
+    <td align="center" width="25%"><img src="docs/img/exchanges/mexc.png" height="32" alt="MEXC" loading="lazy" decoding="async"><br><b>MEXC</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/img/exchanges/bingx.png" height="32" alt="BingX" loading="lazy" decoding="async"><br><a href="https://hamster-bot.com/ru/exchange/bingx" target="_blank" rel="noopener"><b>BingX</b></a></td>
+    <td align="center"><img src="docs/img/exchanges/bitmex.png" height="32" alt="BitMEX" loading="lazy" decoding="async"><br><b>BitMEX</b></td>
+    <td align="center"><img src="docs/img/exchanges/huobi.png" height="32" alt="HTX" loading="lazy" decoding="async"><br><b>HTX</b></td>
+    <td align="center"><img src="docs/img/exchanges/kucoin.png" height="32" alt="KuCoin" loading="lazy" decoding="async"><br><b>KuCoin</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/img/exchanges/gate.png" height="32" alt="Gate.io" loading="lazy" decoding="async"><br><b>Gate.io</b></td>
+    <td align="center"><img src="docs/img/exchanges/bitget.png" height="32" alt="Bitget" loading="lazy" decoding="async"><br><a href="https://hamster-bot.com/ru/exchange/bitget" target="_blank" rel="noopener"><b>Bitget</b></a></td>
+    <td align="center"><img src="docs/img/exchanges/phemex.png" height="32" alt="Phemex" loading="lazy" decoding="async"><br><b>Phemex</b></td>
+    <td align="center"><img src="docs/img/exchanges/weex.png" height="32" alt="WEEX" loading="lazy" decoding="async"><br><b>WEEX</b></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/img/exchanges/backpack.png" height="32" alt="Backpack" loading="lazy" decoding="async"><br><b>Backpack</b></td>
+    <td align="center"><img src="docs/img/exchanges/btse.png" height="32" alt="BTSE" loading="lazy" decoding="async"><br><a href="https://hamster-bot.com/ru/exchange/btse" target="_blank" rel="noopener"><b>BTSE</b></a></td>
+    <td align="center"><img src="docs/img/exchanges/hyperliquid.png" height="32" alt="Hyperliquid" loading="lazy" decoding="async"><br><a href="https://hamster-bot.com/ru/exchange/hyperliquid" target="_blank" rel="noopener"><b>Hyperliquid</b></a></td>
+    <td align="center"><img src="docs/img/exchanges/tiger.png" height="32" alt="Tiger" loading="lazy" decoding="async"><br><b>Tiger</b><br><sub>broker Bybit, Binance</sub></td>
+  </tr>
+</table>
+<p>Подробности по каждой бирже, партнёрские программы и листинги — на странице <a href="https://hamster-bot.com/ru/exchange" target="_blank" rel="noopener">hamster-bot.com/ru/exchange</a>. Пожалуйста, используйте реферальные ссылки с сайта при регистрации на бирже — так вы поддерживаете проект.</p>
+<hr />
+<h2 id="скачать-и-установить">Скачать и установить</h2>
+<p>Актуальная версия:</p>
+<table>
+<thead>
+<tr>
+<th>Платформа</th>
+<th>Архив</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🪟 <strong>Windows</strong> x64</td>
+<td><a href="https://github.com/ksandric/hamster-bot/blob/master/hb.zip?raw=true" target="_blank" rel="noopener">hb.zip</a></td>
+</tr>
+<tr>
+<td>🐧 <strong>Linux</strong> x64</td>
+<td><a href="https://github.com/ksandric/hamster-bot/blob/master/hb_linux-x64.zip?raw=true" target="_blank" rel="noopener">hb_linux-x64.zip</a></td>
+</tr>
+<tr>
+<td>🐧 <strong>Linux</strong> arm64</td>
+<td><a href="https://github.com/ksandric/hamster-bot/blob/master/hb_linux-arm64.zip?raw=true" target="_blank" rel="noopener">hb_linux-arm64.zip</a></td>
+</tr>
+<tr>
+<td>🍎 <strong>macOS</strong> x64 (Intel)</td>
+<td><a href="https://github.com/ksandric/hamster-bot/blob/master/hb_osx-x64.zip?raw=true" target="_blank" rel="noopener">hb_osx-x64.zip</a></td>
+</tr>
+<tr>
+<td>🍎 <strong>macOS</strong> arm64 (Apple Silicon)</td>
+<td><a href="https://github.com/ksandric/hamster-bot/blob/master/hb_osx-arm64.zip?raw=true" target="_blank" rel="noopener">hb_osx-arm64.zip</a></td>
+</tr>
+</tbody>
+</table>
+<p>После запуска WEB-интерфейс доступен в браузере по адресу <code>http://127.0.0.1:&lt;порт&gt;</code> (локально по умолчанию порт <code>80</code>). Дальше добавьте API-ключи биржи и настройте стратегии.</p>
+<details>
+<summary><b>🐧 Linux (VPS) — установка одной командой</b></summary>
+<blockquote>
+<p>Рекомендуемые ОС: Ubuntu 20.04 / 22.04 / 24.04. Выбирайте локацию сервера <strong>не в США</strong> — биржи блокируют такие запросы (Europe и Asia — ОК). Для первого VPS подойдёт самый дешёвый тариф.</p>
+</blockquote>
+<ol>
+<li>Создайте папку для бота (так можно установить много ботов в разные папки <code>hb1</code>, <code>hb2</code> …):<pre><code class="language-bash">mkdir -p /opt/hb1
+</code></pre>
+</li>
+<li>Перейдите в неё:<pre><code class="language-bash">cd /opt/hb1
+</code></pre>
+</li>
+<li>Скачайте и запустите скрипт установки (он скачает и распакует архив и создаст <code>.service</code> в systemd):<pre><code class="language-bash">wget -qO- https://raw.githubusercontent.com/ksandric/hamster-bot/refs/heads/master/install_local.sh | bash
+</code></pre>
+</li>
+<li>Скрипт запросит порт и проверит, что он свободен. Рекомендуется выбирать порты по порядку, начиная с <code>81</code>.</li>
+</ol>
+<p>Бот работает как сервис: запускается вместе с сервером и перезапускается при падении.</p>
+<pre><code class="language-bash">journalctl --follow -u hamster-bot_1.service   # лог в реальном времени
+systemctl status hamster-bot_1.service         # состояние
+systemctl restart hamster-bot_1.service        # перезапуск
+systemctl stop hamster-bot_1.service           # остановка
+</code></pre>
+<p><strong>Обновление</strong> бота в текущей папке (позиции и ордера не закрываются):</p>
+<pre><code class="language-bash">cd /opt/hb2
+wget -qO- https://raw.githubusercontent.com/ksandric/hamster-bot/refs/heads/master/update_local.sh | bash
+</code></pre>
+<p><strong>Обновить / перезапустить все активные боты на сервере:</strong></p>
+<pre><code class="language-bash">wget -qO- https://raw.githubusercontent.com/ksandric/hamster-bot/refs/heads/master/update_all.sh | bash
+wget -qO- https://raw.githubusercontent.com/ksandric/hamster-bot/refs/heads/master/restart_all.sh | bash
+</code></pre>
+<p>Видеоинструкции: <a href="https://youtu.be/jxb6aZQwtN4" target="_blank" rel="noopener">установка на Linux</a>, <a href="https://youtu.be/FJgu7OfgUWU" target="_blank" rel="noopener">обновление</a>, <a href="https://www.youtube.com/watch?v=zmiTOxyXWeQ" target="_blank" rel="noopener">аренда VPS</a>. Полные инструкции — на странице <a href="https://hamster-bot.com/ru/bot" target="_blank" rel="noopener">hamster-bot.com/ru/bot</a>.</p>
+</details>
+<details>
+<summary><b>🪟 Windows</b></summary>
+<p>Для каждого бота создайте отдельную папку (например <code>C:\bots\bot_1</code>). Установить можно двумя способами:</p>
+<ul>
+<li><strong>Вручную:</strong> скачайте <a href="https://github.com/ksandric/hamster-bot/blob/master/hb.zip?raw=true" target="_blank" rel="noopener">hb.zip</a>, распакуйте в папку бота и запустите <code>hb_c.exe</code>.</li>
+<li><strong>Скриптом <a href="https://raw.githubusercontent.com/ksandric/hamster-bot/refs/heads/master/manage_local.bat" target="_blank" rel="noopener">manage_local.bat</a>:</strong> положите его в пустую папку бота и запустите двойным кликом. Скрипт запросит права администратора и покажет меню: установка, установка как сервис (автозапуск через планировщик задач, открытие порта в брандмауэре, автоперезапуск), обновление, остановка/запуск, просмотр лога.</li>
+</ul>
+<p>Обновить бота можно и кнопкой «Обновить бота» в веб-интерфейсе.</p>
+</details>
+<details>
+<summary><b>🍎 macOS</b></summary>
+<p>Скачайте архив <a href="https://github.com/ksandric/hamster-bot/blob/master/hb_osx-x64.zip?raw=true" target="_blank" rel="noopener">hb_osx-x64.zip</a> (или <a href="https://github.com/ksandric/hamster-bot/blob/master/hb_osx-arm64.zip?raw=true" target="_blank" rel="noopener">hb_osx-arm64.zip</a> для Apple Silicon), распакуйте в папку <code>hb</code> на рабочем столе и в терминале выполните:</p>
+<pre><code class="language-bash">cd Desktop/hb
+chmod a+x hb_c
+xattr -dr com.apple.quarantine .   # снять карантин
+codesign --force --sign - ./hb_c   # локальная подпись
+./hb_c
+</code></pre>
+</details>
+<details>
+<summary><b>🔔 WatchDog — уведомление, если бот офлайн</b></summary>
+<p>Независимый внешний сервис следит, что бот жив. Если бот перестал выходить на связь, вы получите в Telegram сообщение <code>WARNING! Bot is offline.</code> Настраивается в <code>settings_program.json</code>: <code>&quot;watchdog&quot;: true/false</code> и <code>&quot;watchdog_timer_minutes&quot;</code> (рекомендуется 60).</p>
+</details>
+<hr />
+<h2 id="скриншоты">Скриншоты</h2>
+<table>
+  <tr>
+    <td width="50%"><img src="docs/img/screenshot_1.png" alt="Вкладка с ботами" loading="lazy" decoding="async"><br><sub><b>Вкладка с ботами</b></sub></td>
+    <td width="50%"><img src="docs/img/screenshot_2.png" alt="Настройка стратегии" loading="lazy" decoding="async"><br><sub><b>Настройка стратегии</b></sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="docs/img/screenshot_3.png" alt="Просмотр графика" loading="lazy" decoding="async"><br><sub><b>Просмотр графика</b></sub></td>
+    <td width="50%"><img src="docs/img/screenshot_4.png" alt="Лог" loading="lazy" decoding="async"><br><sub><b>Лог</b></sub></td>
+  </tr>
+</table>
+<hr />
+<h2 id="контакты">Контакты</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>👤 <strong>Разработчик</strong> — вопросы, разработка, общение</td>
+<td><a href="https://t.me/dreamcast2" target="_blank" rel="noopener">@dreamcast2</a></td>
+</tr>
+<tr>
+<td>📢 <strong>Telegram-канал</strong> — новости и обновления</td>
+<td><a href="https://t.me/bothamster" target="_blank" rel="noopener">@bothamster</a></td>
+</tr>
+<tr>
+<td>💬 <strong>Telegram-чат</strong> — общение с пользователями</td>
+<td><a href="https://t.me/bitmextrue" target="_blank" rel="noopener">@bitmextrue</a></td>
+</tr>
+<tr>
+<td>💬 <strong>Telegram EN chat</strong></td>
+<td><a href="https://t.me/hamster_EN" target="_blank" rel="noopener">@hamster_EN</a></td>
+</tr>
+<tr>
+<td>▶️ <strong>YouTube</strong> — видео о боте и стратегиях</td>
+<td><a href="https://www.youtube.com/@hamster-bot" target="_blank" rel="noopener">@hamster-bot</a></td>
+</tr>
+<tr>
+<td>🌐 <strong>Сайт</strong></td>
+<td><a href="https://hamster-bot.com/ru/bot" target="_blank" rel="noopener">hamster-bot.com</a></td>
+</tr>
+</tbody>
+</table>
+<p>Проект можно поддержать донатом — реквизиты на странице <a href="https://hamster-bot.com/ru/contact" target="_blank" rel="noopener">hamster-bot.com/ru/contact</a>.</p>
+<hr />
+<h2 id="возможности">Возможности</h2>
+<h3 id="управление-ботом">Управление ботом</h3>
+<p>Управлять ботом можно через <strong>WEB-интерфейс</strong>, <strong>HTTP API</strong>, <strong>MCP</strong> (из ИИ-ассистента) и просто редактируя текстовые конфиги <code>.json</code>.</p>
+<ul>
+<li><strong>WEB-интерфейс</strong> — мониторинг и управление из любого браузера по IP-адресу вашего сервера. Позиции, баланс и настройки обновляются в реальном времени без перезагрузки страницы.</li>
+<li><strong>Консольный интерфейс</strong> с режимом dashboard — компактная таблица состояния всех активных ботов (есть и ARM64-сборка).</li>
+<li><strong>Уведомления в Telegram</strong> — открытие и закрытие сделок картинкой графика, алерты при критических событиях. Отдельный чат для каждой стратегии.</li>
+<li><strong>Торговля по алертам TradingView</strong> через Webhook URL — автоматическое открытие и закрытие позиций по сигналам.</li>
+<li><strong>Обновление без остановки торговли</strong> — кнопкой в интерфейсе; открытые позиции и ордера не закрываются.</li>
+</ul>
+<h3 id="производительность">Производительность</h3>
+<p>Оптимизировано для одновременной работы множества аккаунтов и вариантов настроек в одном боте. Стабильность проверена на <strong>2000+ ботов в одном процессе</strong>. Бот с пятью стратегиями на трёх аккаунтах потребляет всего <strong>~70 МБ памяти</strong>.</p>
+<h3 id="управление-капиталом-и-риск-менеджмент">Управление капиталом и риск-менеджмент</h3>
+<ul>
+<li>Размер лота: фиксированный (в монетах или USDT) или процент от баланса.</li>
+<li>Закрывающие опции: Take Profit, Stop Loss, Trailing Stop, закрытие по сигналам индикаторов ТА, по времени, по марже аккаунта, безубыток, пауза после убытка или прибыли.</li>
+<li>Take Profit по балансу маржи (по эквити).</li>
+<li>Автоматический перевод прибыли с торгового счёта на счёт финансирования.</li>
+</ul>
+<h3 id="торговые-стратегии">Торговые стратегии</h3>
+<p>Множество стратегий, из которых можно составить уникальный портфель; возможна авторебалансировка — стратегии делятся профитом и убытком между собой.</p>
+<table>
+<thead>
+<tr>
+<th>Тип</th>
+<th>Стратегии</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Трендовые / пробойные</strong></td>
+<td><a href="https://hamster-bot.com/ru/algo/zigzag" target="_blank" rel="noopener">ZigZag (ZZ, ZZ-2, ZZ-6)</a>, <a href="https://hamster-bot.com/ru/algo/zigzag-double" target="_blank" rel="noopener">ZigZag Double</a>, <a href="https://hamster-bot.com/ru/algo/donchianchannel" target="_blank" rel="noopener">Donchian Channel</a>, <a href="https://hamster-bot.com/ru/algo/tv-ccs" target="_blank" rel="noopener">Channel Close Strategy</a>, <a href="https://hamster-bot.com/ru/algo/riskturtle" target="_blank" rel="noopener">RiskTurtle</a>, <a href="https://hamster-bot.com/ru/algo/movingaveragecrossover" target="_blank" rel="noopener">Moving Average Crossover</a>, <a href="https://hamster-bot.com/ru/algo/squeeze" target="_blank" rel="noopener">Squeeze</a>, <a href="https://hamster-bot.com/ru/algo/rsipullback" target="_blank" rel="noopener">RSI Pullback</a>, <a href="https://hamster-bot.com/ru/algo/doubledragon" target="_blank" rel="noopener">DoubleDragon</a></td>
+</tr>
+<tr>
+<td><strong>Контртрендовые / возврат к среднему</strong></td>
+<td><a href="https://hamster-bot.com/ru/algo/mrs" target="_blank" rel="noopener">MRS</a>, <a href="https://hamster-bot.com/ru/algo/mrs2" target="_blank" rel="noopener">MRS2</a>, <a href="https://hamster-bot.com/ru/algo/mrs3" target="_blank" rel="noopener">MRS3</a>, <a href="https://hamster-bot.com/ru/algo/hideep" target="_blank" rel="noopener">HiDeep</a>, <a href="https://hamster-bot.com/ru/algo/redflag" target="_blank" rel="noopener">RedFlag</a>, <a href="https://hamster-bot.com/ru/algo/smartprofit" target="_blank" rel="noopener">SmartProfit</a>, <a href="https://hamster-bot.com/ru/algo/shadowoverlap" target="_blank" rel="noopener">ShadowOverlap</a>, <a href="https://hamster-bot.com/ru/algo/tv-mapm" target="_blank" rel="noopener">TV MAPM</a>, <a href="https://hamster-bot.com/ru/algo/mz" target="_blank" rel="noopener">MZ</a></td>
+</tr>
+<tr>
+<td><strong>Сигналы TradingView</strong></td>
+<td><a href="https://hamster-bot.com/ru/algo" target="_blank" rel="noopener">TradingView Alerts / Webhook</a></td>
+</tr>
+<tr>
+<td><strong>Прочее</strong></td>
+<td><a href="https://hamster-bot.com/ru/algo/volumemarket" target="_blank" rel="noopener">Volume Market</a> (набор торгового объёма), <a href="https://hamster-bot.com/ru/algo/closepositiondeleteorders" target="_blank" rel="noopener">Close Position Delete Orders</a></td>
+</tr>
+</tbody>
+</table>
+<p>📖 <a href="https://hamster-bot.com/ru/algo" target="_blank" rel="noopener">Описание всех стратегий →</a></p>
+<p><strong>Нужна своя стратегия?</strong> Любую идею или Pine Script стратегию можно добавить в hamster-bot — оставьте заявку через <a href="https://forms.gle/RLVqNCjg4dtosqmF6" target="_blank" rel="noopener">форму</a> или напишите <a href="https://t.me/dreamcast2" target="_blank" rel="noopener">разработчику</a>. Это полноценная реализация с управлением ордерами и позицией в реальном времени, а не торговля по алертам.</p>
+<h3 id="готовое-решение">Готовое решение</h3>
+<p><strong>Не хотите настраивать всё самостоятельно?</strong> Команда hamster-bot предоставляет проверенные пресеты стратегий: подключаете пресет — бот сразу торгует по готовой конфигурации. <a href="https://hamster-bot.com/ru/phoenix" target="_blank" rel="noopener">Готовое решение для инвесторов →</a></p>
+<hr />
+<h2 id="бэктестер-hamster-bottester">Бэктестер hamster-bot/tester</h2>
+<blockquote>
+<p><strong>Достоверный портфельный бэктест. Уровень quant-исследований.</strong>
+Тестер встроен в бота — отдельно ставить ничего не нужно.</p>
+</blockquote>
+<p><strong>Особенности:</strong></p>
+<ul>
+<li><strong>Портфельный тест.</strong> Несколько стратегий разных типов на разных парах и таймфреймах — на одном общем балансе: суммарная загрузка депозита, общая просадка, перекрытие позиций.</li>
+<li><strong>Тот же продакшн-код.</strong> Бэктест прогоняет тот же код, на котором бот торгует в реальном времени: стратегии, сервис позиций, лимитер позиций, опции аккаунта. Никакого переписывания логики под тестер.</li>
+<li><strong>Честная симуляция внутри свечи.</strong> Стратегия вызывается по каждому изменению формирующейся свечи — трейлинги, перестановки ордеров и выходы внутри свечи работают как на реальных торгах.</li>
+<li><strong>Реалистичные издержки.</strong> Комиссии мейкера/тейкера, проскальзывание и задержка маркет- и стоп-ордеров, фандинг, ограничение исполнения лимиток объёмом свечи.</li>
+<li><strong>Данные скачиваются автоматически.</strong> Bybit, Binance, MEXC, BitMEX — за любой исторический период; можно подключить свои данные в CSV.</li>
+<li><strong>Подробный интерактивный HTML-отчёт.</strong> Кривая эквити, тепловая карта доходности по месяцам, графики сделок по каждой паре и 50+ метрик: Sharpe, Sortino, Calmar, CAGR, Recovery Factor, серии побед/поражений, загрузка депозита и др.</li>
+<li><strong>Проверка на подгонку.</strong> Монте-Карло по сделкам, PnL без лучших сделок и без лучшей пары, топ-5 просадок, MAE/MFE каждой сделки, результат по часам, дням недели и режимам рынка, расстояние до ликвидации.</li>
+<li><strong>Оптимизатор параметров.</strong> Перебор любых настроек бота, стратегий, аккаунта и самого тестера. Параллельные прогоны на всех ядрах, Monte Carlo выборка для огромных пространств параметров, подбор портфеля пар без повторов. Результаты — в сводной таблице, на тепловых картах и 3D Surface.</li>
+<li><strong>Проверка устойчивости.</strong> Walk-forward, карта плато параметров, стресс-тест в один клик, сравнение прогонов, результат по режимам рынка (рост, падение, флэт, волатильность).</li>
+<li><strong>Любая сложная логика.</strong> Тестер реализован как коннектор к «виртуальной бирже» (mock-объект): бот думает, что торгует на реальной бирже, а виртуальная биржа всё считает и строит отчёт. Тестер не отправляет ордера и не требует API-ключей.</li>
+</ul>
+<p><strong>Быстрый старт:</strong></p>
+<ol>
+<li>Положите <code>.json</code>-настройки стратегий в <code>tester/settings_strategy</code> (или создайте их во вкладке <strong>Тестер → Параметры</strong>).</li>
+<li>Задайте период, баланс и комиссии в <code>config_tester.json</code>:<pre><code class="language-json">{
+  &quot;name_comment&quot;: &quot;first_test&quot;,
+  &quot;InitialBalance&quot;: 1000.0,
+  &quot;StartDate&quot;: &quot;2026-01-01T00:00:00&quot;,
+  &quot;EndDate&quot;: &quot;2026-03-01T00:00:00&quot;,
+  &quot;WarmupDays&quot;: 30,
+  &quot;MakerFee&quot;: 0.00036,
+  &quot;TakerFee&quot;: 0.001,
+  &quot;UpdateData&quot;: true,
+  &quot;parameter_mining&quot;: []
 }
-   </style>
-   <body>
-     <p style="font-weight: bolder;">This page has been moved. If you are not redirected within 15 seconds, click <a href="https:/hamster-bot.com/">here</a> to go to the new hamster-bot.com homepage.</p>
-   <br>
-   <h1><a id="user-content-trading-bot-hamster-bot" class="anchor" href="#trading-bot-hamster-bot" aria-hidden="true"></a>Trading bot hamster-bot</h1>
-<h1 dir="auto"><a id="user-content-for-exchanges-bitmex-ftx-bybit-binance-huobi-kucoin" class="anchor" href="#for-exchanges-bitmex-ftx-bybit-binance-huobi-kucoin" aria-hidden="true"></a>for exchanges: BitMEX, FTX, Bybit, Binance, Huobi, Kucoin</h1>
-<p dir="auto">Automated trading system |
-Cryptocurrency Algorithmic trading bot</p>
-<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="/ksandric/hamster-bot/blob/master/logo.png"><img src="https://github.com/ksandric/hamster-bot/raw/master/logo.png" alt="hamster-bot logo" style="max-width: 100%;"></a></p>
-<p dir="auto"><strong>hamster-bot releases download links:</strong></p>
-<ul dir="auto">
-<li><strong>Latest Win version</strong> <a href="https://github.com/ksandric/hamster-bot/blob/master/hb.zip?raw=true">hb.zip</a></li>
-<li><strong>Release Linux version</strong> <a href="https://github.com/ksandric/hamster-bot/blob/master/hb_linux-x64.zip?raw=true">hb_linux-x64.zip</a>  ? <em><a href="https://t.me/bothamster/309" rel="nofollow">Инструкция</a></em></li>
+</code></pre>
+</li>
+<li>Запустите тест во вкладке <strong>Тестер</strong> веб-интерфейса («Мастер тестера») или из консоли:<pre><code class="language-bash">./hb_c --run-tester                                        # Linux / macOS
+hb_c.exe --run-tester                                      # Windows (или manage_tester.bat)
+./hb_c --run-report-optimizer tester/report/first_test     # пересобрать отчёт оптимизатора
+</code></pre>
+</li>
+<li>Откройте HTML-отчёт из <code>tester/report/first_test</code>.</li>
+</ol>
+<p>📖 <a href="https://hamster-bot.com/ru/tester" target="_blank" rel="noopener">Полное описание тестера →</a> · 🎬 <a href="#%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE">Видеоуроки по тестеру</a> · Программный доступ к тестеру — см. <a href="#api-%D0%B8-mcp">API</a>.</p>
+<hr />
+<h2 id="видео">Видео</h2>
+<table>
+  <tr>
+    <td align="center" width="33%"><a href="https://youtu.be/C5v2Zm_2jPg" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/C5v2Zm_2jPg/mqdefault.jpg" alt="Claude с MCP в hamster-bot" loading="lazy" decoding="async"></a><br><sub>Claude с MCP в hamster-bot: подключение и примеры</sub></td>
+    <td align="center" width="33%"><a href="https://youtu.be/hHa0eE0yTw4" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/hHa0eE0yTw4/mqdefault.jpg" alt="Первый запуск" loading="lazy" decoding="async"></a><br><sub>Первый запуск торгового бота</sub></td>
+    <td align="center" width="33%"><a href="https://youtu.be/DlngicoNcbw" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/DlngicoNcbw/mqdefault.jpg" alt="Тестер 1/4" loading="lazy" decoding="async"></a><br><sub>[1/4] Тестер торговых стратегий</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://youtu.be/_bCpws3F-SE" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/_bCpws3F-SE/mqdefault.jpg" alt="Тестер 2/4" loading="lazy" decoding="async"></a><br><sub>[2/4] Портфельный бэктест. Оптимизатор</sub></td>
+    <td align="center"><a href="https://youtu.be/52gtXYhO6ho" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/52gtXYhO6ho/mqdefault.jpg" alt="Тестер 3/4" loading="lazy" decoding="async"></a><br><sub>[3/4] Перебор и анализ. Тепловые карты</sub></td>
+    <td align="center"><a href="https://youtu.be/fMWA-8PiP8U" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/fMWA-8PiP8U/mqdefault.jpg" alt="Тестер 4/4" loading="lazy" decoding="async"></a><br><sub>[4/4] Инструкция по тестам. Перебор пар</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://youtu.be/3DPradsg_Bw" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/3DPradsg_Bw/mqdefault.jpg" alt="Три сценария" loading="lazy" decoding="async"></a><br><sub>Тестер. Три сценария тестирования</sub></td>
+    <td align="center"><a href="https://youtu.be/rMcIBo88r1s" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/rMcIBo88r1s/mqdefault.jpg" alt="Веб-интерфейс тестера" loading="lazy" decoding="async"></a><br><sub>Тестер. Новый веб-интерфейс</sub></td>
+    <td align="center"><a href="https://youtu.be/JhdUpbJne0I" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/JhdUpbJne0I/mqdefault.jpg" alt="Перебор параметров" loading="lazy" decoding="async"></a><br><sub>Перебор параметров в бэктесте</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://youtu.be/UAu5TM0dFtI" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/UAu5TM0dFtI/mqdefault.jpg" alt="MRS 1,2,3" loading="lazy" decoding="async"></a><br><sub>Отличие между стратегиями MRS 1, 2, 3</sub></td>
+    <td align="center"><a href="https://youtu.be/ChXYYcDp2Nk" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/ChXYYcDp2Nk/mqdefault.jpg" alt="dreamcast2" loading="lazy" decoding="async"></a><br><sub>Кто такой dreamcast2</sub></td>
+    <td align="center"><a href="https://youtu.be/cCvdnAOJl7k" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/cCvdnAOJl7k/mqdefault.jpg" alt="TradingView Webhook" loading="lazy" decoding="async"></a><br><sub>Торговля по алертам TradingView (Webhook URL)</sub></td>
+  </tr>
+</table>
+<p><strong>Ещё видео:</strong></p>
+<ul>
+<li><a href="https://youtu.be/ADfdh_iZUzE" target="_blank" rel="noopener">Обзор бота. Скачивание и первый запуск на Windows</a></li>
+<li><a href="https://youtu.be/jxb6aZQwtN4" target="_blank" rel="noopener">Установка и запуск бота на Linux-сервере</a> · <a href="https://youtu.be/FJgu7OfgUWU" target="_blank" rel="noopener">Обновление бота на Linux</a> · <a href="https://youtu.be/YVgCUQ3GBEk" target="_blank" rel="noopener">Запуск на Linux-сервере</a></li>
+<li><a href="https://youtu.be/QUrjHn81xj8" target="_blank" rel="noopener">Dashboard-режим консольного интерфейса</a> · <a href="https://youtu.be/PZZsaVI8psc" target="_blank" rel="noopener">Web-интерфейс (инструкция)</a> · <a href="https://youtu.be/tQ7TIpom3HM" target="_blank" rel="noopener">Упрощённый режим настроек</a></li>
+<li><a href="https://youtu.be/6-oZ-Ub5uto" target="_blank" rel="noopener">Настройка закрывающих опций: Take-Profit, Stop-Loss, Trailing Stop</a></li>
+<li><a href="https://youtu.be/DrXzbYX25g8" target="_blank" rel="noopener">Поддержка OKX и переработанный watchdog</a></li>
 </ul>
-<p dir="auto"><strong>Links:</strong></p>
-<ul dir="auto">
-<li>site <a href="https://hamster-bot.com" rel="nofollow">hamster-bot.com</a></li>
+<p>Все видео — на <a href="https://www.youtube.com/@hamster-bot" target="_blank" rel="noopener">YouTube-канале @hamster-bot</a> и на странице <a href="https://hamster-bot.com/ru/video" target="_blank" rel="noopener">hamster-bot.com/ru/video</a>.</p>
+<hr />
+<h2 id="api-и-mcp">API и MCP</h2>
+<p>Бот управляется по <strong>HTTP API</strong> (настройки, стратегии, ключи бирж, позиции и ордера, логи, тестер) и через встроенный <strong>MCP-сервер</strong>: подключите Claude или другой MCP-клиент, и ассистент сам посмотрит состояние ботов, изменит стратегии и проведёт исследование в тестере. Видео: <a href="https://youtu.be/C5v2Zm_2jPg" target="_blank" rel="noopener">Claude с MCP в hamster-bot</a>.</p>
+<blockquote>
+<p>Документация ниже встроена из <a href="https://github.com/ksandric/hamster-bot/blob/master/API.md" target="_blank" rel="noopener">API.md</a> автоматически — GitHub Action <a href="https://github.com/ksandric/hamster-bot/blob/master/.github/workflows/build-pages.yml" target="_blank" rel="noopener">build-pages</a> обновляет её при изменении <code>API.md</code>. Локально: <code>python scripts/sync_readme_api.py</code>.</p>
+</blockquote>
+<!-- API:START -->
+<!-- Содержимое между маркерами генерируется из API.md (scripts/sync_readme_api.py). Правьте API.md, а не этот блок. -->
+<p>HTTP API для управления ботом и тестером: настройки, стратегии, API-ключи бирж, позиции и ордера, логи, запуск тестера и работа с его отчётами.</p>
+<p>Адрес — тот же, что у веб-интерфейса: <code>http://&lt;хост&gt;:&lt;порт&gt;</code>, порт задаётся полем <code>port</code> в <code>settings_program.json</code>.</p>
+<hr />
+<h3 id="содержание">Содержание</h3>
+<p><a href="#%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF">Доступ</a> · <a href="#%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D1%8B-%D0%B8-%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D1%8B">Запросы и ответы</a> · <a href="#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B8">Настройки</a> · <a href="#%D1%81%D1%82%D1%80%D0%B0%D1%82%D0%B5%D0%B3%D0%B8%D0%B8">Стратегии</a> · <a href="#%D0%B0%D0%BA%D0%BA%D0%B0%D1%83%D0%BD%D1%82%D1%8B">Аккаунты</a> · <a href="#%D0%B1%D0%BE%D1%82%D1%8B">Боты</a> · <a href="#%D0%BF%D0%BE%D0%B7%D0%B8%D1%86%D0%B8%D0%B8-%D0%B8-%D0%BE%D1%80%D0%B4%D0%B5%D1%80%D0%B0">Позиции и ордера</a> · <a href="#%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0-%D0%B8-%D0%BB%D0%BE%D0%B3%D0%B8">Система и логи</a> · <a href="#%D1%82%D0%B5%D1%81%D1%82%D0%B5%D1%80">Тестер</a> · <a href="#mcp-%D0%B4%D0%BB%D1%8F-%D0%B8%D0%B8-%D0%B0%D1%81%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BD%D1%82%D0%BE%D0%B2">MCP для ИИ-ассистентов</a> · <a href="#%D0%BA%D0%BE%D0%B4%D1%8B-%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%BE%D0%B2">Коды ответов</a></p>
+<hr />
+<h3 id="доступ">Доступ</h3>
+<p><strong>Токен API (рекомендуется).</strong> Передавайте в каждом запросе заголовок <code>Authorization: Bearer &lt;api_token&gt;</code>:</p>
+<pre><code class="language-bash">curl -H &quot;Authorization: Bearer &lt;api_token&gt;&quot; http://127.0.0.1:5000/api/current/bots
+</code></pre>
+<p><code>api_token</code> бот создаёт сам при первом запуске и хранит в <code>settings_program.json</code>. Токен работает с любого адреса и при любом значении <code>auth_telegram</code>, и вход из браузера его не сбрасывает. Храните токен как пароль: с ним доступно всё, включая торговлю и ключи бирж.</p>
+<p>Посмотреть и скопировать токен можно в веб-интерфейсе: «Глобальная конфигурация», блок «Токен API и MCP». Там же кнопка «Выпустить новый»; прежний токен сразу перестаёт действовать. При выключенном входе через Telegram этот блок работает только с этой же машины (<code>127.0.0.1</code>). В редакторе конфига, в логе и в ответе <code>GET /api/settings/config</code> токен скрыт (видны последние 4 символа), а через редактор и <code>POST /api/settings/config</code> его изменить нельзя.</p>
+<p>Новый токен через API: <code>POST /api/settings/api-token/regenerate</code>, ответ <code>{ &quot;success&quot;: true, &quot;api_token&quot;: &quot;...&quot; }</code>.</p>
+<p><strong>Без токена, с той же машины.</strong> Если вход через Telegram выключен (<code>&quot;auth_telegram&quot;: false</code>), запросы без токена принимаются только с этой же машины по адресу <code>127.0.0.1</code> или <code>localhost</code>:</p>
+<pre><code class="language-bash">curl http://127.0.0.1:5000/api/current/bots
+</code></pre>
+<p>С других адресов без токена API отвечает <code>401</code>. Веб-интерфейс при выключенном входе по-прежнему открыт любому, кто может подключиться к порту, поэтому на сервере с открытым портом оставляйте вход включённым.</p>
+<p><strong>Запросы со страниц других сайтов</strong> (<code>POST</code> с заголовком <code>Origin</code>, не совпадающим с адресом бота) отклоняются с кодом <code>403</code> — это защита от CSRF. curl, скрипты и MCP-клиенты заголовок <code>Origin</code> не отправляют, их это не касается. Если бот стоит за обратным прокси, прокси должен передавать исходный заголовок <code>Host</code>.</p>
+<p><strong>Cookie входа.</strong> Вместо токена можно передавать cookie <code>hamster-bot-token</code>, если вход через Telegram включён:</p>
+<ol>
+<li><code>POST /htmx/login/get-token</code> — бот присылает одноразовый код в Telegram.</li>
+<li><code>POST /htmx/login/verify</code> с формой <code>token_enter=&lt;код&gt;</code> — в ответе приходит заголовок <code>Set-Cookie: hamster-bot-token=...</code>.</li>
+<li>Передавайте cookie в запросах: <code>curl -b &quot;hamster-bot-token=&lt;значение&gt;&quot; ...</code></li>
+</ol>
+<p>Cookie действует до 10 дней. Действует только последний вход: новый вход (в том числе из браузера) делает прежний cookie недействительным.</p>
+<hr />
+<h3 id="запросы-и-ответы">Запросы и ответы</h3>
+<ul>
+<li>Тело POST-запросов — JSON в кодировке UTF-8 (<code>Content-Type: application/json</code>).</li>
+<li>Имена в пути URL-кодируются: стратегия <code>T4 BTC</code> → <code>/api/settings/strategy/T4%20BTC</code>.</li>
+<li>Настройки и конфиги передаются и возвращаются в том же виде, что и в JSON-файлах бота.</li>
+<li>Успешное действие возвращает <code>{ &quot;success&quot;: true, ... }</code>.</li>
+<li>Ошибка возвращает <code>{ &quot;success&quot;: false, &quot;error&quot;: &quot;текст ошибки&quot; }</code> с кодом из таблицы <a href="#%D0%BA%D0%BE%D0%B4%D1%8B-%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%BE%D0%B2">Коды ответов</a>.</li>
+<li>Бот определяется аккаунтом и именем стратегии: <code>/{accountName}/{settingsName}</code>. Если стратегия торгует несколькими парами, нужную пару выбирает параметр <code>?symbol=</code>. Без него берётся первая.</li>
 </ul>
-<p dir="auto"><strong>Contacts:</strong></p>
-<ul dir="auto">
-<li>telegram channel <a href="https://t.me/bothamster" rel="nofollow">t.me/bothamster</a></li>
-<li>telegram main chat <a href="https://t.me/bitmextrue" rel="nofollow">t.me/bitmextrue</a></li>
-<li>telegram EN chat <a href="https://t.me/hamster_EN" rel="nofollow">https://t.me/hamster_EN</a></li>
-<li>telegram developer <a href="https://t.me/dreamcast2" rel="nofollow">t.me/dreamcast2</a></li>
+<hr />
+<h3 id="настройки">Настройки</h3>
+<h4 id="get-apisettingsconfig">GET /api/settings/config</h4>
+<p>Глобальный конфиг программы (<code>settings_program.json</code>). Токен Telegram-бота замаскирован: видны первые 4 символа. <code>api_token</code> замаскирован: видны последние 4 символа.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;MyBot&quot;,
+  &quot;use_web&quot;: true,
+  &quot;port&quot;: 5000,
+  &quot;api_token&quot;: &quot;••••••••••••b9c2&quot;,
+  &quot;telegram&quot;: {
+    &quot;bot_token&quot;: &quot;1234************&quot;,
+    &quot;id_chat&quot;: 123456789
+  }
+}
+</code></pre>
+<p><strong>Ошибки:</strong> <code>503</code> — конфиг ещё не загружен</p>
+<hr />
+<h4 id="post-apisettingsconfig">POST /api/settings/config</h4>
+<p>Изменяет глобальный конфиг и сразу применяет его. Передавайте только поля, которые меняются, — остальные останутся как были. Токен Telegram-бота, <code>api_token</code> и <code>tester_data_dir</code> здесь не меняются: эти поля в теле игнорируются.</p>
+<p><strong>Запрос:</strong></p>
+<pre><code class="language-json">{ &quot;name&quot;: &quot;MyBot&quot;, &quot;chart&quot;: { &quot;count&quot;: 500 } }
+</code></pre>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true }</code></p>
+<p><strong>Ошибки:</strong> <code>400</code> — пустое тело или неверный JSON, <code>500</code> — не удалось сохранить</p>
+<hr />
+<h4 id="post-apisettingsapi-tokenregenerate">POST /api/settings/api-token/regenerate</h4>
+<p>Выпускает новый <code>api_token</code>; прежний сразу перестаёт действовать. Это единственный ответ API, в котором токен виден целиком. Тело не нужно.</p>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true, &quot;api_token&quot;: &quot;&lt;новый токен&gt;&quot; }</code></p>
+<p><strong>Ошибки:</strong> <code>500</code> — не удалось сохранить</p>
+<hr />
+<h4 id="get-apisettingshintskind">GET /api/settings/hints/{kind}</h4>
+<p>Описания полей настроек — те же подсказки, что показывает редактор настроек. <code>{kind}</code>:</p>
+<ul>
+<li><code>settings</code> — настройки стратегий (бота и тестера), для всех стратегий сразу;</li>
+<li><code>config_tester</code> — конфиг тестера, включая <code>parameter_mining</code>, <code>walk_forward</code> и столбцы <code>reports_history.csv</code>;</li>
+<li><code>settings_program</code> — глобальный конфиг.</li>
 </ul>
-   </body>
+<p>Параметры:</p>
+<ul>
+<li><code>?lang=</code> — <code>en</code> (по умолчанию), <code>ru</code> или <code>pt</code>;</li>
+<li><code>?filter=</code> — только поля, в пути которых есть одна из подстрок через запятую, например <code>?filter=zigzag,close_by_margin</code>.</li>
+</ul>
+<p><strong>Ответ 200:</strong> объект «путь поля через точку → описание»:</p>
+<pre><code class="language-json">{
+  &quot;parameter_mining&quot;: &quot;List of parameters to mine. Each has a name (parameter path) and either a start/end/step range or a values list...&quot;,
+  &quot;monte_carlo&quot;: &quot;Mining limit: if there are more combinations than this number, a random sample of this size is used...&quot;
+}
+</code></pre>
+<p><strong>Ошибки:</strong> <code>404</code> — неизвестный <code>{kind}</code></p>
+<hr />
+<h4 id="get-apisettingsschema">GET /api/settings/schema</h4>
+<p>Какие поля настроек на что-то влияют. <code>?strategy=</code> — код стратегии (<code>basic.strategy</code>); без него — карта по всем стратегиям.</p>
+<p><strong>Ответ 200</strong> (<code>?strategy=zz</code>, сокращённо):</p>
+<pre><code class="language-json">{
+  &quot;strategy&quot;: &quot;zz&quot;, &quot;type&quot;: &quot;trend&quot;,
+  &quot;sections&quot;: [&quot;zz&quot;],
+  &quot;ignored_sections&quot;: [&quot;hd&quot;, &quot;zigzag&quot;, &quot;mrs2&quot;, &quot;...&quot;],
+  &quot;position_filter&quot;: true, &quot;supported_in_tester&quot;: true,
+  &quot;conditional_fields&quot;: [
+    { &quot;fields&quot;: [&quot;zz.depth&quot;, &quot;zz.detection&quot;, &quot;zz.open&quot;, &quot;...&quot;], &quot;active_when&quot;: &quot;zz.type = ZZ2&quot; },
+    { &quot;fields&quot;: [&quot;zz.zz6_*&quot;], &quot;active_when&quot;: &quot;zz.type = ZZ6&quot; },
+    { &quot;fields&quot;: [&quot;zz.ma_filter&quot;], &quot;active_when&quot;: &quot;zz.use_ma_filter = true&quot; },
+    { &quot;fields&quot;: [&quot;basic.balance_percentage_long&quot;, &quot;basic.risk_long&quot;], &quot;active_when&quot;: &quot;basic.use_long = true and basic.lot_long = 0&quot; }
+  ],
+  &quot;notes&quot;: { &quot;zz.zz6_risk_max&quot;: &quot;ZZ6 only caps the lot multiplier ...&quot; },
+  &quot;tester_ignores&quot;: { &quot;basic.leverage&quot;: &quot;the tester does not model leverage ...&quot; },
+  &quot;shared_fields&quot;: [&quot;zz.from_level_price&quot;]
+}
+</code></pre>
+<ul>
+<li><code>sections</code> — секции, которые читает стратегия; секции из <code>ignored_sections</code> она не читает. Общие секции (<code>basic</code>, <code>options</code>, <code>filter</code>, <code>exchange</code>) в списках не указаны.</li>
+<li><code>position_filter</code> — стратегия учитывает <code>filter</code>; поля <code>filter.&lt;имя&gt;.*</code> действуют, только когда <code>filter.&lt;имя&gt;.use = true</code>.</li>
+<li><code>conditional_fields</code> — поля, которые действуют только при условии. <code>*</code> в конце — все поля с этим началом.</li>
+<li><code>notes</code> — поля, которые влияют на результат только в крайних случаях (перебор по ним часто даёт одинаковые строки).</li>
+<li><code>tester_ignores</code> — поля, которых тестер не моделирует.</li>
+<li><code>shared_fields</code> — поля секции, которые читают и другие стратегии.</li>
+</ul>
+<p>Поле без правила считается действующим. Те же правила дают предупреждения <code>warnings</code> при сохранении настроек и запуске тестера.</p>
+<p><strong>Ошибки:</strong> <code>404</code> — неизвестная стратегия</p>
+<hr />
+<h3 id="стратегии">Стратегии</h3>
+<h4 id="get-apisettingsstrategy">GET /api/settings/strategy</h4>
+<p>Все стратегии бота.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">[
+  {
+    &quot;name&quot;: &quot;T4 BTC&quot;,
+    &quot;is_runing&quot;: true,
+    &quot;exchange&quot;: { &quot;name&quot;: &quot;binance&quot;, &quot;account&quot;: &quot;main&quot; },
+    &quot;basic&quot;: { &quot;symbol&quot;: &quot;BTCUSDT&quot;, &quot;strategy&quot;: &quot;zigzag&quot;, &quot;time_frame&quot;: &quot;1h&quot; }
+  }
+]
+</code></pre>
+<hr />
+<h4 id="get-apisettingsstrategyname">GET /api/settings/strategy/{name}</h4>
+<p>Одна стратегия по имени (без учёта регистра).</p>
+<p><strong>Ошибки:</strong> <code>404</code> — не найдена</p>
+<hr />
+<h4 id="post-apisettingsstrategydraft">POST /api/settings/strategy/draft</h4>
+<p>Черновик стратегии со значениями по умолчанию для выбранного аккаунта. Ничего не сохраняет: поправьте результат и отправьте в <code>POST /api/settings/strategy</code>.</p>
+<p><strong>Запрос:</strong></p>
+<pre><code class="language-json">{ &quot;account&quot;: &quot;main&quot;, &quot;symbol&quot;: &quot;BTCUSDT&quot;, &quot;strategy&quot;: &quot;zigzag&quot;, &quot;time_frame&quot;: &quot;1h&quot;, &quot;account_type&quot;: &quot;UNIFIED&quot; }
+</code></pre>
+<p>Вместо <code>symbol</code> можно передать <code>symbols: [&quot;BTCUSDT&quot;, &quot;ETHUSDT&quot;]</code> — стратегия на несколько пар. <code>time_frame</code> (по умолчанию <code>1h</code>) и <code>account_type</code> необязательны.</p>
+<p><strong>Ответ 200:</strong> объект стратегии</p>
+<p><strong>Ошибки:</strong> <code>400</code> — не указаны стратегия или пара, <code>404</code> — аккаунт не найден</p>
+<hr />
+<h4 id="post-apisettingsstrategy">POST /api/settings/strategy</h4>
+<p>Создаёт или изменяет стратегию. Тело — объект стратегии, как в <code>GET /api/settings/strategy/{name}</code>. Изменения сразу применяются к работающим ботам, новая стратегия сразу запускается.</p>
+<p><code>?old_name=</code> — переименовать стратегию <code>old_name</code> в имя из тела.</p>
+<p><strong>Запрос:</strong> <code>POST /api/settings/strategy?old_name=T4%20BTC</code></p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{ &quot;success&quot;: true, &quot;name&quot;: &quot;T4 BTC v2&quot;, &quot;created&quot;: false, &quot;warnings&quot;: null }
+</code></pre>
+<p><code>created: true</code> — стратегия новая. <code>warnings</code> — изменённые поля, которые стратегия не читает (см. <a href="#get-apisettingsschema"><code>/api/settings/schema</code></a>); <code>null</code> — замечаний нет.</p>
+<p><strong>Ошибки:</strong> <code>400</code> — не заполнены <code>name</code>, <code>exchange.name</code>, <code>exchange.account</code> или <code>basic.strategy</code> либо имя содержит недопустимые символы, <code>500</code> — не удалось сохранить</p>
+<hr />
+<h4 id="post-apisettingsstrategynamecopy">POST /api/settings/strategy/{name}/copy</h4>
+<p>Копирует стратегию под новым именем, сохраняет и запускает копию.</p>
+<p><strong>Запрос:</strong></p>
+<pre><code class="language-json">{ &quot;new_name&quot;: &quot;T4 ETH&quot;, &quot;new_symbol&quot;: &quot;ETHUSDT&quot; }
+</code></pre>
+<p><code>new_symbol</code> необязателен: без него пара остаётся как у исходной стратегии.</p>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true, &quot;name&quot;: &quot;T4 ETH&quot; }</code></p>
+<p><strong>Ошибки:</strong> <code>404</code> — исходная стратегия не найдена, <code>409</code> — стратегия с таким именем уже есть</p>
+<hr />
+<h4 id="post-apisettingsstrategyfrom-tester">POST /api/settings/strategy/from-tester</h4>
+<p>Создаёт стратегию бота из проверенной настройки тестера. Настройка копируется как есть; <code>exchange.name</code> и <code>exchange.account</code> берутся от аккаунта. По умолчанию стратегия создаётся <strong>на паузе</strong> (<code>is_runing: false</code>): бот её загружает, но не торгует, пока её не запустят (<a href="#post-apibotsaccountnamesettingsnameplay"><code>play</code></a>).</p>
+<p><strong>Запрос:</strong></p>
+<pre><code class="language-json">{ &quot;folder&quot;: &quot;lut_now&quot;, &quot;name&quot;: &quot;T_BTC&quot;, &quot;account&quot;: &quot;demo_bybit&quot;, &quot;new_name&quot;: &quot;T_BTC live&quot;, &quot;start&quot;: false }
+</code></pre>
+<ul>
+<li><code>folder</code> — папка настроек тестера, см. <a href="#%D0%BF%D0%B0%D0%BF%D0%BA%D0%B0-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B5%D0%BA-%D0%B2-%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B5">Папка настроек в запросе</a>;</li>
+<li><code>new_name</code> — имя стратегии; без него — как у настройки;</li>
+<li><code>start: true</code> — сразу запустить торговлю.</li>
+</ul>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{ &quot;success&quot;: true, &quot;name&quot;: &quot;T_BTC live&quot;, &quot;account&quot;: &quot;demo_bybit&quot;, &quot;exchange&quot;: &quot;bybit&quot;, &quot;is_runing&quot;: false, &quot;warnings&quot;: null }
+</code></pre>
+<p><code>warnings</code> — как у <a href="#post-apisettingsstrategy">сохранения стратегии</a>, плюс предупреждение, если настройку проверяли на другой бирже, чем у аккаунта.</p>
+<p><strong>Ошибки:</strong> <code>404</code> — настройка тестера или аккаунт не найдены, <code>409</code> — стратегия с таким именем уже есть, <code>500</code> — не удалось сохранить</p>
+<hr />
+<h4 id="post-apisettingsstrategynamedelete">POST /api/settings/strategy/{name}/delete</h4>
+<p>Удаляет стратегию и останавливает её ботов. Ордера и позиция на бирже при этом не трогаются.</p>
+<p><code>?full=1</code> — полное удаление: стратегия ставится на паузу, все её ордера отменяются, позиция закрывается, и только потом стратегия удаляется. Если отменить ордера или закрыть позицию не удалось, стратегия остаётся на паузе и <strong>не</strong> удаляется — позиция не останется без управления.</p>
+<p><strong>Как правильно отключить стратегию.</strong> Позиция и ордера на паузе остаются на бирже без управления стратегией (её стопов, тейков и выходов), поэтому их нельзя бросать. Порядок:</p>
+<ol>
+<li>пауза;</li>
+<li>снять ордера;</li>
+<li>закрыть позицию;</li>
+<li>удалить настройку.</li>
+</ol>
+<p><code>?full=1</code> делает именно это: после паузы ждёт завершения текущего цикла бота, чтобы он не успел выставить новый ордер. Вручную — тот же порядок, и паузу пропускать нельзя: работающий бот выставит ордера заново сразу после отмены.</p>
+<p><strong>Запрос:</strong> <code>POST /api/settings/strategy/T4%20BTC/delete?full=1</code></p>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true }</code></p>
+<p><strong>Ошибки:</strong> <code>404</code> — не найдена, <code>409</code> — для <code>full=1</code> стратегия должна быть запущена, <code>500</code> — не удалось отменить ордера, закрыть позицию или удалить стратегию</p>
+<hr />
+<h3 id="аккаунты">Аккаунты</h3>
+<p>Аккаунт — это API-ключ биржи, от имени которого торгуют стратегии.</p>
+<h4 id="get-apisettingsaccounts">GET /api/settings/accounts</h4>
+<p>Все аккаунты.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">[
+  {
+    &quot;name&quot;: &quot;main&quot;,
+    &quot;exchange&quot;: &quot;binance&quot;,
+    &quot;api_key&quot;: &quot;...&quot;,
+    &quot;api_secret&quot;: &quot;...&quot;,
+    &quot;is_encrypted&quot;: true
+  }
+]
+</code></pre>
+<hr />
+<h4 id="get-apisettingsaccountsname">GET /api/settings/accounts/{name}</h4>
+<p>Один аккаунт по имени (без учёта регистра).</p>
+<p><strong>Ошибки:</strong> <code>404</code> — не найден</p>
+<hr />
+<h4 id="get-apisettingsaccountsnamesymbols">GET /api/settings/accounts/{name}/symbols</h4>
+<p>Пары, доступные на бирже для этого аккаунта.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">[&quot;BTCUSDT&quot;, &quot;ETHUSDT&quot;]
+</code></pre>
+<p><strong>Ошибки:</strong> <code>404</code> — аккаунт не найден</p>
+<hr />
+<h4 id="post-apisettingsaccounts">POST /api/settings/accounts</h4>
+<p>Создаёт или изменяет аккаунт. Изменения сразу применяются к работающим ботам.</p>
+<p><code>?old_name=</code> — переименовать аккаунт <code>old_name</code> в имя из тела.</p>
+<p>Ключи передаются открытым текстом. При <code>&quot;is_encrypted&quot;: true</code> бот хранит их зашифрованными. Пустые <code>api_key</code>, <code>api_secret</code>, <code>api_passphrase</code> при изменении оставляют текущие значения, в том числе при смене <code>is_encrypted</code> (ключи перешифровываются в файле). Аккаунт заменяется целиком: поля, которых нет в теле, сбрасываются (<code>open_positions_limiter</code> → 0, <code>url_settings</code>, <code>telegram_id</code>); не переданный <code>close_by_margin</code> остаётся прежним.</p>
+<p><strong>Запрос:</strong></p>
+<pre><code class="language-json">{ &quot;name&quot;: &quot;main&quot;, &quot;exchange&quot;: &quot;binance&quot;, &quot;api_key&quot;: &quot;...&quot;, &quot;api_secret&quot;: &quot;...&quot;, &quot;is_encrypted&quot;: true, &quot;open_positions_limiter&quot;: 0 }
+</code></pre>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{ &quot;success&quot;: true, &quot;name&quot;: &quot;main&quot;, &quot;applied&quot;: 3 }
+</code></pre>
+<p><code>applied</code> — сколько работающих ботов получили новый ключ.</p>
+<p><strong>Ошибки:</strong> <code>400</code> — не указаны <code>name</code> или <code>exchange</code>, недопустимое имя, <code>500</code> — не удалось сохранить</p>
+<hr />
+<h4 id="post-apisettingsaccountsnamedelete">POST /api/settings/accounts/{name}/delete</h4>
+<p>Удаляет аккаунт.</p>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true }</code></p>
+<p><strong>Ошибки:</strong> <code>404</code> — не найден, <code>500</code> — не удалось удалить</p>
+<hr />
+<h4 id="get-apicurrentaccountsnameinfo">GET /api/current/accounts/{name}/info</h4>
+<p>Данные аккаунта и ключа с биржи (обновляются раз в час). Нужен хотя бы один запущенный бот на этом аккаунте.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;main&quot;,
+  &quot;exchange&quot;: &quot;binance&quot;,
+  &quot;api_key&quot;: &quot;abc1****&quot;,
+  &quot;account_type&quot;: &quot;UNIFIED&quot;,
+  &quot;symbol&quot;: &quot;BTCUSDT&quot;,
+  &quot;ok&quot;: true,
+  &quot;status&quot;: &quot;OK&quot;,
+  &quot;warnings&quot;: [],
+  &quot;rows&quot;: [ { &quot;name&quot;: &quot;Permissions&quot;, &quot;value&quot;: &quot;...&quot; } ],
+  &quot;updated_utc&quot;: &quot;2026-10-25T12:00:00Z&quot;
+}
+</code></pre>
+<p><strong>Ошибки:</strong> <code>404</code> — аккаунт не найден, <code>409</code> — на аккаунте нет запущенного бота</p>
+<hr />
+<h4 id="get-apicurrentaccountsnamebalance-history">GET /api/current/accounts/{name}/balance-history</h4>
+<p>История баланса аккаунта. <code>?max=</code> — не больше стольких точек (по умолчанию 5000).</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{
+  &quot;account&quot;: &quot;main&quot;,
+  &quot;total&quot;: 12000,
+  &quot;points&quot;: [ { &quot;time&quot;: 1761393600, &quot;margin&quot;: 1234.5, &quot;wallet&quot;: 1200.0, &quot;positions&quot;: &quot;...&quot; } ]
+}
+</code></pre>
+<p><code>time</code> — Unix-время в секундах, <code>total</code> — сколько точек всего в истории.</p>
+<hr />
+<h4 id="post-apicurrentaccountsnamebalance-historycompact">POST /api/current/accounts/{name}/balance-history/compact</h4>
+<p>Сжимает историю баланса сейчас по настройкам <code>monitoring</code> (обычно это происходит автоматически).</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{ &quot;success&quot;: true, &quot;message&quot;: &quot;...&quot;, &quot;points_before&quot;: 12000, &quot;points_after&quot;: 3000, &quot;bytes_before&quot;: 512000, &quot;bytes_after&quot;: 128000 }
+</code></pre>
+<hr />
+<h3 id="боты">Боты</h3>
+<p>Бот — это запущенная стратегия на конкретной паре.</p>
+<h4 id="get-apicurrentbots">GET /api/current/bots</h4>
+<p>Сводка по всем ботам.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">[
+  {
+    &quot;account&quot;: &quot;main&quot;,
+    &quot;exchange&quot;: &quot;binance&quot;,
+    &quot;strategy&quot;: &quot;T4 BTC&quot;,
+    &quot;strategy_code&quot;: &quot;zigzag&quot;,
+    &quot;symbol&quot;: &quot;BTCUSDT&quot;,
+    &quot;time_frame&quot;: &quot;1h&quot;,
+    &quot;is_runing&quot;: true,
+    &quot;is_live&quot;: true,
+    &quot;status_text&quot;: &quot;...&quot;,
+    &quot;last_price&quot;: 65500.0,
+    &quot;last_bar_time&quot;: &quot;2026-10-25T12:00:00&quot;,
+    &quot;last_sync_utc&quot;: &quot;2026-10-25T12:00:05Z&quot;,
+    &quot;sync_missed_cycles&quot;: 0,
+    &quot;position&quot;: { &quot;side&quot;: &quot;Buy&quot;, &quot;size&quot;: 0.01, &quot;entry_price&quot;: 65000.0, &quot;cost&quot;: 650.0, &quot;unrealized_pnl&quot;: 5.0 },
+    &quot;orders&quot;: 2
+  }
+]
+</code></pre>
+<p><code>is_runing: false</code> — бот на паузе. <code>position: null</code> — позиции нет. <code>orders</code> — число открытых ордеров. <code>sync_missed_cycles</code> — сколько циклов подряд не удалось получить данные с биржи.</p>
+<hr />
+<h4 id="get-apicurrentbalances">GET /api/current/balances</h4>
+<p>Баланс кошелька и маржи по каждому API-ключу, отдельно для спота и фьючерсов. <code>?account=</code> — только этот аккаунт.</p>
+<p><strong>Запрос:</strong> <code>GET /api/current/balances?account=main</code></p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">[
+  { &quot;account&quot;: &quot;main&quot;, &quot;exchange&quot;: &quot;bybit&quot;, &quot;type&quot;: &quot;futures&quot;, &quot;wallet&quot;: 1234.56, &quot;margin&quot;: 1180.20 },
+  { &quot;account&quot;: &quot;main&quot;, &quot;exchange&quot;: &quot;bybit&quot;, &quot;type&quot;: &quot;spot&quot;, &quot;wallet&quot;: 500.00, &quot;margin&quot;: 500.00 }
+]
+</code></pre>
+<p><code>wallet</code> — баланс кошелька, <code>margin</code> — маржинальный баланс, как их отдаёт биржа. Для спота оба значения — баланс в USDT. Баланс берётся у запущенных ботов: аккаунт без запущенного бота в список не попадает.</p>
+<hr />
+<h4 id="get-apicurrentbotsaccountnamesettingsnamebars">GET /api/current/bots/{accountName}/{settingsName}/bars</h4>
+<p>Свечи бота. <code>?limit=</code> — последние N свечей (по умолчанию 500).</p>
+<p><strong>Запрос:</strong> <code>GET /api/current/bots/main/T4%20BTC/bars?limit=100</code></p>
+<p><strong>Ответ 200:</strong> массив свечей с полями <code>Timestamp</code>, <code>Open</code>, <code>High</code>, <code>Low</code>, <code>Close</code>, <code>Volume</code> и др.</p>
+<p><strong>Ошибки:</strong> <code>404</code> — бот не найден</p>
+<hr />
+<h4 id="get-apicurrentubots">GET /api/current/ubots</h4>
+<p>Полный снимок состояния всех ботов. Набор полей подробный и может меняться между версиями — для постоянной интеграции используйте <code>GET /api/current/bots</code>, <code>/api/current/positions</code> и <code>/api/current/orders</code>.</p>
+<hr />
+<h4 id="get-apicurrentubotsaccountnamesettingsname">GET /api/current/ubots/{accountName}/{settingsName}</h4>
+<p>Полный снимок состояния одного бота (см. оговорку выше).</p>
+<p><strong>Ошибки:</strong> <code>404</code> — бот не найден</p>
+<hr />
+<h4 id="post-apibotspause-all">POST /api/bots/pause-all</h4>
+<p>Ставит на паузу всех ботов.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{ &quot;success&quot;: true, &quot;count&quot;: 5 }
+</code></pre>
+<hr />
+<h4 id="post-apibotsplay-all">POST /api/bots/play-all</h4>
+<p>Запускает всех ботов.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{ &quot;success&quot;: true, &quot;count&quot;: 5 }
+</code></pre>
+<hr />
+<h4 id="post-apibotsaccountnamesettingsnamepause">POST /api/bots/{accountName}/{settingsName}/pause</h4>
+<p>Ставит стратегию на паузу (для стратегии на несколько пар — все её пары): она перестаёт выставлять ордера. Открытая позиция и ордера остаются на бирже без управления стратегией — после паузы либо снова запустите её, либо снимите ордера и закройте позицию (см. <a href="#post-apisettingsstrategynamedelete">удаление</a>).</p>
+<p><strong>Запрос:</strong> <code>POST /api/bots/main/T4%20BTC/pause</code></p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{ &quot;success&quot;: true, &quot;name&quot;: &quot;T4 BTC&quot;, &quot;is_runing&quot;: false }
+</code></pre>
+<p><strong>Ошибки:</strong> <code>404</code> — не найдена, <code>500</code> — не удалось сохранить</p>
+<hr />
+<h4 id="post-apibotsaccountnamesettingsnameplay">POST /api/bots/{accountName}/{settingsName}/play</h4>
+<p>Запускает стратегию, поставленную на паузу.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{ &quot;success&quot;: true, &quot;name&quot;: &quot;T4 BTC&quot;, &quot;is_runing&quot;: true }
+</code></pre>
+<p><strong>Ошибки:</strong> <code>404</code> — не найдена, <code>500</code> — не удалось сохранить</p>
+<hr />
+<h4 id="post-apibotsaccountnamesettingsnamesend-chart">POST /api/bots/{accountName}/{settingsName}/send-chart</h4>
+<p>Отправляет график бота в Telegram.</p>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true }</code></p>
+<p><strong>Ошибки:</strong> <code>404</code> — бот не найден, <code>500</code> — не удалось построить или отправить график</p>
+<hr />
+<h4 id="post-apibotsaccountnamesettingsnamesend-position">POST /api/bots/{accountName}/{settingsName}/send-position</h4>
+<p>Отправляет в Telegram сводку по боту: баланс, позиция, PnL, ордера.</p>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true }</code></p>
+<p><strong>Ошибки:</strong> <code>404</code> — бот не найден</p>
+<hr />
+<h4 id="post-apideleteaccountnamesettingsname">POST /api/delete/{accountName}/{settingsName}</h4>
+<p>Удаляет стратегию бота и убирает бота из работы. Ордера и позиция на бирже <strong>не</strong> снимаются и остаются без управления. Для безопасного отключения используйте <a href="#post-apisettingsstrategynamedelete"><code>POST /api/settings/strategy/{name}/delete?full=1</code></a>.</p>
+<p><strong>Запрос:</strong> <code>POST /api/delete/main/T4%20BTC</code></p>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true }</code></p>
+<p><strong>Ошибки:</strong> <code>404</code> — бот не найден, <code>500</code> — не удалось удалить</p>
+<hr />
+<h3 id="позиции-и-ордера">Позиции и ордера</h3>
+<h4 id="get-apicurrentpositions">GET /api/current/positions</h4>
+<p>Позиции всех ботов.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">[
+  {
+    &quot;account&quot;: &quot;main&quot;,
+    &quot;exchange&quot;: &quot;binance&quot;,
+    &quot;strategy&quot;: &quot;T4 BTC&quot;,
+    &quot;symbol&quot;: &quot;BTCUSDT&quot;,
+    &quot;position&quot;: {
+      &quot;Symbol&quot;: &quot;BTCUSDT&quot;,
+      &quot;Side&quot;: &quot;Buy&quot;,
+      &quot;Size&quot;: 0.01,
+      &quot;EntryPrice&quot;: 65000.0,
+      &quot;Cost&quot;: 650.0,
+      &quot;UnrealizedPnl&quot;: 12.5,
+      &quot;Leverage&quot;: 10,
+      &quot;Cross&quot;: false
+    }
+  },
+  {
+    &quot;account&quot;: &quot;sub1&quot;,
+    &quot;exchange&quot;: &quot;binance&quot;,
+    &quot;strategy&quot;: &quot;T3 ETH&quot;,
+    &quot;symbol&quot;: &quot;ETHUSDT&quot;,
+    &quot;position&quot;: null
+  }
+]
+</code></pre>
+<hr />
+<h4 id="get-apicurrentorders">GET /api/current/orders</h4>
+<p>Открытые ордера всех ботов.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">[
+  {
+    &quot;account&quot;: &quot;main&quot;,
+    &quot;exchange&quot;: &quot;binance&quot;,
+    &quot;strategy&quot;: &quot;T4 BTC&quot;,
+    &quot;symbol&quot;: &quot;BTCUSDT&quot;,
+    &quot;order&quot;: {
+      &quot;Id&quot;: &quot;order-123&quot;,
+      &quot;client_id&quot;: &quot;cl-456&quot;,
+      &quot;Market&quot;: &quot;BTCUSDT&quot;,
+      &quot;Side&quot;: &quot;Buy&quot;,
+      &quot;Type&quot;: &quot;Limit&quot;,
+      &quot;Status&quot;: &quot;New&quot;,
+      &quot;Size&quot;: 0.01,
+      &quot;filledSize&quot;: 0.0,
+      &quot;remainingSize&quot;: 0.01,
+      &quot;Price&quot;: 64000.0,
+      &quot;TriggerPrice&quot;: null,
+      &quot;ReduceOnly&quot;: false
+    }
+  }
+]
+</code></pre>
+<hr />
+<h4 id="post-apitradingmarket">POST /api/trading/market</h4>
+<p>Рыночный ордер на аккаунте. Пара должна торговаться одним из ботов этого аккаунта.</p>
+<p><strong>Запрос:</strong></p>
+<pre><code class="language-json">{ &quot;account&quot;: &quot;main&quot;, &quot;symbol&quot;: &quot;BTCUSDT&quot;, &quot;side&quot;: &quot;Buy&quot;, &quot;size&quot;: 0.01 }
+</code></pre>
+<p><code>side</code> — <code>Buy</code> или <code>Sell</code>; <code>size</code> — объём в единицах биржи для этой пары.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{ &quot;success&quot;: true, &quot;order_id&quot;: &quot;order-123&quot; }
+</code></pre>
+<p><strong>Ошибки:</strong> <code>400</code> — неверные <code>side</code> или <code>size</code>, <code>404</code> — на аккаунте нет бота с этой парой, <code>500</code> — биржа не приняла ордер</p>
+<hr />
+<h4 id="post-apipositionsaccountnamesettingsnameclose">POST /api/positions/{accountName}/{settingsName}/close</h4>
+<p>Закрывает позицию бота.</p>
+<p><strong>Запрос:</strong> <code>POST /api/positions/main/T4%20BTC/close</code></p>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true }</code></p>
+<p><strong>Ошибки:</strong> <code>404</code> — бот не найден</p>
+<hr />
+<h4 id="post-apipositionsaccountnameclose-all">POST /api/positions/{accountName}/close-all</h4>
+<p>Закрывает все открытые позиции аккаунта.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{ &quot;success&quot;: true, &quot;count&quot;: 3 }
+</code></pre>
+<p><code>count</code> — сколько позиций отправлено на закрытие.</p>
+<hr />
+<h4 id="post-apipositionsaccountnamereduce">POST /api/positions/{accountName}/reduce</h4>
+<p>Сокращает все открытые позиции аккаунта на заданный процент.</p>
+<p><strong>Запрос:</strong></p>
+<pre><code class="language-json">{ &quot;percent&quot;: 50 }
+</code></pre>
+<p><code>percent</code> — от 1 до 100.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{ &quot;success&quot;: true, &quot;count&quot;: 3 }
+</code></pre>
+<hr />
+<h4 id="post-apiordersaccountnamesettingsnameorderidcancel">POST /api/orders/{accountName}/{settingsName}/{orderId}/cancel</h4>
+<p>Отменяет один ордер бота (обычный или стоп-ордер).</p>
+<p><strong>Запрос:</strong> <code>POST /api/orders/main/T4%20BTC/order-123/cancel</code></p>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true }</code></p>
+<p><strong>Ошибки:</strong> <code>404</code> — ордер не найден, <code>500</code> — биржа не отменила ордер</p>
+<hr />
+<h4 id="post-apiordersaccountnamecancel-all">POST /api/orders/{accountName}/cancel-all</h4>
+<p>Отменяет все ордера аккаунта.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{ &quot;success&quot;: true, &quot;count&quot;: 2 }
+</code></pre>
+<p><code>count</code> — у скольких ботов отменены ордера.</p>
+<hr />
+<h4 id="post-apiorderscancel-all">POST /api/orders/cancel-all</h4>
+<p>Отменяет все ордера на всех аккаунтах.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{ &quot;success&quot;: true, &quot;count&quot;: 7 }
+</code></pre>
+<hr />
+<h3 id="система-и-логи">Система и логи</h3>
+<h4 id="get-apisystemstatus">GET /api/system/status</h4>
+<p>Версия программы, ресурсы сервера и счётчики. Поля <code>pid</code>, <code>exe_path</code>, <code>working_directory</code>, <code>port</code> (порт, на который пришёл запрос) и <code>started_utc</code> однозначно определяют экземпляр процесса: по ним внешний скрипт отличает несколько запущенных ботов и замечает перезапуск (меняются <code>pid</code> и <code>started_utc</code>).</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{
+  &quot;program&quot;: &quot;hamster-bot&quot;,
+  &quot;version&quot;: &quot;2026/10/23&quot;,
+  &quot;name&quot;: &quot;MyBot&quot;,
+  &quot;type&quot;: &quot;bot&quot;,
+  &quot;os&quot;: &quot;Linux 6.1&quot;,
+  &quot;architecture&quot;: &quot;X64&quot;,
+  &quot;machine&quot;: &quot;srv1&quot;,
+  &quot;runtime&quot;: &quot;.NET 10.0&quot;,
+  &quot;processors&quot;: 4,
+  &quot;pid&quot;: 12345,
+  &quot;exe_path&quot;: &quot;/opt/hamster-bot/hb_c&quot;,
+  &quot;working_directory&quot;: &quot;/opt/hamster-bot&quot;,
+  &quot;port&quot;: 80,
+  &quot;started_utc&quot;: &quot;2026-10-24T08:00:00Z&quot;,
+  &quot;uptime_sec&quot;: 86400,
+  &quot;cpu_percent&quot;: 12.5,
+  &quot;memory_total_bytes&quot;: 8589934592,
+  &quot;memory_available_bytes&quot;: 4294967296,
+  &quot;process_memory_bytes&quot;: 314572800,
+  &quot;disk&quot;: &quot;/&quot;,
+  &quot;disk_total_bytes&quot;: 107374182400,
+  &quot;disk_free_bytes&quot;: 53687091200,
+  &quot;accounts&quot;: 2,
+  &quot;strategies&quot;: 5,
+  &quot;bots&quot;: 6,
+  &quot;bots_running&quot;: 5,
+  &quot;auto_update_supported&quot;: true
+}
+</code></pre>
+<hr />
+<h4 id="post-apisystemshutdown">POST /api/system/shutdown</h4>
+<p>Завершает программу. Доступно только при входе через Telegram. Сама программа не запустится: перезапуск процесса делает внешний супервизор (служба, systemd, скрипт). Проверить, что супервизор поднимает бота через 61 секунду после остановки (<code>RestartSec=61</code>, <code>run_service.cmd</code>), можно скриптом <code>tools/check-shutdown-restart.ps1</code> (останавливает работающий бот). Инструмента <code>restart_program</code> нет. Он обычно и не нужен: изменения стратегий, аккаунтов и настроек через API применяются к работающим ботам сразу. Обновление с перезапуском — <code>POST /api/system/update</code>. После перезапуска убедитесь по <code>pid</code> и <code>started_utc</code> из <code>/api/system/status</code>, что поднялся новый процесс. Перед остановкой проверьте, что нет прогона тестера: он прервётся, а очередь не сохраняется.</p>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true }</code> — программа завершится через полсекунды</p>
+<p><strong>Ошибки:</strong> <code>409</code> — вход через Telegram не настроен</p>
+<hr />
+<h4 id="post-apisystemupdate">POST /api/system/update</h4>
+<p>Запускает обновление программы.</p>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true }</code></p>
+<p><strong>Ошибки:</strong> <code>409</code> — автообновление на этой системе не поддерживается (см. <code>auto_update_supported</code> в <code>/api/system/status</code>), <code>500</code> — обновление не запустилось</p>
+<hr />
+<h4 id="get-apilogs">GET /api/logs</h4>
+<p>Последние строки общего лога. <code>?tail=</code> — сколько последних строк (по умолчанию все доступные).</p>
+<p><strong>Ответ 200:</strong> массив строк</p>
+<hr />
+<h4 id="get-apilogserrors">GET /api/logs/errors</h4>
+<p>Ошибки за последние <code>?hours=</code> часов (по умолчанию 24, не больше 48). <code>?warnings=1</code> — вместе с предупреждениями. Если Telegram не настроен (<code>telegram.id_chat</code> = 0), сообщения не отправляются и ошибок «chat not found» нет: в лог один раз за запуск пишется предупреждение <code>Telegram chat is not set</code>. Ошибка «chat not found» при заданном чате означает неверный id чата или токен. Повторы уже сгруппированы: одинаковые сообщения одного источника объединены в одну запись, <code>count</code> — сколько раз повторилось за всё хранимое окно (до 48 часов, с запуска программы), <code>first_utc</code> и <code>last_utc</code> — первое и последнее появление. Записи идут от свежих к старым.</p>
+<p><code>?since=</code> — время UTC (например <code>2026-11-02T06:00:00Z</code>; без часового пояса считается UTC): вернутся только записи, повторявшиеся после него. Для проверки «что нового с прошлого раза» передайте самый поздний <code>last_utc</code> из предыдущего ответа. Если <code>first_utc</code> записи раньше <code>since</code>, это старая ошибка, которая случилась снова, а <code>count</code> остаётся общим. Неверная дата — <code>400</code>.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">[
+  {
+    &quot;level&quot;: &quot;Error&quot;,
+    &quot;first_utc&quot;: &quot;2026-10-25T08:00:00Z&quot;,
+    &quot;last_utc&quot;: &quot;2026-10-25T12:00:00Z&quot;,
+    &quot;count&quot;: 3,
+    &quot;source&quot;: &quot;T4 BTC&quot;,
+    &quot;message&quot;: &quot;...&quot;,
+    &quot;exception&quot;: &quot;...&quot;
+  }
+]
+</code></pre>
+<hr />
+<h4 id="get-apilogsfiles">GET /api/logs/files</h4>
+<p>Файлы логов, свежие первыми; каждый день — новый файл. <code>?contains=</code> — только файлы, в имени которых есть текст (имя стратегии, аккаунта, пара).</p>
+<p>Виды логов:</p>
+<ul>
+<li>лог стратегии — <code>log_&lt;дата&gt;_&lt;Биржа&gt; &lt;аккаунт&gt;  &lt;пара&gt; &lt;таймфрейм&gt; &lt;стратегия&gt; &lt;имя&gt;.log</code>, по одному на бота: сигналы, ордера, исполнения, позиция, ошибки стратегии;</li>
+<li>лог аккаунта — <code>log_&lt;аккаунт&gt;_&lt;дата&gt;.log</code>: балансы и позиции с биржи, ответы и ошибки API биржи, лимитер позиций, <code>close_by_margin</code>;</li>
+<li>общий лог программы — <code>log_&lt;дата&gt;.log</code> (<a href="#get-apilogs"><code>/api/logs</code></a>);</li>
+<li>логи тестера — <code>TESTER_*.log</code>.</li>
+</ul>
+<p>Формат даты в именах разный, поэтому файл удобнее искать через <code>contains</code>.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">[ { &quot;name&quot;: &quot;log_25-10-2026.log&quot;, &quot;size&quot;: 102400, &quot;modified_utc&quot;: &quot;2026-10-25T12:00:00Z&quot; } ]
+</code></pre>
+<hr />
+<h4 id="get-apilogsfilesfilename">GET /api/logs/files/{filename}</h4>
+<p>Содержимое файла лога как текст. <code>?download=1</code> — скачать файлом.</p>
+<p><strong>Ошибки:</strong> <code>400</code> — недопустимое имя файла, <code>404</code> — файл не найден</p>
+<hr />
+<h3 id="тестер">Тестер</h3>
+<p>Тестер прогоняет стратегии на исторических данных. Перебор параметров, стресс-тест и повтор по snapshot выполняются по одному. Одиночные прогоны можно запускать параллельно. Пока загружаются исторические данные, тестер не запускается, и наоборот — в этих случаях ответ <code>409</code>.</p>
+<p>Все запуски работают в фоне: ответ приходит сразу, ход и результат — в <code>GET /api/tester/status</code>.</p>
+<h4 id="get-apitesterstatus">GET /api/tester/status</h4>
+<p>Состояние тестера.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{
+  &quot;run&quot;: {
+    &quot;active&quot;: true,
+    &quot;status&quot;: &quot;Running&quot;,
+    &quot;started_utc&quot;: &quot;2026-10-25T12:00:00Z&quot;,
+    &quot;finished_utc&quot;: null,
+    &quot;message&quot;: &quot;API mining run&quot;,
+    &quot;runs_done&quot;: 40,
+    &quot;runs_total&quot;: 120,
+    &quot;current_bar&quot;: 5000,
+    &quot;total_bars&quot;: 20000,
+    &quot;parallel&quot;: false,
+    &quot;report_folders&quot;: [&quot;T4&quot;],
+    &quot;result_files&quot;: [&quot;T4/reports_history.csv&quot;, &quot;T4/report_optimizer_T4_auto_x_auto_y_20261025_120000.html&quot;, &quot;T4/run_snapshot_T4_20261025_115500.json&quot;]
+  },
+  &quot;wizard_runs&quot;: [
+    {
+      &quot;run_id&quot;: &quot;a1b2c3d4&quot;,
+      &quot;strategies&quot;: [&quot;T4 BTC&quot;],
+      &quot;status&quot;: &quot;Completed&quot;,
+      &quot;started_utc&quot;: &quot;2026-10-25T11:00:00Z&quot;,
+      &quot;finished_utc&quot;: &quot;2026-10-25T11:02:00Z&quot;,
+      &quot;current_bar&quot;: 20000,
+      &quot;total_bars&quot;: 20000,
+      &quot;message&quot;: &quot;Completed: 1 strategies.&quot;,
+      &quot;report_path&quot;: &quot;T4/T4_run_001_of_001_BTCUSDT_1h_ee8c3c2e.html&quot;,
+      &quot;report_json_path&quot;: null,
+      &quot;snapshot_path&quot;: &quot;T4/run_snapshot_T4_20261025_110000.json&quot;,
+      &quot;stats&quot;: null,
+      &quot;warnings&quot;: []
+    }
+  ],
+  &quot;download&quot;: { &quot;active&quot;: false, &quot;status&quot;: &quot;Idle&quot;, &quot;started_utc&quot;: null, &quot;finished_utc&quot;: null, &quot;message&quot;: &quot;&quot;, &quot;result&quot;: null },
+  &quot;settings_folder&quot;: &quot;&quot;
+}
+</code></pre>
+<ul>
+<li><code>run</code> — перебор параметров, стресс-тест или повтор по snapshot. <code>status</code>: <code>Idle</code>, <code>Running</code>, <code>Completed</code> или <code>Failed</code>; <code>runs_done</code> / <code>runs_total</code> — сколько комбинаций параметров посчитано. <code>report_folders</code> — папки результатов текущего или последнего прогона внутри <code>root=report</code>; <code>result_files</code> — итоговые файлы, уже записанные в них с начала прогона: <code>reports_history.csv</code>, сводный HTML (<code>report_optimizer_*</code>, <code>stress_test_*</code>, <code>walk_forward_*</code>) и snapshot.</li>
+<li><code>queue</code> — запуски полного режима, ждущие своей очереди (<code>?queue=1</code>): <code>queue_id</code>, <code>position</code>, <code>message</code>, <code>queued_utc</code>.</li>
+<li><code>wizard_runs</code> — одиночные прогоны. Завершённые видны ещё час. Метрики (<code>stats</code>) здесь не передаются — они в <a href="#get-apitesterwizard-runsrun_id"><code>/api/tester/wizard-runs/{run_id}</code></a>. У прогонов пакета, ещё не начатых, <code>status: &quot;Queued&quot;</code>.</li>
+<li><code>batches</code> — пакеты одиночных прогонов: <code>batch_id</code>, <code>done</code> из <code>total</code>.</li>
+<li><code>download</code> — загрузка исторических данных.</li>
+<li><code>settings_folder</code> — текущая папка настроек тестера.</li>
+</ul>
+<hr />
+<h4 id="get-apitesterconfig">GET /api/tester/config</h4>
+<p>Конфиг тестера (<code>config_tester.json</code>): период, комиссии, параметры перебора и т. д.</p>
+<hr />
+<h4 id="post-apitesterconfig">POST /api/tester/config</h4>
+<p>Сохраняет конфиг тестера. Тело — конфиг целиком, как в <code>GET /api/tester/config</code>.</p>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true }</code></p>
+<p><strong>Ошибки:</strong> <code>400</code> — пустое тело или неверный JSON, <code>500</code> — не удалось сохранить</p>
+<hr />
+<h4 id="get-apitesterdata-coverage">GET /api/tester/data-coverage</h4>
+<p>Какие исторические данные уже скачаны: <code>?exchange=</code> (обязательно), <code>?symbols=A,B</code> (без него — все скачанные пары биржи), <code>?start=&amp;end=</code> — период для проверки.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">[
+  {
+    &quot;symbol&quot;: &quot;ADAUSDT&quot;, &quot;downloaded&quot;: true, &quot;first_day&quot;: &quot;2026-04-09&quot;, &quot;last_day&quot;: &quot;2026-09-15&quot;,
+    &quot;days&quot;: 67, &quot;gap_days&quot;: 93, &quot;size_mb&quot;: 1.78,
+    &quot;period&quot;: { &quot;covered&quot;: false, &quot;missing_days&quot;: 132, &quot;missing_first&quot;: [&quot;2026-03-01&quot;, &quot;2026-03-02&quot;, &quot;2026-03-03&quot;], &quot;missing_last&quot;: &quot;2026-08-30&quot; }
+  },
+  { &quot;symbol&quot;: &quot;NOPEUSDT&quot;, &quot;downloaded&quot;: false }
+]
+</code></pre>
+<p><code>gap_days</code> — дни без данных между первым и последним. <code>period</code> есть только при <code>start</code> и <code>end</code>. Учитываются только скачанные файлы: недостающее докачивает сам прогон (<code>UpdateData</code>) или <a href="#post-apitesterdownload-data"><code>download-data</code></a>.</p>
+<p><strong>Ошибки:</strong> <code>400</code> — биржа не поддерживается или задан только один из <code>start</code> / <code>end</code></p>
+<hr />
+<h4 id="get-apitesterexchanges">GET /api/tester/exchanges</h4>
+<p>Биржи, для которых тестер умеет загружать исторические данные.</p>
+<p><strong>Ответ 200:</strong> <code>[&quot;bybit&quot;, &quot;binance&quot;, ...]</code></p>
+<p>Откуда берутся минутные свечи:</p>
+<table>
+<thead>
+<tr>
+<th>Биржа</th>
+<th>Источник</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bybit</code></td>
+<td>архивы сделок public.bybit.com, свечи собираются из сделок</td>
+</tr>
+<tr>
+<td><code>binance</code>, <code>binance-spot</code></td>
+<td>архивы минутных свечей data.binance.vision: закрытый месяц — одним архивом, текущий — по дням</td>
+</tr>
+<tr>
+<td><code>okx</code>, <code>bitget-futures</code>, <code>bitget-spot</code>, <code>kucoin-futures</code>, <code>kucoin</code>, <code>bingx</code> (USDT-M), <code>phemex</code> (спот), <code>btse</code>, <code>weex-futures</code>, <code>backpack</code></td>
+<td>REST API биржи, вся история</td>
+</tr>
+<tr>
+<td><code>gate.io-spot</code></td>
+<td>REST API, минутные свечи только за последние ~7 дней</td>
+</tr>
+</tbody>
+</table>
+<p>Свечи из REST API проверяются по часовым свечам той же биржи: сумма объёма минуток каждого часа должна совпасть с объёмом часа, иначе час запрашивается заново. Сегодняшний день не скачивается — только закрытые дни. Дни, за которые у источника данных нет (пара ещё не торговалась, биржа не хранит так далеко), записываются в <code>_no_data_days.json</code> папки пары и повторно не запрашиваются; чтобы перепроверить их, файл можно удалить.</p>
+<hr />
+<h4 id="get-apitesterexchangesexchangesymbols">GET /api/tester/exchanges/{exchange}/symbols</h4>
+<p>Пары биржи. Пустой список — биржа сейчас недоступна; пару можно указать вручную.</p>
+<p><strong>Ошибки:</strong> <code>404</code> — тестер не поддерживает эту биржу</p>
+<hr />
+<h4 id="папка-настроек-в-запросе">Папка настроек в запросе</h4>
+<p>Все запросы к настройкам тестера, запуски и загрузка данных принимают папку настроек: <code>?folder=</code> в адресе или поле <code>folder</code> в теле запуска. Это путь внутри <code>tester/settings_strategy</code>, <code>&quot;&quot;</code> — основная папка. Без <code>folder</code> используется папка, выбранная в интерфейсе (<a href="#post-apitestersettings-folder"><code>POST /api/tester/settings-folder</code></a>). Это общее состояние: его может сменить пользователь или параллельная задача, поэтому скриптам и ассистентам лучше всегда передавать <code>folder</code>.</p>
+<p>Несуществующая папка — ошибка <code>404</code>. Создать папку — <a href="#post-apitestersettings-folders"><code>POST /api/tester/settings-folders</code></a>.</p>
+<p>У настройки могут быть необязательные поля <code>tags</code> (список меток) и <code>owner</code> (автор, например <code>&quot;MCP&quot;</code>). По ним настройки отбираются в списке и удаляются разом.</p>
+<hr />
+<h4 id="get-apitestersettings">GET /api/tester/settings</h4>
+<p>Настройки стратегий тестера в папке. Параметры:</p>
+<ul>
+<li><code>?folder=</code> — папка;</li>
+<li><code>?mask=</code> — только имена по маске (<code>*</code> — любые символы, <code>?</code> — один символ);</li>
+<li><code>?tag=</code>, <code>?owner=</code> — только с этой меткой или этим автором;</li>
+<li><code>?full=1</code> — настройки целиком вместо краткой формы: выгрузка папки, которую восстанавливает <a href="#post-apitestersettingsimport"><code>/api/tester/settings/import</code></a>.</li>
+</ul>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">[ { &quot;name&quot;: &quot;T4 BTC&quot;, &quot;exchange&quot;: &quot;bybit&quot;, &quot;symbol&quot;: &quot;BTCUSDT&quot;, &quot;symbols&quot;: null, &quot;strategy&quot;: &quot;zigzag&quot;, &quot;time_frame&quot;: &quot;1h&quot;, &quot;tags&quot;: [&quot;tmp&quot;], &quot;owner&quot;: &quot;MCP&quot; } ]
+</code></pre>
+<hr />
+<h4 id="get-apitestersettingsname">GET /api/tester/settings/{name}</h4>
+<p>Настройка тестера целиком. <code>?folder=</code> — папка.</p>
+<p><strong>Ошибки:</strong> <code>404</code> — не найдена</p>
+<hr />
+<h4 id="post-apitestersettingsdraft">POST /api/tester/settings/draft</h4>
+<p>Черновик настройки тестера со значениями по умолчанию. Ничего не сохраняет.</p>
+<p><strong>Запрос:</strong></p>
+<pre><code class="language-json">{ &quot;exchange&quot;: &quot;bybit&quot;, &quot;symbol&quot;: &quot;BTCUSDT&quot;, &quot;strategy&quot;: &quot;zigzag&quot;, &quot;time_frame&quot;: &quot;1h&quot; }
+</code></pre>
+<p>Вместо <code>symbol</code> можно передать <code>symbols</code> — несколько пар. <code>account_type</code> необязателен.</p>
+<p><strong>Ответ 200:</strong> объект настройки</p>
+<p><strong>Ошибки:</strong> <code>400</code> — тестер не поддерживает биржу либо не указаны стратегия или пара</p>
+<hr />
+<h4 id="post-apitestersettings">POST /api/tester/settings</h4>
+<p>Сохраняет настройку тестера. Тело — объект настройки. <code>?old_name=</code> — переименовать настройку <code>old_name</code>. Существующая настройка с тем же именем не перезаписывается. <code>?folder=</code> — папка. <code>?owner_default=</code> — значение <code>owner</code>, если в настройке его нет (MCP передаёт <code>MCP</code>).</p>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true, &quot;name&quot;: &quot;T4 BTC&quot;, &quot;folder&quot;: &quot;&quot;, &quot;warnings&quot;: null }</code></p>
+<p><code>warnings</code> — изменённые (не как по умолчанию) поля, которые ни на что не влияют: секция другой стратегии (одна строка на секцию), поле другого <code>zz.type</code>, выключенный включатель <code>use_*</code>, <code>basic.leverage</code> (тестер плечо не моделирует) — см. <a href="#get-apisettingsschema"><code>/api/settings/schema</code></a>. <code>null</code> — замечаний нет. Сохранение предупреждения не отменяют.</p>
+<p>То же поле <code>warnings</code> есть в ответе копирования настройки, а у импорта — <code>warnings</code> по имени каждой настройки.</p>
+<p><strong>Ошибки:</strong> <code>400</code> — не заполнены обязательные поля, <code>409</code> — настройка с таким именем уже есть, <code>500</code> — не удалось сохранить</p>
+<hr />
+<h4 id="post-apitestersettingsnamecopy">POST /api/tester/settings/{name}/copy</h4>
+<p>Копирует настройку тестера в той же папке (<code>?folder=</code>), при желании — на другую биржу или пару. <code>?owner_default=</code> — как у сохранения. Скопировать в другую папку — <a href="#post-apitestersettingscopy-to-folder"><code>copy-to-folder</code></a>.</p>
+<p><strong>Запрос:</strong></p>
+<pre><code class="language-json">{ &quot;new_name&quot;: &quot;T4 BTC binance&quot;, &quot;new_exchange&quot;: &quot;binance&quot;, &quot;new_symbol&quot;: &quot;&quot; }
+</code></pre>
+<p>Пустые <code>new_exchange</code> и <code>new_symbol</code> оставляют значения исходной настройки.</p>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true, &quot;name&quot;: &quot;T4 BTC binance&quot; }</code></p>
+<p><strong>Ошибки:</strong> <code>404</code> — исходная настройка не найдена, <code>409</code> — имя занято</p>
+<hr />
+<h4 id="post-apitestersettingsnamedelete">POST /api/tester/settings/{name}/delete</h4>
+<p>Удаляет настройку тестера. <code>?folder=</code> — папка. Удалить много настроек разом — <a href="#post-apitestersettingsdelete-matching"><code>delete-matching</code></a>.</p>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true }</code></p>
+<p><strong>Ошибки:</strong> <code>404</code> — не найдена</p>
+<hr />
+<h4 id="get-apitestersettings-folder">GET /api/tester/settings-folder</h4>
+<p>Текущая папка настроек тестера и её вложенные папки. Папки позволяют держать несколько наборов настроек; <code>&quot;&quot;</code> — основная папка.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{ &quot;path&quot;: &quot;&quot;, &quot;folders&quot;: [ { &quot;name&quot;: &quot;2026-10&quot;, &quot;settings&quot;: 12 } ] }
+</code></pre>
+<p><code>settings</code> — сколько настроек в папке.</p>
+<hr />
+<h4 id="post-apitestersettings-folder">POST /api/tester/settings-folder</h4>
+<p>Выбирает папку настроек тестера для интерфейса и для запросов без <code>folder</code>.</p>
+<p><strong>Запрос:</strong></p>
+<pre><code class="language-json">{ &quot;path&quot;: &quot;2026-10&quot; }
+</code></pre>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true, &quot;path&quot;: &quot;2026-10&quot; }</code></p>
+<p><strong>Ошибки:</strong> <code>404</code> — папка не найдена</p>
+<hr />
+<h4 id="post-apitestersettings-folders">POST /api/tester/settings-folders</h4>
+<p>Создаёт папку настроек, вложенные тоже. Выбранную папку не меняет.</p>
+<p><strong>Запрос:</strong></p>
+<pre><code class="language-json">{ &quot;path&quot;: &quot;research/zz_hedge&quot; }
+</code></pre>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true, &quot;path&quot;: &quot;research/zz_hedge&quot;, &quot;created&quot;: true }</code></p>
+<p><code>created: false</code> — папка уже была.</p>
+<p><strong>Ошибки:</strong> <code>400</code> — пустой путь, <code>..</code> или недопустимые символы в имени</p>
+<hr />
+<h4 id="post-apitestersettings-foldersdelete">POST /api/tester/settings-folders/delete</h4>
+<p>Удаляет папку настроек со всем содержимым. Основную папку удалить нельзя. Если удалена выбранная папка, выбранной становится основная.</p>
+<p><strong>Запрос:</strong> <code>{ &quot;path&quot;: &quot;research/zz_hedge&quot; }</code></p>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true, &quot;deleted_settings&quot;: 12 }</code></p>
+<p><strong>Ошибки:</strong> <code>404</code> — папка не найдена или это основная папка</p>
+<hr />
+<h4 id="post-apitestersettingscopy-to-folder">POST /api/tester/settings/copy-to-folder</h4>
+<p>Копирует настройки из одной папки в другую.</p>
+<p><strong>Запрос:</strong></p>
+<pre><code class="language-json">{ &quot;from&quot;: &quot;mrs-bybit&quot;, &quot;to&quot;: &quot;lut_now&quot;, &quot;names&quot;: [&quot;C_MU&quot;, &quot;T_*&quot;], &quot;on_conflict&quot;: &quot;replace&quot; }
+</code></pre>
+<p>Какие настройки копировать — <code>names</code> (имена или маски), <code>mask</code> (<code>&quot;*&quot;</code> — все), <code>tag</code>, <code>owner</code>; фильтры сочетаются, нужен хотя бы один. <code>on_conflict</code> — что делать, если имя в папке назначения уже есть: <code>skip</code> (по умолчанию), <code>replace</code> или <code>error</code> (ничего не копировать).</p>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true, &quot;copied&quot;: [&quot;C_MU&quot;], &quot;replaced&quot;: [&quot;T_BTC&quot;], &quot;skipped&quot;: [] }</code></p>
+<p><strong>Ошибки:</strong> <code>400</code> — нет фильтра, имя без маски не найдено, папки совпадают или конфликт при <code>on_conflict: &quot;error&quot;</code>, <code>404</code> — папка не найдена</p>
+<hr />
+<h4 id="post-apitestersettingsdelete-matching">POST /api/tester/settings/delete-matching</h4>
+<p>Удаляет настройки папки по фильтру.</p>
+<p><strong>Запрос:</strong></p>
+<pre><code class="language-json">{ &quot;folder&quot;: &quot;lut_now&quot;, &quot;owner&quot;: &quot;MCP&quot;, &quot;tag&quot;: &quot;tmp&quot; }
+</code></pre>
+<p>Фильтры — как у <a href="#post-apitestersettingscopy-to-folder"><code>copy-to-folder</code></a>, нужен хотя бы один.</p>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true, &quot;folder&quot;: &quot;lut_now&quot;, &quot;deleted&quot;: [&quot;MCP_LZ1&quot;], &quot;not_found&quot;: [] }</code></p>
+<p><strong>Ошибки:</strong> <code>400</code> — нет фильтра, <code>404</code> — папка не найдена</p>
+<hr />
+<h4 id="post-apitestersettingsimport">POST /api/tester/settings/import</h4>
+<p>Сохраняет набор настроек в папку, например выгрузку <code>GET /api/tester/settings?full=1</code>.</p>
+<p><strong>Запрос:</strong></p>
+<pre><code class="language-json">{ &quot;folder&quot;: &quot;lut_now&quot;, &quot;settings&quot;: [ { ... }, { ... } ], &quot;on_conflict&quot;: &quot;skip&quot;, &quot;owner_default&quot;: &quot;MCP&quot; }
+</code></pre>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true, &quot;folder&quot;: &quot;lut_now&quot;, &quot;saved&quot;: [&quot;T_BTC&quot;], &quot;skipped&quot;: [], &quot;warnings&quot;: { &quot;T_BTC&quot;: [&quot;...&quot;] } }</code></p>
+<p><strong>Ошибки:</strong> <code>400</code> — неверная настройка или конфликт при <code>on_conflict: &quot;error&quot;</code>, <code>404</code> — папка не найдена</p>
+<hr />
+<h4 id="get-apitestersettings-check">GET /api/tester/settings-check</h4>
+<p>Проверка настроек папки без запуска — те же замечания, что <code>warnings</code> при <a href="#post-apitestersettings">сохранении</a>. <code>?folder=</code> — папка, <code>?mask=</code> — имя или маска (по умолчанию все).</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{
+  &quot;folder&quot;: &quot;lut_now&quot;, &quot;total&quot;: 125, &quot;with_warnings&quot;: 2,
+  &quot;settings&quot;: [
+    { &quot;name&quot;: &quot;T_BTW&quot;, &quot;strategy&quot;: &quot;zz&quot;, &quot;warnings&quot;: [
+      &quot;zz.zz6_len = 8 is ignored: only when zz.type = ZZ6 (now: zz.type = \&quot;ZZ2\&quot;)&quot;
+    ] }
+  ]
+}
+</code></pre>
+<p>В <code>settings</code> — только настройки с замечаниями.</p>
+<p><strong>Ошибки:</strong> <code>404</code> — папка не найдена</p>
+<hr />
+<h4 id="post-apitesterrun">POST /api/tester/run</h4>
+<p>Перебор параметров стратегий (раздел <code>parameter_mining</code> конфига тестера).</p>
+<p><strong>Запрос:</strong></p>
+<pre><code class="language-json">{
+  &quot;settings&quot;: [&quot;*&quot;],
+  &quot;folder&quot;: &quot;lut_now&quot;,
+  &quot;config&quot;: { ... },
+  &quot;overrides&quot;: [
+    { &quot;match&quot;: &quot;T_*&quot;, &quot;mul&quot;: { &quot;basic.balance_percentage_long&quot;: 2 } },
+    { &quot;match&quot;: &quot;C_MU&quot;, &quot;set&quot;: { &quot;basic.use_short&quot;: false } },
+    { &quot;match&quot;: &quot;L_X&quot;, &quot;exclude&quot;: true }
+  ]
+}
+</code></pre>
+<ul>
+<li><code>settings</code> — имена настроек или маски (<code>&quot;*&quot;</code> — все настройки папки). Имя без маски, которого нет в папке, — ошибка.</li>
+<li><code>folder</code> — папка настроек, см. <a href="#%D0%BF%D0%B0%D0%BF%D0%BA%D0%B0-%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B5%D0%BA-%D0%B2-%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B5">Папка настроек в запросе</a>.</li>
+<li><code>config</code> необязателен: без него используется сохранённый конфиг тестера.</li>
+<li><code>overrides</code> — правки настроек только на этот запуск; файлы настроек не меняются. Правила применяются по порядку. <code>match</code> — имя или маска (по умолчанию все), <code>tag</code> — только настройки с этим тегом. <code>set</code> заменяет значения, <code>mul</code> умножает числа (целое поле остаётся целым), <code>cap_pct</code> после них ограничивает <code>basic.balance_percentage_long</code> и <code>_short</code> этих настроек — множитель размера с потолком на пару: <code>{ &quot;match&quot;: &quot;T_*&quot;, &quot;mul&quot;: { &quot;basic.balance_percentage_long&quot;: 2, &quot;basic.balance_percentage_short&quot;: 2 }, &quot;cap_pct&quot;: 10 }</code>. <code>exclude: true</code> убирает настройки из запуска. Поля — пути через точку, как в объекте настройки. Если поля нет ни в одной подходящей настройке, это ошибка (обычно опечатка); если его нет только у части, эти настройки перечислены в <code>not_applied</code>. Правки записываются в <code>comment</code> прогона и попадают в отчёт и snapshot.</li>
+</ul>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;folder&quot;: &quot;lut_now&quot;,
+  &quot;strategies&quot;: [&quot;C_MU&quot;, &quot;T_BTC&quot;],
+  &quot;applied&quot;: [ { &quot;name&quot;: &quot;T_BTC&quot;, &quot;changes&quot;: [&quot;basic.balance_percentage_long: 10.0 → 20.0&quot;], &quot;not_applied&quot;: [] } ],
+  &quot;excluded&quot;: [&quot;L_X&quot;]
+}
+</code></pre>
+<p><strong>Что можно перебирать.</strong> Любую настройку бота (<code>settings[*].zz.depth</code>, <code>settings[T_*].basic.use_short</code>, <code>settings[NAME].…</code>), любое поле конфига тестера (<code>config_tester.…</code>), <code>settings_program.…</code> и аккаунта. Для чисел достаточно <code>start</code>/<code>end</code>/<code>step</code>, для остальных (текст, логические) задаётся <code>values</code>.</p>
+<p><strong>Скрининг пар.</strong> Файл настроек на каждую пару не нужен: берётся одна настройка-шаблон, а символ перебирается как обычный параметр. Список пар — из <code>tester_exchange_symbols</code>:</p>
+<pre><code class="language-json">&quot;parameter_mining&quot;: [
+  {
+    &quot;name&quot;: &quot;settings[*].basic.symbol&quot;,
+    &quot;start&quot;: 1.0, &quot;end&quot;: 1.0, &quot;step&quot;: 1.0,
+    &quot;values&quot;: [&quot;1000BONKUSDT&quot;, &quot;1000PEPEUSDT&quot;, &quot;AAVEUSDT&quot;, &quot;ADAUSDT&quot;]
+  }
+]
+</code></pre>
+<p>Вместе с другими параметрами (например, <code>settings[*].zz.depth</code>) получается сетка на каждую пару. Символ попадает в столбец <code>reports_history.csv</code>, так что сводку «пара → медиана по сетке» считают по этому файлу (<code>read_tester_file</code> с <code>columns</code>). Данные для всех перебираемых пар скачивает <code>tester_download_data</code>. Число комбинаций равно произведению длин списков значений: ограничивайте его <code>monte_carlo</code>.</p>
+<p>Тестер прогоняет все комбинации значений из <code>parameter_mining</code>; если задан <code>monte_carlo</code>, то случайную выборку такого размера. Заранее проверяйте число комбинаций; остановить запущенный перебор — <a href="#post-apitesterstop"><code>POST /api/tester/stop</code></a> с <code>full: true</code>. Ход — в <code>run</code> ответа <code>GET /api/tester/status</code> (<code>runs_done</code> из <code>runs_total</code>).</p>
+<p>Результаты попадают в папку <code>report</code> с именем, равным <code>name_comment</code> конфига тестера (недопустимые в имени файла символы заменяются на <code>_</code>). Ответ на запуск возвращает её в <code>report_folders</code>; при включённом <code>walk_forward</code> там же вторая папка <code>&lt;name_comment&gt;_WF_OOS</code> с прогонами вне выборки. Чтобы эксперименты не смешивались, давайте каждому свой <code>name_comment</code>. В папке:</p>
+<ul>
+<li><code>reports_history.csv</code> — по строке на комбинацию: метрики (<code>TotalPnLPercent</code>, <code>MaxDrawdownPercent</code>, <code>ProfitFactor</code>, <code>WinRate</code>, <code>TradingVolume</code>, …), <code>Strategies</code> (имена настроек прогона через <code>|</code>), <code>RunTag</code> и столбец со значением каждого перебираемого параметра. При <code>single_mode</code> в каждой строке одна настройка, блоки комбинаций идут по имени настройки;</li>
+<li>HTML-отчёт каждой комбинации (если включён <code>report.enable_html_report</code>) и его <a href="#get-apitesterreportsjson">JSON-версия</a> (если включён <code>report.enable_json_report</code>); <code>RunTag</code> комбинации есть в имени файла;</li>
+<li>сводный отчёт оптимизатора <code>report_optimizer_*.html</code>;</li>
+<li><code>run_snapshot_&lt;name_comment&gt;_&lt;время&gt;.json</code> — точные настройки и конфиг запуска, см. <a href="#post-apitestersnapshot-run"><code>snapshot-run</code></a>.</li>
+</ul>
+<p><code>periods</code> — перебор на нескольких периодах: <code>[[&quot;2026-02-01&quot;,&quot;2026-05-01&quot;], [&quot;2026-05-01&quot;,&quot;2026-08-01&quot;]]</code>. Каждый период — отдельный полный прогон в папку <code>&lt;name_comment&gt;_&lt;начало&gt;_&lt;конец&gt;</code>; они идут друг за другом через очередь. Ответ — <code>{ &quot;success&quot;: true, &quot;periods&quot;: [ { &quot;start&quot;, &quot;end&quot;, &quot;report_folders&quot;, &quot;queued&quot;, &quot;queue_id&quot;, &quot;position&quot; } ], ... }</code>. Сравнить периоды — <a href="#get-apitestermining-robustness"><code>/api/tester/mining-robustness</code></a>.</p>
+<p><strong>Предупреждения запуска.</strong> Ответ на запуск содержит <code>warnings</code> (<code>null</code> — замечаний нет):</p>
+<ul>
+<li>параметр <code>parameter_mining</code>, которого нет ни в настройках, ни в конфигах (опечатка: он не применится);</li>
+<li>перебираемое поле, которое подходящие настройки не читают (<code>ignored by all N matching settings</code>: все комбинации дадут одинаковый результат) или читают не все; условия по полям, которые сами перебираются, не проверяются;</li>
+<li>заметка о поле, которое влияет только в крайних случаях (<code>zz.zz6_risk_max</code>);</li>
+<li>поле из <code>overrides</code>, которое настройка не читает.</li>
+</ul>
+<p>Предупреждения запуск не отменяют.</p>
+<p>Одиночные прогоны и пакеты пишут эти предупреждения и в итоги прогона (<code>warnings</code> у <a href="#get-apitesterwizard-runsrun_id"><code>wizard-runs/{run_id}</code></a>), пакет — ещё и в общий <code>warnings</code> с префиксом <code>runs[i] &lt;имя&gt;</code>. Запуск по snapshot проверяется так же.</p>
+<p><strong>Портфельный перебор.</strong> Без <code>single_mode</code> все настройки идут вместе в каждой комбинации. Параметр с именем <code>settings[ИМЯ].путь</code> меняет одну настройку, а <code>settings[T_*].путь</code> — все настройки по маске имени; остальной набор остаётся как есть. Сравнивайте строки по портфельным <code>MaxDrawdownPercent</code> и <code>UlcerIndex</code> (включите <code>reports_history.ulcer_index</code>).</p>
+<p><code>sides</code> — стороны торговли на этот запуск: <code>long</code> (только лонг), <code>short</code> (только шорт), <code>split</code> (каждая настройка дважды — <code>&lt;имя&gt; [long]</code> и <code>&lt;имя&gt; [short]</code>; при <code>single_mode</code> стороны майнятся отдельно) или <code>both</code> (как в настройках).</p>
+<p><code>?queue=1</code> — если тестер занят другим полным прогоном или загрузкой данных, запуск встаёт в очередь, а не получает <code>409</code>. Ответ тогда — <code>{ &quot;success&quot;: true, &quot;queued&quot;: true, &quot;queue_id&quot;: &quot;63a8e791&quot;, &quot;position&quot;: 1, ... }</code>; запуск начнётся сам, очередь видна в <code>queue</code> ответа <code>GET /api/tester/status</code>, отменить ещё не начатый — <a href="#post-apitesterqueuequeue_idcancel"><code>POST /api/tester/queue/{queue_id}/cancel</code></a>.</p>
+<p><strong>Ошибки:</strong> <code>400</code> — настройка не найдена, неверный <code>config</code>, <code>overrides</code> или <code>sides</code>, <code>404</code> — папка не найдена, <code>409</code> — тестер уже работает или загружаются данные (без <code>?queue=1</code>)</p>
+<hr />
+<h4 id="post-apitesterstress">POST /api/tester/stress</h4>
+<p>Стресс-тест: те же настройки в ухудшенных условиях исполнения. Тело, <code>?queue=1</code> и ответы — как у <code>/api/tester/run</code>, кроме <code>periods</code> (не поддерживается). Результаты — в папке <code>&lt;name_comment&gt;_STRESS</code> (<code>report_folders</code> ответа): строки сценариев в <code>reports_history.csv</code> и сравнение с базой в <code>stress_test_*.html</code>.</p>
+<hr />
+<h4 id="post-apitesterqueuequeue_idcancel">POST /api/tester/queue/{queue_id}/cancel</h4>
+<p>Убирает из очереди полный запуск, который ещё не начался.</p>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true }</code></p>
+<p><strong>Ошибки:</strong> <code>404</code> — запуск уже начался, отменён или <code>queue_id</code> неверный</p>
+<hr />
+<h4 id="post-apitesterwizard-run">POST /api/tester/wizard-run</h4>
+<p>Одиночный прогон стратегий. Тело — как у <code>/api/tester/run</code>, включая <code>folder</code> и <code>overrides</code>.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{ &quot;success&quot;: true, &quot;run_id&quot;: &quot;a1b2c3d4&quot;, &quot;folder&quot;: &quot;lut_now&quot;, &quot;strategies&quot;: [&quot;T4 BTC&quot;], &quot;applied&quot;: [], &quot;excluded&quot;: [] }
+</code></pre>
+<p>Дождаться прогона и получить его метрики и пути к отчётам — <a href="#get-apitesterwizard-runsrun_id"><code>GET /api/tester/wizard-runs/{run_id}?wait=</code></a>. Ход всех прогонов — в <code>wizard_runs</code> ответа <code>GET /api/tester/status</code>.</p>
+<p><strong>Ошибки:</strong> <code>400</code> — не найдено ни одной из настроек, <code>409</code> — загружаются данные</p>
+<hr />
+<h4 id="post-apitesterwizard-batch">POST /api/tester/wizard-batch</h4>
+<p>Пакет одиночных прогонов: несколько наборов, каждый на нескольких периодах, через одну очередь с ограничением параллельности. Так сравнивают варианты и проверяют вариант на нескольких периодах одним запросом.</p>
+<p><strong>Запрос:</strong></p>
+<pre><code class="language-json">{
+  &quot;folder&quot;: &quot;lut_now&quot;,
+  &quot;config&quot;: { ... },
+  &quot;periods&quot;: [[&quot;2026-02-01&quot;, &quot;2026-05-01&quot;], [&quot;2026-05-01&quot;, &quot;2026-08-01&quot;]],
+  &quot;parallel&quot;: 2,
+  &quot;runs&quot;: [
+    { &quot;name&quot;: &quot;base&quot;, &quot;settings&quot;: [&quot;*&quot;] },
+    { &quot;name&quot;: &quot;T x2&quot;, &quot;settings&quot;: [&quot;*&quot;], &quot;overrides&quot;: [ { &quot;match&quot;: &quot;T_*&quot;, &quot;mul&quot;: { &quot;basic.balance_percentage_long&quot;: 2 } } ] },
+    { &quot;name&quot;: &quot;long only&quot;, &quot;settings&quot;: [&quot;*&quot;], &quot;sides&quot;: &quot;long&quot; }
+  ]
+}
+</code></pre>
+<p>Поля набора — как в теле <a href="#post-apitesterrun"><code>/api/tester/run</code></a> (<code>settings</code>, <code>folder</code>, <code>config</code>, <code>overrides</code>, <code>sides</code>) плюс <code>name</code> и свои <code>periods</code>. Чего нет в наборе, берётся из пакета. Каждый набор идёт на каждом периоде отдельным прогоном; без <code>periods</code> — на периоде конфига. <code>parallel</code> — сколько прогонов одновременно (по умолчанию 2; каждый держит свои данные в памяти). Ошибка в любом наборе отклоняет весь пакет.</p>
+<p><strong>Ответ 200:</strong> то же, что <a href="#get-apitesterwizard-batchesbatch_id"><code>GET /api/tester/wizard-batches/{batch_id}</code></a>, сразу после постановки в очередь.</p>
+<p><strong>Ошибки:</strong> <code>400</code> — пустой <code>runs</code>, неверные <code>periods</code> или ошибка набора (<code>runs[1]: ...</code>), <code>404</code> — папка не найдена, <code>409</code> — загружаются данные</p>
+<hr />
+<h4 id="get-apitesterwizard-batchesbatch_id">GET /api/tester/wizard-batches/{batch_id}</h4>
+<p>Пакет и итоги каждого прогона. <code>?wait=</code> — сколько секунд (до 240) ждать завершения всего пакета.</p>
+<p>Длинный пакет (десятки прогонов) в полном виде не помещается в ответ (MCP режет его на 200 000 символов, и JSON становится невалидным), поэтому есть сокращение и страницы. Те же параметры у <a href="#post-apitesterwizard-batch"><code>POST /api/tester/wizard-batch</code></a>:</p>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>compact=1</code></td>
+<td>у каждого прогона только <code>name</code>, <code>start</code>, <code>end</code>, <code>run_id</code>, <code>status</code>, <code>run_params</code>, <code>key</code> и пути отчёта (<code>message</code> только у упавших). Без <code>summary</code>, <code>stats</code>, <code>warnings</code>, <code>applied</code></td>
+</tr>
+<tr>
+<td><code>offset</code>, <code>limit</code></td>
+<td>страница списка <code>runs</code>; <code>limit=0</code> — только счётчики. В ответе <code>offset</code>, <code>returned</code> и <code>has_more</code> (есть следующая страница: <code>offset + returned</code>). <code>done</code>, <code>total</code>, <code>failed</code> всегда по всему пакету</td>
+</tr>
+</tbody>
+</table>
+<p>Если полный ответ длиннее 150 000 символов, он заменяется компактным автоматически (<code>compact: true</code> в ответе); страницы <code>offset</code>/<code>limit</code> при этом сохраняются.</p>
+<p><code>key</code> есть в каждом прогоне, в том числе в полном ответе: главные метрики в одном виде, из <code>summary</code> JSON-отчёта, а если отчёта нет, из итоговых <code>stats</code>: <code>pnl</code>, <code>pnl_percent</code>, <code>max_drawdown_percent</code>, <code>max_drawdown_worst_percent</code> (только при JSON-отчёте), <code>trades</code>, <code>volume</code>, <code>fees</code>, <code>profit_factor</code> (только при JSON-отчёте). Вызывать <a href="#get-apitesterreportsjson"><code>reports/json</code></a> на каждый прогон ради них не нужно.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{
+  &quot;batch_id&quot;: &quot;31dd7d67&quot;, &quot;status&quot;: &quot;Completed&quot;, &quot;done&quot;: 2, &quot;total&quot;: 2, &quot;failed&quot;: 0, &quot;parallel&quot;: 2,
+  &quot;started_utc&quot;: &quot;2026-10-27T21:31:27Z&quot;,
+  &quot;compact&quot;: false, &quot;offset&quot;: 0, &quot;returned&quot;: 2, &quot;has_more&quot;: false,
+  &quot;runs&quot;: [
+    {
+      &quot;name&quot;: &quot;T x2&quot;, &quot;start&quot;: &quot;2026-02-01&quot;, &quot;end&quot;: &quot;2026-05-01&quot;, &quot;run_id&quot;: &quot;a99984a8&quot;, &quot;status&quot;: &quot;Completed&quot;,
+      &quot;message&quot;: &quot;Completed: 12 strategies.&quot;,
+      &quot;key&quot;: { &quot;pnl&quot;: 1240.5, &quot;pnl_percent&quot;: 12.4, &quot;max_drawdown_percent&quot;: 5.2, &quot;max_drawdown_worst_percent&quot;: 8.1, &quot;trades&quot;: 140, &quot;volume&quot;: 520000.0, &quot;fees&quot;: 310.2, &quot;profit_factor&quot;: 1.6 },
+      &quot;summary&quot;: { &quot;pnl_percent&quot;: 12.4, &quot;max_drawdown_worst_percent&quot;: 8.1, &quot;ulcer_index&quot;: 2.3, &quot;profit_factor&quot;: 1.6, &quot;trades&quot;: 140, &quot;monthly&quot;: { &quot;2026-02&quot;: 3.1 } },
+      &quot;stats&quot;: null,
+      &quot;report_path&quot;: &quot;...html&quot;, &quot;report_json_path&quot;: &quot;...json&quot;, &quot;snapshot_path&quot;: &quot;...json&quot;,
+      &quot;warnings&quot;: [],
+      &quot;applied&quot;: [ { &quot;name&quot;: &quot;T_BTC&quot;, &quot;changes&quot;: [&quot;basic.balance_percentage_long: 10.0 → 20.0&quot;], &quot;not_applied&quot;: [] } ],
+      &quot;excluded&quot;: null
+    }
+  ]
+}
+</code></pre>
+<p><code>summary</code> — как раздел <code>summary</code> <a href="#get-apitesterreportsjson">JSON-отчёта</a>; он есть, если включён <code>report.enable_json_report</code>, иначе вместо него <code>stats</code>. Строки прогонов пакета попадают и в <code>reports_history.csv</code> папки <code>name_comment</code> (столбцы <code>StartDate</code>, <code>EndDate</code>, <code>Strategies</code>). Пакеты хранятся час.</p>
+<p><strong>Ошибки:</strong> <code>404</code> — пакета нет: неверный <code>batch_id</code>, прошло больше часа или программа перезапускалась</p>
+<hr />
+<h4 id="post-apitesterstop">POST /api/tester/stop</h4>
+<p>Останавливает прогоны тестера.</p>
+<p><strong>Запрос</strong> (нужно хотя бы одно поле):</p>
+<pre><code class="language-json">{ &quot;run_id&quot;: &quot;a1b2c3d4&quot;, &quot;batch_id&quot;: &quot;5e6f7a8b&quot;, &quot;full&quot;: true, &quot;clear_queue&quot;: true }
+</code></pre>
+<ul>
+<li><code>run_id</code> — одиночный прогон (<a href="#post-apitesterwizard-run"><code>wizard-run</code></a>);</li>
+<li><code>batch_id</code> — все прогоны <a href="#post-apitesterwizard-batch">пакета</a>: ещё не начатые не стартуют;</li>
+<li><code>full: true</code> — текущий полный прогон: перебор, стресс-тест, walk-forward, snapshot;</li>
+<li><code>clear_queue: true</code> — ещё и убрать из <a href="#post-apitesterqueuequeue_idcancel">очереди</a> не начатые полные прогоны.</li>
+</ul>
+<p>Идущий прогон останавливается на следующей свече. Прерванный прогон не пишет ни отчёт, ни строку <code>reports_history</code>: результат за часть периода ввёл бы в заблуждение. У полного прогона строки уже посчитанных комбинаций остаются; в параллельном режиме дочерние процессы завершаются. Статусы: полный прогон — <code>Stopped</code> в <code>run</code> ответа <a href="#get-apitesterstatus"><code>/api/tester/status</code></a>, одиночный — <code>Cancelled</code> в <a href="#get-apitesterwizard-runsrun_id"><code>wizard-runs/{run_id}</code></a>. Загрузку исторических данных этот запрос не останавливает.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{ &quot;success&quot;: true, &quot;cancelled_runs&quot;: [&quot;a1b2c3d4&quot;], &quot;full_run_stopping&quot;: true, &quot;cleared_queue&quot;: [&quot;63a8e791&quot;], &quot;note&quot;: &quot;Stopping: ...&quot; }
+</code></pre>
+<p><strong>Ошибки:</strong> <code>400</code> — не передано ни одного поля, <code>404</code> — прогон или пакет не найден</p>
+<hr />
+<h4 id="get-apitesterwizard-runsrun_id">GET /api/tester/wizard-runs/{run_id}</h4>
+<p>Одиночный прогон по <code>run_id</code>. <code>?wait=</code> — сколько секунд (до 240) ждать завершения; без него ответ сразу.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{
+  &quot;run_id&quot;: &quot;a82c93c5&quot;,
+  &quot;strategies&quot;: [&quot;T4 BTC&quot;, &quot;T4 TSLA&quot;],
+  &quot;status&quot;: &quot;Completed&quot;,
+  &quot;started_utc&quot;: &quot;2026-10-25T05:26:43Z&quot;,
+  &quot;finished_utc&quot;: &quot;2026-10-25T05:26:50Z&quot;,
+  &quot;current_bar&quot;: 27360,
+  &quot;total_bars&quot;: 27360,
+  &quot;message&quot;: &quot;Completed: 2 strategies. 1 warnings.&quot;,
+  &quot;report_path&quot;: &quot;T4/T4_run_001_of_001_system_2_ee8c3c2e.html&quot;,
+  &quot;report_json_path&quot;: &quot;T4/T4_run_001_of_001_system_2_ee8c3c2e.json&quot;,
+  &quot;snapshot_path&quot;: &quot;T4/run_snapshot_T4_20261025_082643.json&quot;,
+  &quot;stats&quot;: { &quot;InitialBalance&quot;: 10000.0, &quot;FinalBalance&quot;: 9581.25, &quot;TotalPnL&quot;: -418.75, &quot;TotalPnLPercent&quot;: -4.19, &quot;TotalTrades&quot;: 23, &quot;WinRate&quot;: 13.04, &quot;MaxDrawdown&quot;: 527.89, &quot;MaxDrawdownPercent&quot;: 5.26, &quot;TotalFees&quot;: 22.2 },
+  &quot;warnings&quot;: [&quot;T4 TSLA: symbol TSLAUSDT: no data before 2025-09-14 00:00&quot;]
+}
+</code></pre>
+<p><code>status</code> — <code>Running</code>, <code>Completed</code> или <code>Failed</code>; <code>Running</code> после <code>wait</code> значит, что время ожидания вышло, — запросите снова. <code>report_path</code> и <code>report_json_path</code> — пути внутри <code>root=report</code>, <code>null</code>, если отчёт не записан. <code>snapshot_path</code> — snapshot прогона: точные настройки и конфиг, с которыми он шёл. <code>warnings</code> — пропущенные настройки, нехватка данных и причина, по которой нет отчёта. Если не запустилась ни одна настройка, прогон завершается со <code>status: &quot;Failed&quot;</code> и причиной в <code>message</code>. Завершённые прогоны хранятся час (до перезапуска программы).</p>
+<p><strong>Ошибки:</strong> <code>404</code> — прогона нет: неверный <code>run_id</code>, прошло больше часа или программа перезапускалась</p>
+<hr />
+<h4 id="post-apitestersnapshot-run">POST /api/tester/snapshot-run</h4>
+<p>Повторяет прогон по snapshot-файлу. Каждый запуск сохраняет snapshot рядом с отчётом — <code>run_snapshot_&lt;name_comment&gt;_&lt;время&gt;.json</code> с разделами <code>settings</code> (настройки всех стратегий), <code>tester_config</code> и <code>program_config</code>. Токены (<code>api_token</code>, <code>telegram.bot_token</code>) в snapshot не записываются. Запуск по snapshot — полный режим: один за раз, как перебор. Файл выбирается параметрами <code>?root=&amp;path=</code>, как в <a href="#get-apitesterfiles">файлах тестера</a>.</p>
+<p>Тело необязательно: можно передать изменённый snapshot — изменения действуют только на этот запуск, файл не меняется. То же в интерфейсе: Тестер, вкладка «Результаты (файлы)», кнопка «Запустить» рядом со snapshot открывает его в редакторе, и правки идут только в этот запуск.</p>
+<p><strong>Запрос:</strong> <code>POST /api/tester/snapshot-run?root=report&amp;path=T4/run_snapshot_20261025.json</code></p>
+<p><code>?queue=1</code> — встать в очередь, если тестер занят, как у <a href="#post-apitesterrun"><code>/api/tester/run</code></a>.</p>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true }</code></p>
+<p><strong>Ошибки:</strong> <code>400</code> — в snapshot нет конфига тестера или настроек, <code>404</code> — файл не найден, <code>409</code> — тестер уже работает или загружаются данные</p>
+<hr />
+<h4 id="post-apitesterdownload-data">POST /api/tester/download-data</h4>
+<p>Загружает исторические данные для всех настроек папки (<code>?folder=</code>). Ход и итог — в <code>download</code> ответа <code>GET /api/tester/status</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>start</code></td>
+<td>Начало периода, например <code>2026-05-01</code>. По умолчанию <code>StartDate</code> конфига тестера минус <code>WarmupDays</code></td>
+</tr>
+<tr>
+<td><code>end</code></td>
+<td>Конец периода. По умолчанию текущий момент (UTC). <code>EndDate</code> сохранённого конфига не используется, поэтому для докачки свежих дней конфиг менять не нужно</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true }</code></p>
+<p>После окончания <code>download.message</code> кратко пишет, по какой день данные есть на диске, а <code>download.result</code> содержит по каждой паре <code>first_day</code>, <code>last_day</code> (последний день со свечами) и <code>days</code>:</p>
+<pre><code class="language-json">&quot;download&quot;: {
+  &quot;active&quot;: false, &quot;status&quot;: &quot;Completed&quot;, &quot;message&quot;: &quot;Data on disk ends at 2026-10-31..2026-10-31 (last day with candles)&quot;,
+  &quot;result&quot;: { &quot;requested_start&quot;: null, &quot;requested_end&quot;: null,
+    &quot;pairs&quot;: [ { &quot;symbol&quot;: &quot;BTCUSDT&quot;, &quot;exchange&quot;: &quot;bybit&quot;, &quot;first_day&quot;: &quot;2025-10-01&quot;, &quot;last_day&quot;: &quot;2026-10-31&quot;, &quot;days&quot;: 396 } ] }
+}
+</code></pre>
+<p>Свечи закрытого дня источник публикует с задержкой (обычно после 06:00 UTC): до этого <code>last_day</code> остаётся на день раньше, загрузку нужно повторить позже. Пара без данных получает <code>first_day</code>/<code>last_day</code> = <code>null</code>.</p>
+<p><strong>Ошибки:</strong> <code>400</code> — <code>start</code> или <code>end</code> не дата, либо <code>start</code> не раньше <code>end</code>; <code>409</code> — загрузка уже идёт или работает тестер</p>
+<hr />
+<h4 id="get-apitesterwizard-results">GET /api/tester/wizard-results</h4>
+<p>Результаты одиночных прогонов, свежие первыми. Новый прогон того же набора настроек заменяет его прежнюю запись; результат конкретного прогона — в <a href="#get-apitesterwizard-runsrun_id"><code>/api/tester/wizard-runs/{run_id}</code></a>.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">[
+  {
+    &quot;runId&quot;: &quot;a82c93c5&quot;,
+    &quot;timestamp&quot;: &quot;2026-10-25T05:26:50Z&quot;,
+    &quot;strategies&quot;: [&quot;T4 BTC&quot;],
+    &quot;stats&quot;: {
+      &quot;InitialBalance&quot;: 10000.0, &quot;FinalBalance&quot;: 9581.25, &quot;TotalPnL&quot;: -418.75, &quot;TotalPnLPercent&quot;: -4.19,
+      &quot;TotalTrades&quot;: 23, &quot;WinRate&quot;: 13.04, &quot;MaxDrawdown&quot;: 527.89, &quot;MaxDrawdownPercent&quot;: 5.26, &quot;TotalFees&quot;: 22.2
+    },
+    &quot;chartUrl&quot;: &quot;/tester-report/T4/T4_run_001_of_001_BTCUSDT_1h_ee8c3c2e.html&quot;,
+    &quot;report_path&quot;: &quot;T4/T4_run_001_of_001_BTCUSDT_1h_ee8c3c2e.html&quot;,
+    &quot;report_json_path&quot;: &quot;T4/T4_run_001_of_001_BTCUSDT_1h_ee8c3c2e.json&quot;,
+    &quot;period&quot;: &quot;2025-09-01 .. 2025-09-20&quot;,
+    &quot;elapsed&quot;: &quot;00:00:07&quot;
+  }
+]
+</code></pre>
+<p><code>chartUrl</code> — ссылка на HTML-отчёт для браузера. <code>report_path</code> — тот же отчёт как путь внутри <code>root=report</code>, для <a href="#get-apitesterfiles">файлов тестера</a> и <a href="#get-apitesterreportssummary"><code>/api/tester/reports/summary</code></a>. <code>report_json_path</code> — его <a href="#get-apitesterreportsjson">JSON-версия</a>; поле есть, только если она записана.</p>
+<hr />
+<h4 id="get-apitesterfiles">GET /api/tester/files</h4>
+<p>Содержимое папки тестера. <code>?root=</code> — <code>report</code> (отчёты, по умолчанию), <code>data</code> (исторические данные: <code>tester/data</code> или папка из <code>tester_data_dir</code> в <code>settings_program.json</code>) или <code>runs</code> (наборы для повторных прогонов); <code>?path=</code> — путь внутри неё. <code>?contains=</code> — только имена с этим текстом, <code>?offset=</code> и <code>?limit=</code> — часть списка. Сначала идут папки по имени, затем файлы, свежие первыми; <code>total</code> — сколько всего элементов подходит.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{
+  &quot;root&quot;: &quot;report&quot;,
+  &quot;path&quot;: &quot;T4&quot;,
+  &quot;total&quot;: 2,
+  &quot;offset&quot;: 0,
+  &quot;items&quot;: [
+    { &quot;name&quot;: &quot;old&quot;, &quot;is_dir&quot;: true, &quot;size&quot;: 204800, &quot;modified_utc&quot;: &quot;2026-10-20T10:00:00Z&quot;, &quot;snapshot&quot;: false, &quot;editable&quot;: false },
+    { &quot;name&quot;: &quot;run_snapshot_20261025.json&quot;, &quot;is_dir&quot;: false, &quot;size&quot;: 51200, &quot;modified_utc&quot;: &quot;2026-10-25T12:00:00Z&quot;, &quot;snapshot&quot;: true, &quot;editable&quot;: false }
+  ]
+}
+</code></pre>
+<p><code>snapshot: true</code> — файл можно запустить через <code>/api/tester/snapshot-run</code>. <code>editable: true</code> — файл можно изменить через <code>/api/tester/files/save</code>.</p>
+<p><strong>Ошибки:</strong> <code>404</code> — папка не найдена</p>
+<hr />
+<h4 id="get-apitesterfilesdownload">GET /api/tester/files/download</h4>
+<p>Скачивает файл (<code>?root=&amp;path=</code>). HTML-отчёты открываются в браузере.</p>
+<p><strong>Ошибки:</strong> <code>404</code> — файл не найден</p>
+<hr />
+<h4 id="post-apitesterfilesdelete">POST /api/tester/files/delete</h4>
+<p>Удаляет файл или папку (<code>?root=&amp;path=</code>).</p>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true }</code></p>
+<p><strong>Ошибки:</strong> <code>400</code> — недопустимый путь, <code>404</code> — не найдено, <code>409</code> — работает тестер или загружаются данные</p>
+<hr />
+<h4 id="get-apitesterfilescontent">GET /api/tester/files/content</h4>
+<p>Содержимое snapshot-файла или JSON-файла из <code>runs</code> (<code>?root=&amp;path=</code>).</p>
+<p><strong>Ошибки:</strong> <code>404</code> — файл не найден или не является snapshot</p>
+<hr />
+<h4 id="post-apitesterfilessave">POST /api/tester/files/save</h4>
+<p>Сохраняет JSON-файл в <code>runs</code> (<code>?root=runs&amp;path=</code>): изменяет существующий или создаёт новый. Тело — новое содержимое файла. Если у существующего файла в теле нет раздела <code>settings</code>, он берётся из текущего файла. Новый файл должен быть полным snapshot: непустой <code>settings</code> и <code>tester_config</code>.</p>
+<p>Так готовят прогон для пользователя: в интерфейсе (Тестер, вкладка «Результаты (файлы)», папка <code>runs</code>) у каждого такого файла есть кнопки «Запустить» и «Изменить». При <code>use_runs</code> в конфиге тестера полный прогон из командной строки (<code>--run-tester</code>) запускает все <code>.json</code> из <code>runs</code>.</p>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true, &quot;created&quot;: false }</code></p>
+<p><strong>Ошибки:</strong> <code>400</code> — пустое тело, неверный JSON или новый файл без <code>settings</code> / <code>tester_config</code>, <code>404</code> — путь не в <code>runs</code> или не <code>.json</code></p>
+<hr />
+<h4 id="get-apitesterreportssummary">GET /api/tester/reports/summary</h4>
+<p>Сводки HTML-отчётов для сравнения прогонов: метрики и кривая доходности. <code>?r=</code> — путь отчёта в <code>report</code>, параметр можно повторять.</p>
+<p><strong>Запрос:</strong> <code>GET /api/tester/reports/summary?r=T4/report.html&amp;r=T4_STRESS/report.html</code></p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">[
+  {
+    &quot;report&quot;: &quot;T4/report.html&quot;,
+    &quot;created&quot;: &quot;2026-10-25T12:00:00Z&quot;,
+    &quot;summary&quot;: {
+      &quot;name_comment&quot;: &quot;T4&quot;,
+      &quot;start&quot;: &quot;2025-01-01T00:00:00&quot;,
+      &quot;end&quot;: &quot;2026-01-01T00:00:00&quot;,
+      &quot;symbols&quot;: [&quot;BTCUSDT&quot;],
+      &quot;metrics&quot;: { &quot;TotalPnLPercent&quot;: 42.1, &quot;MaxDrawdownPercent&quot;: 12.3, &quot;ProfitFactor&quot;: 1.8, &quot;WinRate&quot;: 55.0, &quot;TotalTrades&quot;: 120 },
+      &quot;equity_t&quot;: [1735689600],
+      &quot;equity_v&quot;: [1000.0]
+    }
+  }
+]
+</code></pre>
+<p><code>equity_t</code> и <code>equity_v</code> — время (Unix, секунды) и баланс точек кривой доходности. <code>summary: null</code> — у отчёта нет сводки.</p>
+<p><strong>Ошибки:</strong> <code>400</code> — не передан ни один <code>r</code>, <code>404</code> — отчёт не найден</p>
+<hr />
+<h4 id="get-apitesterreportsjson">GET /api/tester/reports/json</h4>
+<p>Подробные результаты одного прогона в компактном JSON. Те же числа, что в HTML-отчёте, но файл в десятки раз меньше: несколько десятков килобайт вместо мегабайтов.</p>
+<p>Тестер пишет <code>&lt;отчёт&gt;.json</code> рядом с HTML-отчётом, если в конфиге тестера включено <code>report.enable_json_report</code> (по умолчанию выключено). JSON пишется и при выключенном <code>report.enable_html_report</code>: так большой перебор идёт быстрее и всё равно сохраняет детали каждой комбинации.</p>
+<p>Параметры:</p>
+<ul>
+<li><code>?path=</code> — путь отчёта в <code>report</code>: файл <code>.json</code> или его <code>.html</code> (например, <code>report_path</code> из <a href="#get-apitesterwizard-results"><code>wizard-results</code></a>);</li>
+<li><code>?sections=</code> — только эти разделы через запятую, например <code>?sections=summary</code> или <code>?sections=metrics,by_symbol</code>;</li>
+<li><code>?trades_offset=</code> и <code>?trades_limit=</code> — часть сделок.</li>
+</ul>
+<p><strong>Разделы:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Раздел</th>
+<th>Содержимое</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>summary</code></td>
+<td>сводка на 1–2 КБ: PnL, просадки (в том числе нереализованная и худшая из трёх, как <code>MaxDrawdownPercent</code> в <code>reports_history.csv</code>), Ulcer Index, profit factor, Sharpe, CAGR, сделки, win rate, комиссии, средняя и максимальная позиция, худший месяц, доходность по месяцам. Считается при чтении из <code>run</code>, <code>metrics</code> и <code>monthly</code>, поэтому есть и у старых отчётов</td>
+</tr>
+<tr>
+<td><code>run</code></td>
+<td><code>name_comment</code>, <code>comment</code>, <code>run_tag</code>, <code>run_params</code> (значения перебираемых параметров), период, биржи, стратегии и пары. Что запуск дописал в <code>comment</code> текстом (<code>[overrides: …]</code>, <code>[sides: …]</code>), лежит отдельными полями, разбирать <code>comment</code> регуляркой не нужно: <code>overrides</code> (массив правил как в запросе, без обрезки, в <code>comment</code> он обрезается до 300 символов), <code>sides</code>, а также откуда прогон: <code>batch_id</code> и <code>name</code> (имя набора) для <code>tester_run_batch</code> и <code>tester_run_single</code> с <code>periods</code>, <code>run_id</code> для прогонов мастера. Если значения нет, поле <code>null</code>. Запуски из интерфейса эти поля не заполняют, повтор по snapshot берёт их из snapshot</td>
+</tr>
+<tr>
+<td><code>metrics</code></td>
+<td>вся таблица статистики HTML-отчёта по блокам: PnL, баланс, доходность по месяцам, сделки, исполнения, Buy &amp; Hold, риск и экспозиция, Sharpe, Sortino, CAGR, Calmar, Ulcer Index…</td>
+</tr>
+<tr>
+<td><code>by_symbol</code></td>
+<td>итоги по каждой паре: сделки, win rate, profit factor, PnL, лучшая и худшая сделка, просадка, Buy &amp; Hold, комиссии, объём, размер позиции</td>
+</tr>
+<tr>
+<td><code>monthly</code></td>
+<td>доходность по месяцам, %: <code>{ &quot;2025-09&quot;: -4.15 }</code></td>
+</tr>
+<tr>
+<td><code>trades</code></td>
+<td>сделки (от открытия позиции до полного закрытия или переворота), отсортированные по времени закрытия, — <code>columns</code> и <code>rows</code></td>
+</tr>
+<tr>
+<td><code>curves</code></td>
+<td>кривые баланса (<code>equity</code>) и открытых позиций (<code>open_positions_total</code>, <code>_long</code>, <code>_short</code>), до 500 точек; <code>t</code> — Unix-время в секундах, <code>v</code> — значения</td>
+</tr>
+<tr>
+<td><code>daily</code></td>
+<td>значения на конец каждого календарного дня периода, без пропусков: <code>days</code>, <code>equity</code> (Margin-баланс), <code>position</code> (открытая позиция, USDT); <code>strategies</code> — стратегии (настройки) с парами, кодом, типом (<code>trend</code> / <code>counter-trend</code>) и тегами; <code>pnl</code> и <code>position_by_strategy</code> — по массиву на стратегию в том же порядке: накопленный с начала отчёта вклад в баланс и позиция. Пишется при <code>report.json_daily</code> (включено по умолчанию). Для больших наборов раздел большой — сводку по нему даёт <a href="#get-apitesterreportsportfolio"><code>/api/tester/reports/portfolio</code></a></td>
+</tr>
+<tr>
+<td><code>settings</code></td>
+<td>полные настройки стратегий прогона</td>
+</tr>
+</tbody>
+</table>
+<p>Поля <code>v</code> (версия формата), <code>created_utc</code> и <code>html_report</code> (имя HTML-отчёта или <code>null</code>) возвращаются всегда.</p>
+<p><strong>Запрос:</strong> <code>GET /api/tester/reports/json?path=T4/T4_run_001_of_001_BTCUSDT_1h_ee8c3c2e.html&amp;sections=by_symbol,trades&amp;trades_limit=2</code></p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{
+  &quot;v&quot;: 1,
+  &quot;created_utc&quot;: &quot;2026-10-25T05:45:34Z&quot;,
+  &quot;html_report&quot;: &quot;T4_run_001_of_001_BTCUSDT_1h_ee8c3c2e.html&quot;,
+  &quot;by_symbol&quot;: [
+    { &quot;symbol&quot;: &quot;BTCUSDT&quot;, &quot;strategy&quot;: &quot;zigzag&quot;, &quot;trades&quot;: 23, &quot;win_rate&quot;: 13.04, &quot;profit_factor&quot;: 0.395, &quot;pnl&quot;: -390.14,
+      &quot;best_trade&quot;: 160.02, &quot;worst_trade&quot;: -57.7, &quot;max_drawdown_incl_unrealized&quot;: -483.2, &quot;buy_hold_percent&quot;: 6.81,
+      &quot;fee&quot;: 22.2, &quot;volume&quot;: 221995.16, &quot;position_avg_percent&quot;: 49.31, &quot;position_max_percent&quot;: 50.72 }
+  ],
+  &quot;trades&quot;: {
+    &quot;count&quot;: 23,
+    &quot;columns&quot;: [&quot;symbol&quot;, &quot;side&quot;, &quot;open&quot;, &quot;close&quot;, &quot;holding_hours&quot;, &quot;fills&quot;, &quot;net_pnl&quot;, &quot;mae&quot;, &quot;mfe&quot;],
+    &quot;rows&quot;: [
+      [&quot;BTCUSDT&quot;, &quot;short&quot;, &quot;2025-09-01 00:04&quot;, &quot;2025-09-01 07:54&quot;, 7.83, 2, -57.6968, -57.6968, 38.8311],
+      [&quot;BTCUSDT&quot;, &quot;long&quot;, &quot;2025-09-01 07:54&quot;, &quot;2025-09-01 20:45&quot;, 12.85, 2, -46.2855, -50.7967, 26.7293]
+    ],
+    &quot;offset&quot;: 0
+  }
+}
+</code></pre>
+<p>В <code>trades</code>: <code>count</code> — число всех сделок, <code>net_pnl</code> — результат сделки за вычетом комиссий, <code>mae</code> и <code>mfe</code> — худший и лучший промежуточный результат сделки (USDT), время — UTC.</p>
+<p><strong>Ошибки:</strong> <code>400</code> — файл не является JSON-отчётом, <code>404</code> — JSON-отчёт не найден</p>
+<hr />
+<h4 id="get-apitesterreportsportfolio">GET /api/tester/reports/portfolio</h4>
+<p>Портфельная аналитика прогона по разделу <code>daily</code> его JSON-отчёта. Стратегии собираются в группы, по группам считается всё, что ниже.</p>
+<p>Параметры:</p>
+<ul>
+<li><code>?path=</code> — JSON-отчёт (или его <code>.html</code>) в <code>report</code>;</li>
+<li><code>?group_by=</code> — <code>type</code> (по умолчанию: <code>T</code> — трендовые, <code>CT</code> — контртрендовые, по коду стратегии), <code>tag</code> (первый тег настройки) или <code>strategy</code> (каждая настройка — своя группа);</li>
+<li><code>?groups={&quot;T&quot;:&quot;T_*&quot;,&quot;CT&quot;:&quot;CT_*&quot;}</code> — группы по маскам имён вместо <code>group_by</code>; настройки без совпадения попадают в <code>other</code>;</li>
+<li><code>?worst_days=</code> — сколько худших дней каждой группы брать (по умолчанию 10);</li>
+<li><code>?curves=0</code>, <code>?leave_one_out=0</code> — не считать эти разделы.</li>
+</ul>
+<p><strong>Ответ 200</strong> (сокращённо):</p>
+<pre><code class="language-json">{
+  &quot;start&quot;: &quot;2026-08-01&quot;, &quot;end&quot;: &quot;2026-09-30&quot;, &quot;days&quot;: 61, &quot;group_by&quot;: &quot;type&quot;,
+  &quot;groups&quot;: [ { &quot;group&quot;: &quot;T&quot;, &quot;strategies&quot;: 1, &quot;names&quot;: [&quot;T_BTW&quot;], &quot;pnl&quot;: -7294.0, &quot;pnl_percent&quot;: -72.94, &quot;worst_day&quot;: -4838.3, &quot;max_drawdown_usdt&quot;: 15259.83, &quot;position_max&quot;: 12752.08 } ],
+  &quot;correlation&quot;: { &quot;CT&quot;: { &quot;CT&quot;: 1.0, &quot;T&quot;: -0.28 }, &quot;T&quot;: { &quot;CT&quot;: -0.28, &quot;T&quot;: 1.0 } },
+  &quot;worst_week&quot;: { &quot;start&quot;: &quot;2026-08-08&quot;, &quot;end&quot;: &quot;2026-08-14&quot;, &quot;pnl&quot;: -7200.62, &quot;pnl_percent&quot;: -40.19, &quot;by_group&quot;: { &quot;CT&quot;: 279.98, &quot;T&quot;: -7480.6 } },
+  &quot;worst_days&quot;: { &quot;T&quot;: { &quot;days&quot;: 5, &quot;pnl&quot;: -12902.51, &quot;portfolio_pnl&quot;: -12754.28, &quot;others&quot;: { &quot;CT&quot;: { &quot;pnl&quot;: 148.22, &quot;offset_percent&quot;: 1.1 } } } },
+  &quot;leave_one_out&quot;: {
+    &quot;max_drawdown_percent&quot;: 83.43, &quot;ulcer&quot;: 59.776,
+    &quot;groups&quot;: { &quot;T&quot;: { &quot;pnl&quot;: -7294.0, &quot;max_drawdown_percent_without&quot;: 1.54, &quot;drawdown_added&quot;: 81.89, &quot;ulcer_without&quot;: 0.686, &quot;ulcer_added&quot;: 59.09 } },
+    &quot;strategies&quot;: [ { &quot;name&quot;: &quot;T_BTW&quot;, &quot;group&quot;: &quot;T&quot;, &quot;pnl&quot;: -7294.0, &quot;max_drawdown_percent_without&quot;: 1.54, &quot;drawdown_added&quot;: 81.89, &quot;ulcer_without&quot;: 0.686, &quot;ulcer_added&quot;: 59.09 } ]
+  },
+  &quot;curves&quot;: { &quot;days&quot;: [&quot;2026-08-01&quot;], &quot;equity&quot;: [10754.72], &quot;position&quot;: [0], &quot;pnl_by_group&quot;: { &quot;T&quot;: [0] }, &quot;position_by_group&quot;: { &quot;T&quot;: [0] } }
+}
+</code></pre>
+<ul>
+<li><code>correlation</code> — корреляция дневного PnL групп;</li>
+<li><code>worst_week</code> — худшие 7 дней подряд для портфеля и PnL каждой группы в них;</li>
+<li><code>worst_days</code> — для каждой группы её худшие дни: её PnL, PnL портфеля и PnL остальных групп в эти же дни; <code>offset_percent</code> — какую долю убытка отыграла другая группа (меньше нуля — добавила убыток);</li>
+<li><code>leave_one_out</code> — максимальная просадка и Ulcer портфеля без каждой стратегии и без каждой группы: <code>drawdown_added</code> больше нуля — стратегия добавляет просадку, меньше нуля — снижает её (хеджирует). Заменяет отдельный прогон набора без каждой стратегии;</li>
+<li><code>curves</code> — дневные кривые без пропусков: баланс, позиция, накопленный PnL и позиция каждой группы.</li>
+</ul>
+<p>Все величины — по значениям на конец дня: просадки здесь меньше внутридневных из <code>metrics</code>, а <code>leave_one_out</code> приближённый — без влияния стратегий друг на друга через маржу и лимиты позиций.</p>
+<p><strong>Ошибки:</strong> <code>400</code> — у отчёта нет раздела <code>daily</code> (нужны <code>report.enable_json_report</code> и <code>report.json_daily</code>; у старых отчётов его нет) или неверные <code>group_by</code> / <code>groups</code>, <code>404</code> — отчёт не найден</p>
+<hr />
+<h4 id="get-apitestermining-robustness">GET /api/tester/mining-robustness</h4>
+<p>Устойчивость перебора на нескольких периодах: одна и та же сетка <code>parameter_mining</code>, прогнанная на каждом периоде в свою папку (<code>periods</code> у <a href="#post-apitesterrun"><code>/api/tester/run</code></a>).</p>
+<p>Параметры:</p>
+<ul>
+<li><code>?folders=a,b</code> — папки в <code>report</code>, по периоду в каждой;</li>
+<li><code>?metric=</code> — столбец <code>reports_history.csv</code>, по умолчанию <code>TotalPnLPercent</code>; столбцы просадки, риска и <code>UlcerIndex</code> — чем меньше, тем лучше;</li>
+<li><code>?base={&quot;settings[*].zz.depth&quot;: 12}</code> — исходная точка для сравнения;</li>
+<li><code>?top=</code> — сколько комбинаций показать на каждую настройку (по умолчанию 10).</li>
+</ul>
+<p>Комбинации сопоставляются по значениям параметров и столбцу <code>Strategies</code> (при <code>single_mode</code> у каждой настройки свой рейтинг). На каждом периоде считается плато — среднее метрики по комбинации и её соседям на сетке (как в разделе устойчивости отчёта оптимизатора). Рейтинг — по среднему плато периодов, затем по худшему периоду.</p>
+<p><strong>Ответ 200</strong> (сокращённо):</p>
+<pre><code class="language-json">{
+  &quot;metric&quot;: &quot;TotalPnLPercent&quot;, &quot;lower_is_better&quot;: false,
+  &quot;periods&quot;: [&quot;T4_2026-08-01_2026-08-31&quot;, &quot;T4_2026-09-01_2026-09-30&quot;],
+  &quot;parameters&quot;: [&quot;settings[*].basic.balance_percentage_long&quot;],
+  &quot;combinations_common&quot;: 5,
+  &quot;by_strategies&quot;: [
+    {
+      &quot;strategies&quot;: &quot;CT_VELVET|T_BTW&quot;,
+      &quot;top&quot;: [ { &quot;rank&quot;: 1, &quot;parameters&quot;: { &quot;settings[*].basic.balance_percentage_long&quot;: &quot;50&quot; }, &quot;mean_plateau&quot;: -42.16, &quot;worst_period&quot;: -56.75, &quot;mean&quot;: -41.74,
+                 &quot;by_period&quot;: [ { &quot;period&quot;: &quot;T4_2026-08-01_2026-08-31&quot;, &quot;metric&quot;: -26.72, &quot;plateau&quot;: -28.02, &quot;run_tag&quot;: &quot;run_005_of_005&quot; } ], &quot;beats_base&quot;: true } ],
+      &quot;best_by_period&quot;: [ { &quot;period&quot;: &quot;T4_2026-09-01_2026-09-30&quot;, &quot;parameters&quot;: { &quot;settings[*].basic.balance_percentage_long&quot;: &quot;10&quot; }, &quot;metric&quot;: -52.97, &quot;rank_across_periods&quot;: 5, &quot;worst_period&quot;: -52.97 } ],
+      &quot;base&quot;: { &quot;rank&quot;: 1, &quot;...&quot;: &quot;...&quot; },
+      &quot;beats_base_count&quot;: 1
+    }
+  ]
+}
+</code></pre>
+<p><code>best_by_period</code> — лучшая точка каждого периода и её место в общем рейтинге: низкое место значит, что точка подогнана под свой период. <code>beats_base</code> — комбинация не хуже базовой ни на одном периоде.</p>
+<p><strong>Ошибки:</strong> <code>400</code> — меньше двух папок, нет столбца метрики или слишком мало комбинаций для соседей, <code>404</code> — папка не найдена</p>
+<hr />
+<h4 id="post-apitesterreportstelegram">POST /api/tester/reports/telegram</h4>
+<p>Отправляет файл отчёта тестера в Telegram — в чат уведомлений тестера (<code>telegram.id_chat</code> конфига программы, туда же приходят итоги переборов). Отправить можно только файл из <code>report</code> (<code>.html</code>, <code>.json</code>, <code>.csv</code>, <code>.png</code>, <code>.txt</code>, до 50 МБ); к торговле и чатам стратегий доступа нет. Подпись — <code>Tester report: &lt;путь&gt;</code> и <code>caption</code>.</p>
+<p><strong>Запрос:</strong></p>
+<pre><code class="language-json">{ &quot;path&quot;: &quot;T4/T4_BTCUSDT_20261025.html&quot;, &quot;caption&quot;: &quot;Лучший вариант по просадке&quot; }
+</code></pre>
+<p><strong>Ответ 200:</strong> <code>{ &quot;success&quot;: true, &quot;path&quot;: &quot;T4/T4_BTCUSDT_20261025.html&quot; }</code></p>
+<p>Не чаще одного файла в 10 секунд.</p>
+<p><strong>Ошибки:</strong> <code>400</code> — файл не отчёт или больше 50 МБ, не задан <code>telegram.id_chat</code>, <code>404</code> — файл не найден, <code>429</code> — слишком часто, <code>502</code> — Telegram не принял файл (причина в логе программы)</p>
+<hr />
+<h4 id="get-apitesterpublishfiles">GET /api/tester/publish/files</h4>
+<p>Файлы папки отчёта, которые можно опубликовать на сайт. <code>?path=</code> — папка в <code>report</code>.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">[ { &quot;name&quot;: &quot;reports_history.csv&quot;, &quot;size&quot;: 10240, &quot;kind&quot;: &quot;history&quot; } ]
+</code></pre>
+<p><code>kind</code> — <code>history</code> (история прогонов), <code>snapshot</code> (snapshot прогона) или <code>summary</code> (сводный отчёт).</p>
+<p><strong>Ошибки:</strong> <code>404</code> — папка не найдена</p>
+<hr />
+<h4 id="post-apitesterpublish">POST /api/tester/publish</h4>
+<p>Отправляет выбранные файлы папки отчёта на сайт. Публикация появляется после модерации.</p>
+<p><strong>Запрос:</strong></p>
+<pre><code class="language-json">{ &quot;path&quot;: &quot;T4&quot;, &quot;files&quot;: [&quot;reports_history.csv&quot;], &quot;contact&quot;: &quot;@telegram&quot;, &quot;comment&quot;: &quot;...&quot;, &quot;agree&quot;: true }
+</code></pre>
+<p><code>agree: true</code> — согласие с условиями публикации, обязательно.</p>
+<p><strong>Ответ 200:</strong></p>
+<pre><code class="language-json">{ &quot;success&quot;: true, &quot;sent&quot;: [&quot;reports_history.csv&quot;] }
+</code></pre>
+<p><strong>Ошибки:</strong> <code>400</code> — нет согласия или не выбраны файлы, <code>404</code> — папка не найдена, <code>502</code> — сайт не принял публикацию</p>
+<hr />
+<h3 id="mcp-для-ии-ассистентов">MCP для ИИ-ассистентов</h3>
+<p>Бот работает и как MCP-сервер (<a href="https://modelcontextprotocol.io" target="_blank" rel="noopener">Model Context Protocol</a>): ИИ-ассистент (Claude и другие клиенты MCP) может сам смотреть состояние бота, запускать тестер и управлять стратегиями. Инструменты MCP повторяют этот API и подчиняются тем же правилам доступа.</p>
+<p><strong>Включение.</strong> По умолчанию MCP выключен. Включите его в <code>settings_program.json</code>:</p>
+<pre><code class="language-json">{ &quot;use_mcp&quot;: true }
+</code></pre>
+<p>Изменение действует сразу, перезапуск не нужен. Его можно сделать и через API: <code>POST /api/settings/config</code> с телом <code>{ &quot;use_mcp&quot;: true }</code>. Пока MCP выключен, <code>/mcp</code> отвечает <code>404</code>.</p>
+<p><strong>Адрес:</strong> <code>http://127.0.0.1:&lt;порт&gt;/mcp</code>, транспорт Streamable HTTP.</p>
+<p><strong>Подключение к Claude Code:</strong></p>
+<pre><code class="language-bash">claude mcp add --transport http hamster-bot http://127.0.0.1:5000/mcp --header &quot;Authorization: Bearer &lt;api_token&gt;&quot;
+</code></pre>
+<p>Или в файле <code>.mcp.json</code> проекта:</p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;hamster-bot&quot;: {
+      &quot;type&quot;: &quot;http&quot;,
+      &quot;url&quot;: &quot;http://127.0.0.1:5000/mcp&quot;,
+      &quot;headers&quot;: { &quot;Authorization&quot;: &quot;Bearer &lt;api_token&gt;&quot; }
+    }
+  }
+}
+</code></pre>
+<p>Другие клиенты подключаются по тому же адресу, если поддерживают Streamable HTTP и свои заголовки запроса.</p>
+<p><strong>Доступ</strong> — как у API (см. <a href="#%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF">Доступ</a>): заголовок <code>Authorization: Bearer &lt;api_token&gt;</code> с любого адреса; без него — cookie <code>hamster-bot-token</code> при включённом входе или только с этой же машины при выключенном. Иначе <code>/mcp</code> отвечает <code>401</code>. Для подключения с другой машины укажите вместо <code>127.0.0.1</code> адрес сервера; токен при этом передаётся открытым текстом, поэтому через интернет подключайтесь через HTTPS-прокси или SSH-туннель.</p>
+<p><strong>Безопасность.</strong> Инструменты, которые торгуют на бирже, запускают торговлю или необратимо меняют данные, помечены как опасные (<code>destructiveHint</code>) — клиент запрашивает подтверждение перед их вызовом. Это рыночные ордера, закрытие позиций, отмена ордеров, запуск ботов, сохранение и удаление стратегий и ключей, изменение конфига, выключение и обновление программы. Чтение состояния помечено как безопасное (<code>readOnlyHint</code>). Тестер работает на исторических данных и с биржей не торгует.</p>
+<p>Инструкции сервера и описания инструментов объясняют ассистенту главное правило живой торговли: позиция и ордера не должны оставаться без контроля. Стратегия на паузе их не ведёт, поэтому отключение — только в порядке пауза → снять ордера → закрыть позицию → удалить (<code>delete_strategy</code> с <code>full=true</code> делает это сам).</p>
+<p><strong>Инструменты:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Группа</th>
+<th>Инструменты</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Настройки</td>
+<td><code>get_config</code>, <code>update_config</code>, <code>get_field_hints</code>, <code>get_settings_schema</code></td>
+</tr>
+<tr>
+<td>Стратегии</td>
+<td><code>list_strategies</code>, <code>get_strategy</code>, <code>draft_strategy</code>, <code>save_strategy</code>, <code>copy_strategy</code>, <code>create_strategy_from_tester</code>, <code>delete_strategy</code></td>
+</tr>
+<tr>
+<td>Аккаунты</td>
+<td><code>list_accounts</code>, <code>get_account</code>, <code>get_account_symbols</code>, <code>save_account</code>, <code>delete_account</code>, <code>get_account_info</code>, <code>get_balance_history</code>, <code>compact_balance_history</code></td>
+</tr>
+<tr>
+<td>Боты</td>
+<td><code>list_bots</code>, <code>get_balances</code>, <code>get_bot_bars</code>, <code>get_bot_state</code>, <code>pause_all_bots</code>, <code>play_all_bots</code>, <code>pause_bot</code>, <code>play_bot</code>, <code>send_chart_to_telegram</code>, <code>send_position_to_telegram</code></td>
+</tr>
+<tr>
+<td>Позиции и ордера</td>
+<td><code>list_positions</code>, <code>list_orders</code>, <code>market_order</code>, <code>close_position</code>, <code>close_all_positions</code>, <code>reduce_positions</code>, <code>cancel_order</code>, <code>cancel_account_orders</code>, <code>cancel_all_orders</code></td>
+</tr>
+<tr>
+<td>Система и логи</td>
+<td><code>get_system_status</code>, <code>shutdown_program</code>, <code>update_program</code>, <code>get_log</code>, <code>get_errors</code>, <code>list_log_files</code>, <code>read_log_file</code></td>
+</tr>
+<tr>
+<td>Тестер</td>
+<td><code>tester_status</code>, <code>get_tester_config</code>, <code>save_tester_config</code>, <code>tester_exchanges</code>, <code>tester_exchange_symbols</code>, <code>list_tester_settings</code>, <code>get_tester_settings</code>, <code>draft_tester_settings</code>, <code>save_tester_settings</code>, <code>copy_tester_settings</code>, <code>delete_tester_settings</code>, <code>copy_tester_settings_to_folder</code>, <code>delete_tester_settings_matching</code>, <code>import_tester_settings</code>, <code>check_tester_settings</code>, <code>get_tester_settings_folder</code>, <code>set_tester_settings_folder</code>, <code>create_tester_settings_folder</code>, <code>delete_tester_settings_folder</code>, <code>tester_run_mining</code>, <code>tester_run_stress</code>, <code>tester_stop</code>, <code>tester_cancel_queued</code>, <code>tester_run_single</code>, <code>tester_wait</code>, <code>tester_run_batch</code>, <code>tester_wait_batch</code>, <code>tester_run_snapshot</code>, <code>tester_download_data</code>, <code>tester_data_coverage</code>, <code>tester_mining_robustness</code>, <code>tester_portfolio_analysis</code>, <code>tester_wizard_results</code>, <code>list_tester_files</code>, <code>read_tester_file</code>, <code>save_tester_file</code>, <code>delete_tester_file</code>, <code>tester_report_summaries</code>, <code>read_tester_report</code>, <code>send_tester_report_to_telegram</code>, <code>tester_publish_files</code>, <code>tester_publish</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Имена аргументов.</strong> Во всех инструментах одни и те же имена: <code>strategy</code> — имя стратегии бота, <code>account</code> — имя аккаунта, <code>folder</code> — папка настроек тестера. Прежние имена принимаются как синонимы: <code>name</code> вместо <code>strategy</code> в <code>get_strategy</code>, <code>copy_strategy</code>, <code>delete_strategy</code>, <code>name</code> вместо <code>account</code> в <code>get_account</code>, <code>get_account_symbols</code>, <code>delete_account</code>, <code>get_account_info</code>, <code>get_balance_history</code>, <code>compact_balance_history</code>, <code>path</code> вместо <code>folder</code> в <code>set_tester_settings_folder</code>, <code>create_tester_settings_folder</code>, <code>delete_tester_settings_folder</code>. Если нет ни основного имени, ни синонима, ошибка называет ожидаемое поле. <code>strategy</code> в <code>draft_strategy</code>, <code>draft_tester_settings</code> и <code>get_settings_schema</code> — код стратегии (<code>zigzag</code>, <code>mrs2</code>), а не имя. Для настроек тестера <code>name</code> — имя набора настроек.</p>
+<p>Ошибка API возвращается ассистенту как ошибка инструмента с кодом и текстом, например <code>HTTP 404: {&quot;success&quot;:false,&quot;error&quot;:&quot;Strategy not found&quot;}</code>. Очень длинные ответы обрезаются до 200 000 символов. <code>read_tester_file</code> отдаёт текстовые файлы целыми строками: длинный ответ заканчивается подсказкой <code>... [lines A-B of N; continue with offset=B]</code>. Для длинных CSV есть параметры <code>offset</code> и <code>limit</code> (страница строк), <code>tail_lines</code> (последние N строк), <code>contains</code> (только строки с текстом) и <code>columns</code> (только нужные столбцы); заголовок CSV сохраняется всегда. <code>list_tester_files</code> принимает <code>contains</code>, <code>offset</code> и <code>limit</code>. HTML-отчёты большие, поэтому для сравнения прогонов лучше <code>tester_report_summaries</code>, а для подробностей одного прогона — <code>read_tester_report</code>.</p>
+<p><strong>Исследования в тестере.</strong> Ассистент может сам вести исследование стратегии. Тестер работает на исторических данных и с биржей не торгует. Типичный порядок:</p>
+<ol>
+<li><code>get_field_hints</code> — узнать смысл полей настроек стратегии и конфига тестера, в том числе синтаксис <code>parameter_mining</code>; <code>get_settings_schema</code> — какие поля стратегия действительно читает: перебор недействующего поля даёт одинаковые строки.</li>
+<li><code>create_tester_settings_folder</code> — завести свою папку для эксперимента; <code>copy_tester_settings_to_folder</code> — скопировать в неё нужные настройки. Дальше передавать <code>folder</code> во все инструменты тестера.</li>
+<li><code>draft_tester_settings</code> и <code>save_tester_settings</code> — создать новые настройки для нужной биржи, пары и таймфрейма. Варианты существующих настроек сохранять не нужно: их задаёт <code>overrides</code> при запуске.</li>
+<li><code>save_tester_config</code> — задать период, комиссии, <code>parameter_mining</code> и новый <code>name_comment</code> для эксперимента; включить <code>report.enable_json_report</code>. Начало периода (<code>StartDate</code>) для сверки с живым ботом ставить на границу <code>time_frame</code> стратегии и не раньше запуска бота: стратегия работает с первой свечи своего таймфрейма, открытие которой не раньше <code>StartDate</code>, поэтому старт в середине 4h-свечи сдвигает первые ордера на следующую свечу. <code>WarmupDays</code> (по умолчанию 30) только прогревает индикаторы историей до <code>StartDate</code>: на этих днях стратегия не торгует и состояние не накапливает, позиция и ордера живого бота из истории не восстанавливаются. Если данных у пары меньше <code>WarmupDays</code>, торговля начнётся позже (предупреждение в ответе).</li>
+<li><code>tester_download_data</code> — загрузить свечи и дождаться окончания в <code>tester_status</code>. Период можно задать параметрами <code>start</code> и <code>end</code>, по умолчанию: старт конфига с прогревом .. сейчас (конфиг менять не нужно). В <code>download.result</code> видно, по какой день данные реально есть у каждой пары.</li>
+<li><code>tester_run_single</code> — проверить одну комбинацию; <code>tester_wait</code> (или <code>wait_seconds</code> при запуске) дожидается прогона и возвращает метрики, предупреждения и пути к отчётам. <code>tester_run_batch</code> — сравнить несколько вариантов и проверить их на нескольких периодах одним вызовом. Или <code>tester_run_mining</code> — перебрать все комбинации: результаты в <code>&lt;name_comment&gt;/reports_history.csv</code> (<code>read_tester_file</code>); <code>queue=true</code> ставит перебор в очередь за текущим.</li>
+<li><code>read_tester_report</code> — разобрать прогон: раздел <code>summary</code> для сравнения, итоги по парам, месяцы, сделки. Для набора стратегий — <code>tester_portfolio_analysis</code>: группы T/CT, корреляция, худшие дни, вклад каждой стратегии в просадку.</li>
+<li><code>tester_report_summaries</code>, <code>tester_run_stress</code> и <code>walk_forward</code> в конфиге — сравнить лучшие варианты и проверить их устойчивость.</li>
+<li><code>send_tester_report_to_telegram</code> — прислать итоговый отчёт пользователю в Telegram, если он просит.</li>
+</ol>
+<p><strong>Одна стратегия на пару.</strong> На одном счёте на одной паре (<code>basic.symbol</code>) может быть только одна стратегия, и в живой торговле, и в тестере. Пар на счёте может быть сколько угодно (хоть 200), стратегии на них могут быть разными или одинаковыми, но символ среди стратегий счёта должен быть уникальным. Стратегия на занятой паре сохраняется, но не запускается (в логе <code>DUBLICATE SUMBOL ON API</code>); проверьте <code>list_strategies</code> по счёту и паре до <code>save_strategy</code>, <code>copy_strategy</code> (копируйте на другую пару) и <code>create_strategy_from_tester</code>. Настройки тестера, которые идут в одном прогоне, тоже должны быть на разных парах; чтобы сравнить несколько настроек на одной паре, запускайте каждую отдельно (элементы <code>tester_run_batch</code> или перебор с <code>single_mode</code>).</p>
+<p><strong>Реинвестирование и сравнение вариантов.</strong> Размер позиции по <code>basic.balance_percentage_long/_short</code> считается от текущего баланса, поэтому прибыль реинвестируется и годовой PnL % завышается. Чтобы варианты и периоды сравнивались честно, отключите рост размера одним из способов:</p>
+<ol>
+<li><code>basic.use_fix = true</code> и <code>basic.my_fix_balance = 50</code>: каждый ордер считается от 50 единиц котируемой валюты (обычно USDT), независимо от баланса.</li>
+<li><code>basic.max_balance = 2000</code>: пока баланс меньше, бот работает с реальным балансом; при балансе 2350 размер считается от 2000, выше порога реинвестирование прекращается.</li>
+<li><code>basic.lot_long</code> / <code>basic.lot_short</code>: постоянный размер ордера, который уходит на биржу.</li>
+</ol>
+<p>Некоторые стратегии могут изменить этот базовый размер по своей логике. Параметры можно задать через <code>overrides</code> запуска (<code>set</code>) или перебирать в <code>parameter_mining</code>.</p>
+<p>Ответы на сохранение и запуск содержат <code>warnings</code>: поля, которые настройки не читают. <code>check_tester_settings</code> проверяет так всю папку.</p>
+<p><strong>Перевод в торговлю и контроль.</strong> Проверенную настройку переносит в бота <code>create_strategy_from_tester</code> — стратегия создаётся на паузе, запуск — <code>play_bot</code> после проверки. Работу живого бота ассистент оценивает так: после закрытия дня, когда свечи можно скачать, прогоняет тестер на тех же настройках и за тот же период (стратегию в папку тестера копирует <code>import_tester_settings</code>) и получает полную статистику — в нормальном случае она совпадает с живой торговлей. Фактический результат — история баланса <code>get_balance_history</code> (пишется при включённом <code>monitoring.enabled</code>). Отключать стратегию — <code>delete_strategy</code> с <code>full=true</code> или вручную в порядке пауза → снять ордера → закрыть позицию → удалить.</p>
+<p><strong>Логи.</strong> У каждого бота (стратегии на паре) свой лог: <code>log_&lt;дата&gt;_&lt;Биржа&gt; &lt;аккаунт&gt;  &lt;пара&gt; &lt;таймфрейм&gt; &lt;стратегия&gt; &lt;имя&gt;.log</code> — уровни, сигналы, выставленные и снятые ордера, исполнения, изменения позиции и ошибки стратегии; по нему видно, почему бот торговал или не торговал. У каждого аккаунта — <code>log_&lt;аккаунт&gt;_&lt;дата&gt;.log</code>: балансы и позиции с биржи, ответы и ошибки API биржи, лимитер позиций, <code>close_by_margin</code>. Общий лог программы — <code>log_&lt;дата&gt;.log</code> (<code>get_log</code>), логи тестера — <code>TESTER_*.log</code>. Формат даты в именах разный, поэтому файл ищут по имени стратегии или аккаунта: <code>list_log_files</code> с <code>contains</code>, затем <code>read_log_file</code>.</p>
+<h4 id="примеры-использования">Примеры использования</h4>
+<p>Ниже — запросы к ассистенту и вызовы инструментов, которые он делает. Аргументы показаны в JSON, как их передаёт MCP-клиент. Папка <code>lut_now</code>, имена настроек и даты — для примера.</p>
+<p><strong>Проверить вариант набора без тестовых копий.</strong> «Что будет, если удвоить трендовые стратегии, но не больше 10% на пару, и выключить шорт у C_MU? Проверь на двух периодах».</p>
+<pre><code class="language-json">tester_run_single {
+  &quot;settings&quot;: [&quot;*&quot;], &quot;folder&quot;: &quot;lut_now&quot;, &quot;wait_seconds&quot;: 240,
+  &quot;overrides&quot;: [
+    { &quot;match&quot;: &quot;T_*&quot;, &quot;mul&quot;: { &quot;basic.balance_percentage_long&quot;: 2, &quot;basic.balance_percentage_short&quot;: 2 }, &quot;cap_pct&quot;: 10 },
+    { &quot;match&quot;: &quot;C_MU&quot;, &quot;set&quot;: { &quot;basic.use_short&quot;: false } }
+  ],
+  &quot;periods&quot;: [[&quot;2026-05-01&quot;, &quot;2026-08-01&quot;], [&quot;2026-08-01&quot;, &quot;2026-10-26&quot;]]
+}
+</code></pre>
+<p>Файлы настроек не меняются. В ответе по каждому периоду — <code>summary</code> (PnL, просадки, Ulcer, profit factor, сделки, месяцы), пути к отчётам, <code>applied</code> (что изменено) и <code>warnings</code>. Вместо маски можно выбрать настройки по тегу: <code>{ &quot;tag&quot;: &quot;hedge&quot;, &quot;mul&quot;: { ... } }</code>.</p>
+<p><strong>Сравнить несколько вариантов одним вызовом.</strong></p>
+<pre><code class="language-json">tester_run_batch {
+  &quot;folder&quot;: &quot;lut_now&quot;, &quot;parallel&quot;: 2, &quot;wait_seconds&quot;: 240,
+  &quot;periods&quot;: [[&quot;2026-05-01&quot;, &quot;2026-08-01&quot;], [&quot;2026-08-01&quot;, &quot;2026-10-26&quot;]],
+  &quot;runs&quot;: [
+    { &quot;name&quot;: &quot;base&quot;, &quot;settings&quot;: [&quot;*&quot;] },
+    { &quot;name&quot;: &quot;T x2&quot;, &quot;settings&quot;: [&quot;*&quot;], &quot;overrides&quot;: [{ &quot;match&quot;: &quot;T_*&quot;, &quot;mul&quot;: { &quot;basic.balance_percentage_long&quot;: 2 } }] },
+    { &quot;name&quot;: &quot;без L_X&quot;, &quot;settings&quot;: [&quot;*&quot;], &quot;overrides&quot;: [{ &quot;match&quot;: &quot;L_X&quot;, &quot;exclude&quot;: true }] },
+    { &quot;name&quot;: &quot;только лонг&quot;, &quot;settings&quot;: [&quot;*&quot;], &quot;sides&quot;: &quot;long&quot; }
+  ]
+}
+</code></pre>
+<p>Каждый вариант идёт на каждом периоде; ответ — таблица результатов. Без <code>wait_seconds</code> ассистент ждёт пакет через <code>tester_wait_batch</code>.</p>
+<p><strong>Подобрать параметр, устойчивый на нескольких периодах.</strong> «Подбери depth для T_BTC, но не под один период».</p>
+<ol>
+<li><code>get_settings_schema { &quot;strategy&quot;: &quot;zz&quot; }</code> — <code>zz.depth</code> действует только при <code>zz.type = ZZ2</code>; перебор поля, которое настройка не читает, даёт одинаковые строки.</li>
+<li>Перебор на трёх периодах (каждый — отдельный полный прогон через очередь):<pre><code class="language-json">tester_run_mining {
+  &quot;settings&quot;: [&quot;T_BTC&quot;], &quot;folder&quot;: &quot;lut_now&quot;,
+  &quot;config&quot;: { &quot;name_comment&quot;: &quot;MCP_depth&quot;, &quot;parameter_mining&quot;: [{ &quot;name&quot;: &quot;settings[*].zz.depth&quot;, &quot;start&quot;: 4, &quot;end&quot;: 20, &quot;step&quot;: 2 }], &quot;...&quot;: &quot;остальное как в get_tester_config&quot; },
+  &quot;periods&quot;: [[&quot;2026-02-01&quot;, &quot;2026-05-01&quot;], [&quot;2026-05-01&quot;, &quot;2026-08-01&quot;], [&quot;2026-08-01&quot;, &quot;2026-10-26&quot;]]
+}
+</code></pre>
+Ответ содержит <code>report_folders</code> каждого периода и <code>warnings</code> (несуществующие и недействующие параметры).</li>
+<li>Дождаться окончания в <code>tester_status</code>, затем <code>tester_mining_robustness { &quot;folders&quot;: [...], &quot;base&quot;: { &quot;settings[*].zz.depth&quot;: 12 } }</code> — рейтинг по плато всех периодов, место лучшей точки каждого периода в общем рейтинге и точки, которые не хуже исходной ни на одном периоде.</li>
+</ol>
+<p><strong>Оценить хедж трендовых стратегий в портфеле.</strong> «Помогают ли T-стратегии CT-стратегиям в просадке?»</p>
+<ol>
+<li>Прогон набора с <code>report.enable_json_report: true</code> (раздел <code>daily</code> включён по умолчанию).</li>
+<li><code>tester_portfolio_analysis { &quot;path&quot;: &quot;&lt;report_json_path&gt;&quot;, &quot;groups&quot;: { &quot;T&quot;: &quot;T_*&quot;, &quot;CT&quot;: &quot;C_*&quot; } }</code> — корреляция групп, худшая неделя, PnL группы T в худшие дни CT (<code>offset_percent</code>) и <code>leave_one_out</code>: насколько выросла бы просадка портфеля без каждой стратегии. Это заменяет отдельный прогон без каждой стратегии.</li>
+<li>Подобрать размер T на фоне остального набора — портфельный перебор без <code>single_mode</code>: параметр <code>settings[T_*].basic.balance_percentage_long</code>, строки сравниваются по <code>MaxDrawdownPercent</code> и <code>UlcerIndex</code> портфеля.</li>
+</ol>
+<p><strong>Проверить папку настроек.</strong> <code>check_tester_settings { &quot;folder&quot;: &quot;lut_now&quot; }</code> — настройки с изменёнными полями, которые ни на что не влияют (секция другой стратегии, поле другого <code>zz.type</code>, выключенный <code>use_*</code>, <code>basic.leverage</code> в тестере). Те же предупреждения приходят при сохранении настроек.</p>
+<p><strong>Повторить прогон с правкой и отдать вариант пользователю.</strong> Каждый прогон сохраняет <code>run_snapshot_*.json</code> с точными настройками и конфигом. Ассистент читает его (<code>read_tester_file</code>), правит и запускает <code>tester_run_snapshot</code> с изменённым snapshot — файл не меняется. Чтобы пользователь запустил вариант сам, ассистент сохраняет его в <code>runs</code> через <code>save_tester_file</code>: в веб-интерфейсе (Тестер, вкладка «Результаты (файлы)») у файла есть кнопки «Запустить» и «Изменить».</p>
+<p><strong>Перевести настройку в торговлю и вести бота.</strong> «Запусти T_BTC на демо-счёте и следи за ним».</p>
+<ol>
+<li><code>list_accounts</code> — найти аккаунт.</li>
+<li><code>create_strategy_from_tester { &quot;name&quot;: &quot;T_BTC&quot;, &quot;folder&quot;: &quot;lut_now&quot;, &quot;account&quot;: &quot;demo_bybit&quot; }</code> — стратегия создаётся на паузе; ассистент проверяет её (<code>get_strategy</code>, <code>warnings</code>) и запускает <code>play_bot</code>.</li>
+<li>Контроль в течение дня: <code>list_bots</code>, <code>list_positions</code>, <code>list_orders</code>; лог стратегии — <code>list_log_files { &quot;contains&quot;: &quot;T_BTC&quot; }</code> и <code>read_log_file</code>; ошибки — <code>get_errors</code>.</li>
+<li>После закрытия дня: <code>import_tester_settings</code> (стратегия из <code>get_strategy</code> в папку тестера), <code>tester_download_data</code>, прогон тестера за прошедший период — полная статистика, которая в нормальном случае совпадает с живой торговлей. Фактический результат — <code>get_balance_history</code> (при <code>monitoring.enabled</code>). Расхождение — повод разобрать лог стратегии.</li>
+<li>Корректировка: проверить изменение в тестере, затем <code>save_strategy</code> — изменения сразу применяются к работающему боту.</li>
+</ol>
+<p><strong>Отключить стратегию.</strong> <code>delete_strategy { &quot;name&quot;: &quot;T_BTC&quot;, &quot;full&quot;: true }</code> — пауза, снятие ордеров, закрытие позиции, удаление. Если ордера или позиция не снялись, стратегия остаётся на паузе и не удаляется: ассистент проверяет <code>list_orders</code> и <code>list_positions</code> и доделывает вручную в том же порядке, не пропуская паузу.</p>
+<p><strong>Прислать отчёт.</strong> «Пришли итоговый отчёт в Telegram» — <code>send_tester_report_to_telegram { &quot;path&quot;: &quot;&lt;report_path&gt;&quot;, &quot;caption&quot;: &quot;лучший вариант по просадке&quot; }</code>. Отправляются только файлы отчётов тестера в чат уведомлений тестера.</p>
+<p>Примеры запросов к ассистенту:</p>
+<ul>
+<li>«Подбери длину зигзага для BTCUSDT 1h на Bybit за последние три месяца, проверь лучшую точку на двух других периодах и стресс-тестом».</li>
+<li>«Синхронизируй папку lut_now с mrs-bybit и сравни набор с удвоенными T-стратегиями и без них по просадке и Ulcer».</li>
+<li>«Какие стратегии lut_now добавляют просадку портфелю, а какие её снижают?»</li>
+<li>«Перенеси лучший вариант на демо-счёт, запусти и каждый день сверяй живую торговлю с тестером».</li>
+</ul>
+<hr />
+<h3 id="коды-ответов">Коды ответов</h3>
+<table>
+<thead>
+<tr>
+<th>Код</th>
+<th>Значение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>Успех</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Неверный запрос: пустое тело, неверный JSON, не заполнены обязательные поля</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Нет доступа: неверный <code>api_token</code>; cookie отсутствует, устарел или заменён новым входом; запрос без токена не с этой же машины</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Запрос со страницы другого сайта (<code>Origin</code> не совпадает с адресом бота)</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Не найдено</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Конфликт: тестер или загрузка данных уже работают, имя занято, нет нужного запущенного бота</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Слишком часто (отправка отчёта тестера в Telegram)</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Внутренняя ошибка или ошибка биржи</td>
+</tr>
+<tr>
+<td>502</td>
+<td>Внешний сервис не принял запрос</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Программа ещё запускается</td>
+</tr>
+</tbody>
+</table>
+<!-- API:END -->
+    </article>
+  </main>
+</body>
 </html>

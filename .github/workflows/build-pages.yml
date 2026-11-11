@@ -1,0 +1,36 @@
+name: Build README and index.html
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - API.md
+      - README.md
+      - scripts/**
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install markdown-it-py
+      - name: Embed API.md into README.md
+        run: python scripts/sync_readme_api.py
+      - name: Build static index.html, sitemap.xml and robots.txt
+        run: python scripts/build_index.py
+      - name: Commit changes
+        run: |
+          git add README.md index.html sitemap.xml robots.txt
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "docs: rebuild README and index.html"
+            git push
+          fi
